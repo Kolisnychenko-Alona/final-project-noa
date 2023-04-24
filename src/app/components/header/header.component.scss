@@ -1,0 +1,119 @@
+@import "../../shared/styles/variables";
+
+.container {
+   width: 100%;
+   position: relative;
+   .delivery {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $dark;
+      color: $white;
+      padding: 17px 0;
+      font-size: 15px;
+      &_link {
+         position: relative;
+         color: $main-color;
+         text-decoration: none;
+         margin-left: 40px;
+         font-size: 12px;
+         font-weight: 700;
+         text-transform: uppercase;
+         letter-spacing: 0.1em;
+         &:hover{
+            transition: all 0.3s;
+            cursor: pointer;
+         }
+         &::before {
+            position: absolute;
+            content: "";
+            bottom: -2px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #2d7d7d;
+            transition: all 0.3s;
+         }
+         &:hover::before{
+            transition: all 0.3s;
+            width: 0;
+         }
+      }
+   }
+   .header{
+      width: 100%;
+      height: 105px;
+      position: fixed;
+      top: 49px;
+      border: 1px solid $dark;
+      left: 0;
+      background-color: $white;
+      background-image: url(https://noa.ua/wp-content/themes/tomatina/img/bg-header.jpg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &_logo{
+         width: 180px;
+         height: 105px;
+         a{
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            width: 180px;
+            height: 105px;
+            img{
+               position: absolute;
+               display: block;
+               left: 50%;
+               top: 50%;
+               transform: translate(-50%,-50%);
+            }
+         }
+      }
+      &_menu{
+         height: 105px;
+         .header_menu-inner>.header_menu-list{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .header_menu-item{
+               padding: 42px 30px;
+               a{
+                  color: $white;
+                  text-decoration: none;
+                  font-size: 14px;
+                  font-weight: 500;
+                  text-transform: uppercase;
+                  &:hover{
+                     color: $main-color;
+                  }
+               }
+            }
+         }
+      }
+      &_buttons{
+         height: 105px;
+         &-list{
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            .header_buttons-item{
+               margin-right: 40px;
+            }
+         }
+      }
+      &_basket{
+         width: 50px;
+         height: 50px;
+         background-color: $main-color;
+         position: absolute;
+         top:150px;
+         right: 30px;
+
+      }
+   }
+}
