@@ -58,7 +58,7 @@
       align-items: center;
       &_logo{
          width: 180px;
-         height: 105px;
+         height: 100%;
          a{
             position: relative;
             display: inline-block;
@@ -75,7 +75,7 @@
          }
       }
       &_menu{
-         height: 105px;
+         height: 100%;
          .header_menu-inner>.header_menu-list{
             display: flex;
             justify-content: center;
@@ -96,24 +96,225 @@
          }
       }
       &_buttons{
-         height: 105px;
+         height: 100%;
          &-list{
+            height: 100%;
             display: flex;
             justify-content: right;
             align-items: center;
             .header_buttons-item{
                margin-right: 40px;
+               &:first-child{
+                  padding: 20px 30px;
+                  border-radius: 6px;
+                  background-color: $gray;            
+                  transition: 0.3s;
+                  a{
+                     color: $white;
+                     font-size: 14px;
+                     line-height: 20px;
+                     font-weight: 700;
+                     text-decoration: none;
+                     letter-spacing: .15em;
+                     text-transform: uppercase;
+                  }
+                  &:hover{
+                     background-color: $main-color;
+                     cursor: pointer;
+                     transition: 0.3s;
+                  }
+               }
+               &:nth-child(2){
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  position: relative;
+                  a>.like{
+                     margin-left: 1px;
+                     position: absolute;
+                     left: 50%;
+                     top: 50%;
+                     transform: translate(-50%,-50%);
+                  }
+               }
+               &:nth-child(3){
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  position: relative;
+                  :hover{
+                     cursor: pointer;
+                  }
+                  .phone{
+                     margin-left: 1px;
+                     position: absolute;
+                     left: 50%;
+                     top: 50%;
+                     transform: translate(-50%,-50%);
+                  }
+                  .header_buttons-phone{
+                     position: absolute;
+                     left: -115px;
+                     top: 60px;
+                     width: 240px;
+                     text-align: center;
+                     box-shadow: 0 3px 6px 0 rgba(0,0,0,.05);
+                     padding: 15px 10px;
+                     background-color: $milk;
+                     border-radius: 6px;
+                     opacity: 0;
+                     z-index: 2;
+                     visibility: hidden;
+                     transform: translateY(30px);
+                     transition: all 0.5s;
+                     &::before{
+                        position: absolute;
+                        content: '';
+                        top: -10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 20px;
+                        height: 20px;
+                        background-color: $milk;
+                        transform: rotate(45deg);
+                     }
+                     a{
+                        display: block;
+                        text-decoration: none;
+                        color: black;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 1.3em;
+                        margin-bottom: 5px;
+                     }
+                     p{
+                        line-height: 1.2em;
+                        font-size: 12px;
+                        color: $light-gray;
+                     }
+                  }
+                  &:hover .header_buttons-phone{
+                     opacity: 100;
+                     visibility: visible;
+                     transform: translateY(10px);
+                     transition: all 0.5s;
+                  }
+               }
+               &:nth-child(4){
+                  :hover{
+                     cursor: pointer;
+                     transition: 0.3s;
+                  }
+                  img{
+                     width: 16px;
+                     margin-right: 10px;
+                  }
+                  span{
+                     font-size: 14px;
+                     text-transform: uppercase;
+                     color: $white;
+                  }
+                  
+               }
+               &:last-child{
+                  position: relative;
+                  :hover{
+                     cursor: pointer;
+                     transition: 0.3s;
+                  }
+                  .header_buttons-btn{
+                     position: absolute;
+                     width: 18px;
+                     height: 14px;
+                     top: 50%;
+                     left: 50%;
+                     margin-left: 1px;
+                     transform: translate(-50%, -50%);
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: space-between;
+                     align-items: center;
+                     transition: all 0.3s;
+                     span{
+                        width: 100%;
+                        height: 2px;
+                        background-color: $white;
+                     }
+                  }
+               }
             }
          }
       }
       &_basket{
-         width: 50px;
-         height: 50px;
-         background-color: $main-color;
+         width: 120px;
+         height: 88px;
          position: absolute;
          top:150px;
-         right: 30px;
-
+         right: 35px;
+         .basket-bg{
+            position: absolute;
+            width: 108px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(15deg);
+            transition: 0.3s;
+         }
+         &-inner{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .header_basket-icon{
+               height: 100%;
+               margin-right: 10px;
+               position: relative;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               img{
+                  width: 24px;
+               }
+               span{
+                  position: absolute;
+                  top: 25px;
+                  right: -8px;
+                  width: 18px;
+                  height: 18px;
+                  line-height: 18px;
+                  text-align: center;
+                  background-color: $white;
+                  border-radius: 50%;
+                  font-size: 12px;
+                  color: $dark;
+                  font-weight: 700;
+                  text-align: center;
+               }
+            }
+            .header_basket-total{
+               height: 100%;
+               display: flex;
+               flex-direction: column;
+               justify-content: center;
+               align-items: center;
+               p{
+                  font-size: 16px;
+                  color:$white;
+                  line-height: 10px;
+                  &:first-child{
+                     margin-bottom: 5px;
+                  }
+               }
+            }
+         }  
+         &:hover .basket-bg{
+            transform: translate(-50%, -50%) rotate(0deg);
+            transition: 0.3s;
+         }
+         &:hover{
+            cursor: pointer;
+         }
       }
    }
 }
