@@ -1,2 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
-@import '/src/app/shared/styles/base'
+
+
+// @use '@angular/material' as mat;
+// @include mat.all-component-themes($noa-ua-theme);
+
+@import '/src/app/shared/styles/base';
+@import '/src/app/shared/styles/theme.material';
+

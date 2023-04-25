@@ -1,7 +1,7 @@
 <div class="container">
    <div class="delivery">
       <p class="delivery_text">Тип доставки: {{ deliveryType }}</p>
-      <a class="delivery_link" (click)="openDeliveryDialog()">Натисність тут, щоб змінити</a>
+      <a class="delivery_link" mat-button (click)="openDeliveryDialog()">Натисність тут, щоб змінити</a>
    </div>
    <div class="header">
       <section class="header_logo">
@@ -12,17 +12,41 @@
       <section class="header_menu">
          <nav class="header_menu-inner">
             <ul class="header_menu-list">
-               <li class="header_menu-item"><a routerLink="/product">Меню</a></li>
-               <li class="header_menu-item"><a routerLink="/market">Thai Market</a></li>
+               <li class="header_menu-item">
+                  <a routerLink="/product">Меню</a>
+                  <div class="catalog">
+                     <div class="header_catalog-item">
+                        <img src="https://noa.ua/wp-content/uploads/2023/04/salmon-sushi-burger-1-110x110.webp" alt="">
+                        <p class="title">Cnhfdf ljn edrgjierg</p>
+                     </div>
+                  </div>
+               </li>
+               <li class="header_menu-item">
+                  <a routerLink="/market">Thai Market</a>
+                  <div class="catalog">
+                     <div class="header_catalog-item">
+                        <img src="https://noa.ua/wp-content/uploads/2023/04/salmon-sushi-burger-1-110x110.webp" alt="">
+                        <p class="title">Cnhfdfg</p>
+                     </div>
+                  </div>
+               </li>
                <li class="header_menu-item"><a routerLink="/delivery">Доставка</a></li>
             </ul>
          </nav>
       </section>
       <section class="header_buttons">
          <ul class="header_buttons-list">
-            <li class="header_buttons-item"><a routerLink="/response">Залишити відгук</a></li>
-            <li class="header_buttons-item">
-               <a routerLink="/favorite">
+            <li class="header_buttons-item" 
+               (mousedown)="down(response)"
+               (mouseup)="up(response)"
+                #response>
+               <a routerLink="/response">Залишити відгук</a>
+            </li>
+            <li class="header_buttons-item"
+               (mousedown)="down(favorites)"
+               (mouseup)="up(favorites)"
+                #favorites>
+               <a routerLink="/favorites">
                   <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <circle cx="23.5" cy="23.5" r="23.5" fill="#2D7D7D"></circle>
                      <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="47" height="47">
@@ -42,6 +66,7 @@
                   </svg>
                </a>
             </li>
+
             <li class="header_buttons-item">
                <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="23.5" cy="23.5" r="23.5" fill="#2D7D7D"></circle>
@@ -75,7 +100,11 @@
                <img src="https://noa.ua/wp-content/themes/tomatina/img/icons/user.svg" alt="user icon">
                <span>Вхід</span>
             </li>
-            <li class="header_buttons-item" (click)="openMenuDialog()">
+            <li class="header_buttons-item" 
+               (click)="isOpenMenu = true"
+               (mousedown)="down(menu)"
+               (mouseup)="up(menu)"
+                #menu>
                <svg class="bg" width="47" height="47" viewBox="0 0 47 47" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <circle cx="23.5" cy="23.5" r="23.5" fill="#2D7D7D"></circle>
@@ -97,7 +126,8 @@
          </ul>
       </section>
       <section class="header_basket">
-         <img class="basket-bg" src="https://noa.ua/wp-content/themes/tomatina/img/icons/basket_blue.svg" alt="basket backgroung">
+         <img class="basket-bg" src="https://noa.ua/wp-content/themes/tomatina/img/icons/basket_blue.svg"
+            alt="basket backgroung">
          <div class="header_basket-inner">
             <div class="header_basket-icon">
                <img src="https://noa.ua/wp-content/themes/tomatina/img/icons/basket.svg" alt="basket logo">
@@ -108,7 +138,43 @@
                <p>грн</p>
             </div>
          </div>
-         
+
       </section>
+   </div>
+   <div class="menu" [class.activeMenu]="isOpenMenu">
+      <nav class="menu_nav" [class.activeNav]="isOpenMenu">
+         <div class="menu_close" 
+            (click)="isOpenMenu = false"
+            (mousedown)="down(close)"
+            (mouseup)="up(close)"
+            #close>
+         </div>
+         <ul class="menu_list">
+            <li class="menu_item" 
+               routerLink="/about"
+               (click)="isOpenMenu = false"
+               (mousedown)="down(about)"
+               (mouseup)="up(about)"
+                #about>про нас</li>
+            <li class="menu_item"
+               routerLink="/delivery"
+               (click)="isOpenMenu = false"
+               (mousedown)="down(delivery)"
+               (mouseup)="up(delivery)"
+                #delivery>доставка</li>
+            <li class="menu_item"
+               routerLink="/vacancies"
+               (click)="isOpenMenu = false"
+               (mousedown)="down(vacancies)"
+               (mouseup)="up(vacancies)"
+                #vacancies>вакансії</li>
+            <li class="menu_item"
+               routerLink="/contacts"
+               (click)="isOpenMenu = false"
+               (mousedown)="down(contacts)"
+               (mouseup)="up(contacts)"
+                #contacts>контакти</li>
+         </ul>
+      </nav>
    </div>
 </div>
