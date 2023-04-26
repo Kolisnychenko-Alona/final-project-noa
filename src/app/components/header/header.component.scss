@@ -25,7 +25,7 @@
          text-transform: uppercase;
          letter-spacing: 0.1em;
          &:hover {
-            transition: all 0.3s;
+            transition: all 0.5s;
             cursor: pointer;
          }
          &::before {
@@ -36,10 +36,10 @@
             width: 100%;
             height: 2px;
             background-color: #2d7d7d;
-            transition: all 0.3s;
+            transition: all 0.5s;
          }
          &:hover::before {
-            transition: all 0.3s;
+            transition: all 0.5s;
             width: 0;
          }
       }
@@ -89,16 +89,10 @@
                   font-size: 14px;
                   font-weight: 500;
                   text-transform: uppercase;
-                  transition: 0.3s;
+                  transition: 0.5s;
                   &:hover {
                      color: $main-color;
-                     transition: 0.3s;
-                     & + .catalog {
-                        top: 130px;
-                        opacity: 100;
-                        visibility: visible;
-                        transition: 0.3s;
-                     }
+                     transition: 0.5s;
                   }
                }
             }
@@ -113,11 +107,15 @@
             align-items: center;
             .header_buttons-item {
                margin-right: 40px;
+               &:hover {
+                  cursor: pointer;
+                  transition: 0.5s;
+               }
                &:first-child {
                   padding: 20px 30px;
                   border-radius: 6px;
                   background-color: $gray;
-                  transition: 0.3s;
+                  transition: 0.5s;
                   a {
                      color: $white;
                      font-size: 14px;
@@ -129,8 +127,6 @@
                   }
                   &:hover {
                      background-color: $main-color;
-                     cursor: pointer;
-                     transition: 0.3s;
                   }
                }
                &:nth-child(2) {
@@ -151,9 +147,6 @@
                   justify-content: center;
                   align-items: center;
                   position: relative;
-                  :hover {
-                     cursor: pointer;
-                  }
                   .phone {
                      margin-left: 1px;
                      position: absolute;
@@ -161,59 +154,8 @@
                      top: 50%;
                      transform: translate(-50%, -50%);
                   }
-                  .header_buttons-phone {
-                     position: absolute;
-                     left: -115px;
-                     top: 60px;
-                     width: 240px;
-                     text-align: center;
-                     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.05);
-                     padding: 15px 10px;
-                     background-color: $milk;
-                     border-radius: 6px;
-                     opacity: 0;
-                     z-index: 2;
-                     visibility: hidden;
-                     transform: translateY(30px);
-                     transition: all 0.5s;
-                     &::before {
-                        position: absolute;
-                        content: "";
-                        top: -10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 20px;
-                        height: 20px;
-                        background-color: $milk;
-                        transform: rotate(45deg);
-                     }
-                     a {
-                        display: block;
-                        text-decoration: none;
-                        color: black;
-                        font-weight: 700;
-                        font-size: 14px;
-                        line-height: 1.3em;
-                        margin-bottom: 5px;
-                     }
-                     p {
-                        line-height: 1.2em;
-                        font-size: 12px;
-                        color: $light-gray;
-                     }
-                  }
-                  &:hover .header_buttons-phone {
-                     opacity: 100;
-                     visibility: visible;
-                     transform: translateY(10px);
-                     transition: all 0.5s;
-                  }
                }
                &:nth-child(4) {
-                  :hover {
-                     cursor: pointer;
-                     transition: 0.3s;
-                  }
                   img {
                      width: 16px;
                      margin-right: 10px;
@@ -226,10 +168,6 @@
                }
                &:last-child {
                   position: relative;
-                  :hover {
-                     cursor: pointer;
-                     transition: 0.3s;
-                  }
                   .header_buttons-btn {
                      position: absolute;
                      width: 18px;
@@ -242,7 +180,7 @@
                      flex-direction: column;
                      justify-content: space-between;
                      align-items: center;
-                     transition: all 0.3s;
+                     transition: all 0.5s;
                      span {
                         width: 100%;
                         height: 2px;
@@ -265,7 +203,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) rotate(15deg);
-            transition: 0.3s;
+            transition: 0.5s;
          }
          &-inner {
             width: 100%;
@@ -318,34 +256,34 @@
          }
          &:hover .basket-bg {
             transform: translate(-50%, -50%) rotate(0deg);
-            transition: 0.3s;
+            transition: 0.5s;
          }
          &:hover {
             cursor: pointer;
          }
       }
    }
-   .menu{
-      &.activeMenu{
+   .menu {
+      &.activeMenu {
          opacity: 100;
          visibility: visible;
       }
       position: fixed;
       height: 100vh;
       width: 100%;
-      top:0;
+      top: 0;
       right: 0;
       opacity: 0;
       visibility: hidden;
       background-color: #0000003d;
-      transition: 0.3s;
-      &_nav{
-         &.activeNav{
+      transition: 0.5s;
+      &_nav {
+         &.activeNav {
             transform: translateX(-500px);
-            transition: 0.3s;
+            transition: 0.5s;
          }
          position: absolute;
-         top:0;
+         top: 0;
          right: -500px;
          height: 100%;
          padding: 80px 65px;
@@ -353,15 +291,15 @@
          flex-direction: column;
          align-items: end;
          background-color: $white;
-         transition: 0.3s;
+         transition: 0.5s;
       }
-      &_close{
+      &_close {
          width: 40px;
          height: 40px;
          position: relative;
-         transition: 0.3s;
-         &::before{
-            content: '\02715';
+         transition: 0.5s;
+         &::before {
+            content: "\02715";
             position: absolute;
             top: 50%;
             left: 50%;
@@ -370,17 +308,16 @@
             font-weight: 700;
             color: $dark;
          }
-         &:hover{
+         &:hover {
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.5s;
          }
-         
       }
-      &_list{
+      &_list {
          width: 250px;
          margin-top: 40px;
       }
-      &_item{
+      &_item {
          font-size: 16px;
          font-weight: 500;
          color: $light-gray;
@@ -388,12 +325,12 @@
          padding: 15px 25px;
          margin-bottom: 10px;
          border-radius: 6px;
-         transition: 0.3s;
-         &:hover{
+         transition: 0.5s;
+         &:hover {
             background-color: $main-color;
             color: $white;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.5s;
          }
       }
    }
@@ -414,8 +351,8 @@
    z-index: 2;
    opacity: 0;
    visibility: hidden;
-   transition: 0.3s;
-   &-item {
+   transition: 0.5s;
+   .header_catalog-item {
       width: 110px;
       height: 150px;
       padding: 5px;
@@ -433,9 +370,89 @@
          text-transform: uppercase;
       }
    }
+   &.first::before {
+      content: "";
+      position: inherit;
+      width: 95px;
+      height: 70px;
+      top: -70px;
+      left: 0;
+      background-color: transparent;
+   }
+   &.second::before {
+      content: "";
+      position: inherit;
+      width: 105px;
+      height: 70px;
+      top: -70px;
+      left: 118px;
+      background-color: transparent;
+   }
+}
+.phone-dialog {
+   position: absolute;
+   left: -115px;
+   top: 60px;
+   width: 240px;
+   text-align: center;
+   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.05);
+   padding: 15px 10px;
+   background-color: $milk;
+   border-radius: 6px;
+   opacity: 0;
+   z-index: 2;
+   visibility: hidden;
+   transition: all 0.5s;
+   &::before {
+      position: absolute;
+      content: "";
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background-color: $milk;
+      transform: rotate(45deg);
+   }
+   &::after {
+      content: "";
+      position: absolute;
+      width: 58px;
+      height: 95px;
+      top: -92px;
+      left: 109px;
+      background-color: transparent;
+   }
+   a {
+      display: block;
+      text-decoration: none;
+      color: black;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.3em;
+      margin-bottom: 5px;
+   }
+   p {
+      line-height: 1.2em;
+      font-size: 12px;
+      color: $light-gray;
+   }
 }
 
-.down{
+.down {
    transform: translateY(2px);
-   transition: 0.3s;
+   transition: 0.5s;
+}
+.openPhone {
+   opacity: 100;
+   visibility: visible;
+   top: 90px;
+   transition: 0.5s;
+}
+
+.openCatalog {
+   top: 130px;
+   opacity: 100;
+   visibility: visible;
+   transition: 0.5s;
 }
