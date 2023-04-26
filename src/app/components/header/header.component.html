@@ -13,7 +13,8 @@
          <nav class="header_menu-inner">
             <ul class="header_menu-list">
                <li class="header_menu-item">
-                  <a routerLink="/product" (mouseover)="openCatalog(catalog)">Меню</a>
+                  <a routerLink="/product" (mouseover)="openCatalog(catalog)"  
+                  (click)="closeCatalog(catalog)" >Меню</a>
                   <div class="catalog first" (mouseleave)="closeCatalog(catalog)"  #catalog>
                      <div class="header_catalog-item" (click)='openProducts(catalog)' >
                         <img src="https://noa.ua/wp-content/uploads/2023/04/salmon-sushi-burger-1-110x110.webp" alt="">
@@ -22,7 +23,7 @@
                   </div>
                </li>
                <li class="header_menu-item">
-                  <a routerLink="/market" (mouseover)="openCatalog(market)">Thai Market</a>
+                  <a routerLink="/market" (mouseover)="openCatalog(market)" (click)="closeCatalog(market)">Thai Market</a>
                   <div class="catalog second" (mouseleave)="closeCatalog(market)" #market>
                      <div class="header_catalog-item" (click)='openProducts(market)'>
                         <img src="https://noa.ua/wp-content/uploads/2023/04/salmon-sushi-burger-1-110x110.webp" alt="">
@@ -42,12 +43,13 @@
                 #response>
                <a routerLink="/response">Залишити відгук</a>
             </li>
+
             <li class="header_buttons-item"
                (mousedown)="down(favorites)"
                (mouseup)="up(favorites)"
                 #favorites>
                <a routerLink="/favorites">
-                  <svg width="47" height="47" viewBox="0 0 47 47" fill="none"  xmlns="http://www.w3.org/2000/svg">
+                  <svg class="circle" width="47" height="47" viewBox="0 0 47 47" fill="none"  xmlns="http://www.w3.org/2000/svg">
                   <circle cx="23.5" cy="23.5" r="23.5" fill="#2D7D7D"></circle>
                   <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="47" height="47">
                      <circle cx="23.5" cy="23.5" r="23.5" fill="#2D7D7D"></circle>
@@ -105,7 +107,7 @@
                (mousedown)="down(menu)"
                (mouseup)="up(menu)"
                 #menu>
-               <svg class="bg" width="47" height="47" viewBox="0 0 47 47" fill="none"
+               <svg class="bg circle" width="47" height="47" viewBox="0 0 47 47" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <circle cx="23.5" cy="23.5" r="23.5" fill="#2D7D7D"></circle>
                   <mask id="mask2" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="47" height="47">
@@ -141,7 +143,7 @@
 
       </section>
    </div>
-   <div class="menu" [class.activeMenu]="isOpenMenu">
+   <div class="menu" [class.activeMenu]="isOpenMenu"> 
       <nav class="menu_nav" [class.activeNav]="isOpenMenu">
          <div class="menu_close" 
             (click)="isOpenMenu = false"
