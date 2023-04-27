@@ -1,6 +1,13 @@
-
-   main{
-      padding-top: 160px;
+.wrapper{
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   .header{
+      position: sticky;
    }
+   .main{
+      flex: 1;
+   }
+}
 
 

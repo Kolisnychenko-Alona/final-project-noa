@@ -2,12 +2,13 @@
 
 .container {
    // min-width: 400px;;
+   // min-height: 140px;
    width: 100%;
    position: relative;
    .delivery {
-      position: fixed;
-      top: 0;
-      left: 0;
+      // position: fixed;
+      // top: 0;
+      // left: 0;
       width: 100%;
       display: flex;
       flex-wrap: wrap;
@@ -49,10 +50,10 @@
    .header {
       width: 100%;
       height: 105px;
-      position: fixed;
-      top: 49px;
+      // position: fixed;
+      // top: 49px;
       border: 1px solid $dark;
-      left: 0;
+      // left: 0;
       background-image: url(https://noa.ua/wp-content/themes/tomatina/img/bg-header.jpg);
       display: flex;
       justify-content: space-between;
@@ -601,7 +602,7 @@
             }
          }
          &_basket{
-            top: 130px;
+            top: 150px;
             right: 8px;
          }
       }
@@ -668,10 +669,6 @@
                   }
                }
             }
-         }
-         &_basket{
-            top: 100px;
-            right: 5px;
          }
       }
       .menu{
