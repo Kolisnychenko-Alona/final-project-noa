@@ -1,33 +1,33 @@
-@import '../../shared/styles/variables';
+@import "../../shared/styles/variables";
 
-.decor-img{
+.decor-img {
    position: absolute;
    top: -668px;
    right: 0;
    z-index: 1;
 }
-.container{
+.container {
    max-width: 1840px;
    padding: 0 60px;
    margin: 0 auto;
    position: relative;
-   .footer-top{
+   .footer-top {
       width: 100%;
       display: grid;
       grid-template-columns: 2fr 2fr 3fr 2fr 3fr;
       grid-template-rows: 1fr;
-      &_block{
+      &_block {
          padding: 0 15px;
       }
-      .menu{
-         &_item{
+      .menu {
+         &_item {
             margin-bottom: 35px;
             transition: 0.5s;
-            &:hover{
+            &:hover {
                cursor: pointer;
                transition: 0.5s;
             }
-            a{
+            a {
                text-transform: uppercase;
                font-size: 14px;
                color: $text-color;
@@ -35,161 +35,292 @@
             }
          }
       }
-      .navigation{
-         &_item{
+      .navigation {
+         &_item {
             margin-bottom: 35px;
             transition: 0.5s;
-            &:hover{
+            &:hover {
                cursor: pointer;
                transition: 0.5s;
             }
-            a{
+            a {
                font-size: 14px;
                color: $light-gray;
             }
          }
       }
-      .address{
+      .address {
          display: flex;
          justify-content: flex-start;
          align-items: flex-start;
-         &_icon{
+         &_icon {
             margin-right: 15px;
             position: relative;
-            .icon{
+            .icon {
                position: absolute;
                top: 50%;
                left: 50%;
                transform: translate(-50%, -50%);
             }
          }
-         &_info{
+         &_info {
             width: 100%;
-            &-block{
+            &-block {
                margin-bottom: 35px;
             }
          }
-         &_title{
+         &_title {
             font-size: 16px;
             font-weight: 700;
             line-height: 1.3em;
             color: $text-color;
          }
-         &_text{
+         &_text {
             font-size: 15px;
             line-height: 1.5em;
          }
       }
-      .contacts{
-         &_block{
+      .contacts {
+         &_block {
             width: 100%;
             display: flex;
             margin-bottom: 30px;
          }
-         &_icon{
+         &_icon {
+            height: fit-content;
             margin-right: 15px;
             position: relative;
-            .icon{
+            .icon {
                position: absolute;
                top: 50%;
                left: 50%;
                transform: translate(-50%, -50%);
             }
          }
-         &_text{
+         &_text {
             font-size: 15px;
             line-height: 1.5em;
             color: $text-color;
             display: flex;
-            a{
+            a {
                color: $text-color;
                text-decoration: none;
                align-self: center;
                transition: 0.5s;
-               &:hover{
+               &:hover {
                   cursor: pointer;
                   transition: 0.5s;
                }
             }
          }
       }
-      .social{
-         &_inner{
+      .social {
+         &_inner {
             display: flex;
             justify-content: end;
          }
-         &_text{
+         &_text {
             margin-right: 15px;
             font-size: 15px;
             line-height: 1.5em;
             color: $text-color;
             align-self: center;
          }
-         &_icon{
+         &_icon {
             position: relative;
             margin-right: 5px;
             text-decoration: none;
-            .icon{
+            .icon {
                position: absolute;
                top: 50%;
                left: 50%;
                transform: translate(-50%, -50%);
             }
-            &:hover .back{
+            &:hover .back {
                fill: white;
             }
-            &.fb:hover .logo{
-               fill:#255A9C;
+            &.fb:hover .logo {
+               fill: #255a9c;
             }
-            &.fb:hover svg{
-               fill:#255A9C;
+            &.fb:hover svg {
+               fill: #255a9c;
             }
-            &.inst:hover .logo{
+            &.inst:hover .logo {
                fill: url(#paint0_linear);
             }
          }
       }
    }
-   .footer-bottom{
+   .footer-bottom {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: 1fr;
       padding-bottom: 20px;
-      &_copiri{
+      &_copiri {
          font-size: 15px;
          line-height: 40px;
          color: $text-color;
       }
-      &_pay{
+      &_pay {
          display: flex;
          justify-content: center;
-         span{
+         span {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 65px;
             height: 40px;
-            border: 1px solid #ECECEC;
+            border: 1px solid #ececec;
             border-radius: 5px;
             margin-right: 5px;
-            img{
+            img {
                display: block;
             }
          }
       }
-      &_dev-logo{
+      &_dev-logo {
          display: flex;
          justify-content: flex-end;
-         a{
+         a {
             text-decoration: none;
             display: block;
             font-size: 15px;
             line-height: 40px;
             color: $text-color;
-            &:hover{
+            &:hover {
                cursor: pointer;
             }
          }
       }
+   }
+}
+
+@media (max-width: 1200px) {
+   .container {
+      max-width: 960px;
+      padding: 0 15px;
+      .footer-top {
+         grid-template-columns: repeat(6, 1fr);
+         grid-template-rows: 1fr 1fr;
+         .menu {
+            grid-column: 1/4;
+         }
+         .navigation {
+            grid-column: 4/7;
+            display: flex;
+            justify-content: flex-end;
+            &_item {
+               text-align: right;
+            }
+         }
+         .address {
+            grid-column: 1/3;
+         }
+         .contacts {
+            grid-column: 3/5;
+         }
+         .social {
+            grid-column: 5/7;
+         }
+      }
+   }
+}
+@media (max-width: 990px) {
+   .container {
+      max-width: 720px;
+      .footer-top {
+         grid-template-columns: repeat(6, 1fr);
+         grid-template-rows: 3fr 2fr 1fr;
+         .menu {
+            grid-column: 1/4;
+            &_item > a {
+               font-size: 16px;
+            }
+         }
+         .navigation {
+            justify-content: flex-start;
+            &_item {
+               text-align: left;
+               a {
+                  font-size: 16px;
+               }
+            }
+         }
+         .address {
+            grid-column: 1/4;
+         }
+         .contacts {
+            grid-column: 4/7;
+         }
+         .social {
+            grid-column: 1/7;
+            &_inner {
+               justify-content: center;
+            }
+         }
+      }
+      .footer-bottom {
+         grid-template-columns: 1fr 1fr;
+         grid-template-rows: 1fr 1fr;
+         &_pay {
+            justify-content: flex-end;
+         }
+         &_dev-logo {
+            grid-column: 1/3;
+            justify-content: center;
+         }
+      }
+   }
+}
+
+@media (max-width: 770px) {
+   .container {
+      max-width: 540px;
+      .footer-top {
+         grid-template-rows: 2fr 2fr 0.5fr;
+      }
+   }
+}
+@media(max-width: 575px){
+   .container{
+      width: 100%;
+      .footer-top{
+         grid-template-columns: 1fr 1fr;
+         grid-template-rows: 3fr 1.8fr 1.5fr 0.5fr;
+         &_block{
+            padding: 0;
+         }
+         .menu{
+            grid-column: 1/2;
+         }
+         .navigation{
+            grid-column:2/3;
+         }
+         .address{
+            grid-column: 1/3;
+            &_info{
+               display: flex;
+            }
+         }
+         .contacts{
+            grid-column: 1/3;
+         }
+         .social{
+            grid-column: 1/3;
+            &_inner {
+               justify-content: start;
+            }
+         }
+      }
+   }
+}
+@media (max-width: 480px){
+   .container>.footer-top{
+      grid-template-rows: 3fr 2fr 1.5fr 0.5fr;
+      .address{
+            &_info{
+               display: block;
+            }
+         }
    }
 }
