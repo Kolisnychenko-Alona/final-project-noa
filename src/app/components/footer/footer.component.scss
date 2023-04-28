@@ -317,6 +317,11 @@
 @media (max-width: 480px){
    .container>.footer-top{
       grid-template-rows: 3fr 2fr 1.5fr 0.5fr;
+      .menu {
+         &_item > a {
+            font-size: 14px;
+         }
+      }
       .address{
             &_info{
                display: block;
