@@ -1,0 +1,416 @@
+@import '../../shared/styles/variables';
+
+.container{
+   max-width: 1840px;
+   margin: 0 auto;
+   text-align: center;
+   padding: 0 120px;
+   .title{
+      width: 100%;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.2em;
+      color: $text-color;
+      margin-bottom: 60px;
+      &_color{
+         color: $main-color;
+      }
+   }
+   .location{
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      grid-template-rows: 1fr;
+      &_zones{
+         width: 100%;
+         padding: 0 15px ;
+      }
+      &_zone{
+         width: 100%;
+         margin-bottom: 60px;
+         display: flex;
+         justify-content: center;
+         text-align: start;
+         &-image{
+            width: 98px;
+            margin-right: 40px;
+            margin-top: 20px;
+            img{
+               width: 100%;
+            }
+         }
+         &-title{
+            font-size: 26px;
+            font-weight: 500;
+            line-height: 1.2em;
+            letter-spacing: 0.03em;
+            margin-bottom: 15px;
+            &.green{
+               color: #599921;
+            }
+            &.yellow{
+               color: #ffcc00;
+            }
+            &.red{
+               color: #EF2F3D;
+            }
+         }
+         &-list{
+            padding-left: 5px;
+         }
+         &-item{
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            color: $text-color;
+            font-size: 16px;
+            line-height: 147%;
+            &::before{
+               content: "";
+               position: absolute;
+               left: 0;
+               top: 7px;
+               width: 7px;
+               height: 7px;
+               border-radius: 50%;
+            }
+            &.green::before{
+               border: 2px solid #599921;
+            }
+            &.yellow::before{
+               border: 2px solid #ffcc00;
+            }
+            &.red::before{
+               border: 2px solid #EF2F3D;
+            }
+         }
+      }
+      &_map{
+         width: 100%;
+         img{
+            max-width: 785px;
+         }
+      }
+   }
+   .delivery{
+      width: 986px;
+      margin: 0 auto;
+      padding: 60px 0 90px;
+      text-align: start;
+      &_title{
+         font-size: 46px;
+         line-height: 1.2em;
+         color: $text-color
+      }
+      &_text{
+         font-size: 18px;
+         color: $light-gray;
+         line-height: 1.5em;
+      }
+   }
+   .payment{
+      width: 100%;
+      &-title{
+         width: 100%;
+         text-align: center;
+         font-size: 42px;
+         line-height: 1.2em;
+         font-weight: 700;
+         color: $text-color;
+      }
+      &_ways{
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         flex-wrap: wrap;
+         padding-top: 50px;
+      }
+      &_way{
+         width: 33%;
+         display: flex;
+         justify-content: center;
+         text-align: start;
+         margin-bottom: 20px;
+      }
+      &_icon{
+         margin-right: 30px;
+      }
+      &_info{
+         width: 310px;
+      }
+      &_title{
+         width: 100%;
+         font-size: 22px;
+         font-weight: 600;
+         letter-spacing: 0.03em;
+         margin-bottom: 15px;
+         line-height: 1.3em;
+         color: $text-color;
+      }
+      &_text{
+         width: 100%;
+         font-size: 16px;
+         letter-spacing: 0.03em;
+         line-height: 1.5em;
+         color: $text-color;
+      }
+   }
+   .information{
+      width: 986px;
+      padding: 65px 75px;
+      margin: 0 auto;
+      text-align: start;
+      &_title{
+         font-size: 42px;
+         line-height: 1.2em;
+         color: $text-color
+      }
+      &_text{
+         font-size: 18px;
+         color: $light-gray;
+         line-height: 1.5em;
+      }
+      &_item{
+         position: relative;
+         padding-left: 25px;
+         margin-bottom: 10px;
+         color: $light-gray;
+         font-size: 16px;
+         line-height: 147%;
+         &::before{
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 2px solid #599921;
+         }
+      }
+   }
+}
+
+@media (max-width:1640px) {
+   .container{
+      padding: 0 60px;
+      .location{
+         grid-template-columns: 1fr 1.5fr;
+      }
+      .delivery{
+         width: 1156px;
+      }
+   }
+}
+@media (max-width:1400px) {
+   .container{
+      .delivery{
+         width: 957px;
+      }
+   }
+}
+@media (max-width: 1366px){
+   .container{
+      .title{
+         font-size: 38px;
+         margin-bottom: 40px;
+      }
+      .location{
+         &_zone{
+            &-title{
+               font-size: 24px;
+            }
+         }
+      }
+      .delivery{
+         width: 1029px;
+         padding: 40px 0 80px;
+         &_title{
+            font-size: 40px;
+         }
+         &_text{
+            font-size: 16px;
+         }
+      }
+      .payment{
+         &-title{
+            font-size: 38px;
+         }
+         &_ways{
+            padding-top: 40px;
+         }
+         &_icon{
+            margin-right: 20px;
+         }
+         &_info{
+            width: 250px;
+         }
+         &_title{
+            font-size: 20px;
+         }
+         &_text{
+            font-size: 15px;
+         }
+      }
+      .information{
+         width: 1036px;
+         padding: 40px 15px;
+         &_title{
+            font-size: 38px;
+         }
+         &_text{
+            font-size: 16px;
+         }
+         &_item{
+            padding-left: 20px;
+            &::before{
+               top: 6px;
+               width: 6px;
+               height: 6px;
+            }
+         }
+      }
+   }
+}
+@media (max-width: 1200px){
+   .container{
+      max-width: 960px;
+      padding: 0 15px;
+      .location{
+         grid-template-columns: 1fr;
+         grid-template-rows: 1fr 1fr;
+         &_map{
+            grid-row: 1/2;
+         }
+         &_zones{
+            padding: 0;
+         }
+         &_zone{
+            justify-content: start;
+            margin-bottom: 40px;
+         }
+      }
+      .delivery{
+         width: 100%;
+      }
+      .payment{
+         &_ways{
+            justify-content: start;
+         }
+         &_way{
+            width: 50%;
+            justify-content: start;
+         }
+      }
+      .information{
+         width: 100%;
+         padding: 40px 15px;
+      }
+   }
+}
+@media (max-width: 990px){
+   .container{
+      max-width: 720px;
+   }
+}
+@media (max-width: 767px){
+   .container{
+      max-width: 510px;
+      .title{
+         font-size: 34px;
+         margin-bottom: 20px;
+      }
+      .location{
+         &_zone{
+           margin-bottom: 20px; 
+           &_image{
+            margin-right: 20px;
+            margin-top: 10px;
+           }
+           &-title{
+            font-size: 22px;
+           }
+         }
+      }
+      .delivery{
+         padding: 20px 0 30px;
+         &_title{
+            font-size: 38px;
+         }
+      }
+      .payment{
+         &-title{
+            font-size: 34px;
+         }
+         &_ways{
+            padding-top: 20px;
+         }
+         &_way{
+            width: 100%;
+         }
+      }
+      .information{
+         padding: 20px 0;
+         &_title{
+            font-size: 34px;
+         }
+      }
+   }
+}
+@media (max-width: 480px){
+   .container{
+      max-width: 445px;
+      .title{
+         font-size: 24px;
+      }
+      .location{
+         &_zone{
+            &-title{
+               font-size: 20px;
+            }
+            &-item{
+               font-size: 14px;
+               &::before{
+                  top: 5px;
+                  width: 5px;
+                  height: 5px;
+               }
+            }
+         }
+      }
+      .delivery{
+         &_title{
+            font-size: 26px;
+         }
+      }
+      .payment{
+         &-title{
+            font-size: 24px;
+         }
+         &_title{
+            font-size: 18px;
+         }
+         &_text{
+            font-size: 14px;
+         }
+      }
+      .information{
+         &_title{
+            font-size: 24px;
+         }
+         &_item{
+            font-size: 14px;
+            &::before{
+               top: 5px;
+               width: 5px;
+               height: 5px;
+            }
+         }
+      }
+   }
+}
+@media (max-width: 400px){
+   .container{
+      max-width: 360px;
+   }
+}

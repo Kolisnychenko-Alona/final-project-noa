@@ -459,7 +459,10 @@
    visibility: visible;
    transition: 0.5s;
 }
-
+.active{
+   color: $white;
+   background-color: $main-color;
+}
 @media (max-width: 1370px) {
    .container {
       .header {

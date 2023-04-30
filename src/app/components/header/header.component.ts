@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeliveryComponent } from 'src/app/pages/delivery/delivery.component';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 import { BasketDialogComponent } from '../basket-dialog/basket-dialog.component';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-header',
@@ -64,7 +65,7 @@ export class HeaderComponent implements OnInit {
       backdropClass: 'dialog-back',
       width: '500px',
       height: '100vh',
-      position: { top: '0', right: '0'}
+      position: { top: '0', right: '0' },
     });
   }
 }

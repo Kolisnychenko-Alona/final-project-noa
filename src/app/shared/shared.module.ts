@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const MATERIAL = [
   MatDialogModule,
+  MatSidenavModule
 ];
 
 //other modules
