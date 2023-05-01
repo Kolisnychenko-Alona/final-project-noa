@@ -1,0 +1,274 @@
+@import '../../shared/styles/variables';
+
+.container{
+   max-width: 1720px;
+   margin: 0 auto;
+   padding: 0 15px;
+   .title{
+      width: 100%;
+      padding-bottom: 40px;
+      text-align: center;
+      font-size: 42px;
+      line-height: 1.2em;
+      font-weight: 700;
+      color: $text-color;
+      &-color{
+         color: $main-color;
+      }
+   }
+   .contacts{
+      padding: 0 75px 85px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: 20px 62px;
+      text-align: start;
+      &_address{
+         width: 100%;
+         margin-bottom: 25px;
+         font-size: 20px;
+         line-height: 1.3em;
+         font-weight: 600;
+         color: $text-color;
+      }
+      &_info{
+         width: 100%;
+         background: $milk;
+         border-radius: 6px;
+         padding: 20px 40px;
+      }
+      &_item{
+         width: 100%;
+         display: flex;
+         justify-content: start;
+         align-items: center;
+         margin-bottom: 10px;
+         .icon{
+            width: 30px;
+            margin-right: 30px;
+            vertical-align: top;
+            text-align: center;
+         }
+         .text{
+            font-size: 18px;
+            line-height: 30px;
+            color: $text-color;
+            &-color{
+               color: $light-gray;
+            }
+            a{
+               color: $main-color;
+            }
+         }
+      }
+
+   }
+   .feedback{
+      padding: 0 75px 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &-form{
+         width: 50%;
+         &_title{
+            width: 100%;
+            font-size: 26px;
+            line-height: 1.2em;
+            font-weight: 700;
+            color: $text-color;
+         }
+         &_form{
+            width: 90%;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+         }
+         &_info{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px 20px;
+            margin-bottom: 15px;
+         }
+         &_field{
+            width: calc(100% - 40px);
+            font-size: 16px;
+            height: 54px;
+            color: $text-color;
+            border: 1px solid $border-color;
+            background-color: $white;
+            line-height: 51px;
+            padding: 0 20px;
+            border-radius: 3px;
+            transition: 0.25s;
+         }
+         &_message{
+            width: calc(100% - 40px);
+            height: 105px;
+            padding: 15px 20px 5px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 18px;
+            border-radius: 3px;
+            border: 1px solid $border-color;
+            color: $text-color;
+            background-color: $white;
+            resize: none;
+         }
+         &_btn{
+            width: 50%;
+            color: $white;
+            background: $main-color;
+            border: 2px solid $main-color;
+            border-radius: 6px;
+            padding: 18px 30px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 700;
+            //  padding: 10px 25px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            transition: 0.3s;
+         }
+      }
+      .map{
+         width: 50%;
+         img{
+            width: 100%;
+         }
+      }
+   }
+}
+
+
+@media (max-width: 1300px){
+   .container{
+      max-width: 930px;
+      .title{
+         font-size: 38px;
+      }
+      .contacts{
+         padding: 0 15px 40px;
+         grid-template-columns: 1fr 1fr;
+         grid-template-rows: repeat(3, 1fr);
+         gap: 40px;
+         &_address{
+            font-size: 18px;
+         }
+         &_info{
+            padding: 15px 10px;
+         }
+         &_item{
+            .icon{
+               margin-right: 20px;
+            }
+            .text{
+               font-size: 16px;
+            }
+         }
+      }
+      .feedback{
+         flex-direction: column-reverse;
+         padding: 0 15px 120px;
+         &-form{
+            width: 100%;
+            &_title{
+               font-size: 24px;
+            }
+            &_form{
+               width: 100%;
+               margin-top: 20px;
+               margin-bottom: 20px;
+               text-align: start;
+            }
+            &_btn{
+               width: 40%;
+            }
+         }
+         .map{
+            width: 100%;
+         }
+      }
+   }
+}
+@media (max-width: 770px){
+   .container{
+      max-width: 510px;
+      .title{
+         font-size: 34px;
+         padding-bottom: 20px;
+      }
+      .contacts{
+         padding: 0;
+         grid-template-columns: 1fr;
+         grid-template-rows: repeat(5, 1fr) 0.85fr;
+         gap: 20px;
+         &_address{
+            margin-bottom: 20px;
+         }
+      }
+      .feedback{
+         padding: 0 0 30px;
+         &-form{
+            &_title{
+               font-size: 22px;
+            }
+            &_message{
+               margin-bottom: 20px;
+            }
+            &_btn{
+               width: auto;
+            }
+         }
+      }
+   }
+}
+@media (max-width: 575px){
+   .container{
+      .feedback{
+         &-form{
+            &_title{
+               font-size: 20px;
+            }
+            &_info{
+               grid-template-columns: 1fr;
+               grid-template-rows: repeat(4, 1fr);
+               gap: 15px;
+            }
+         }
+      }
+   }
+}
+@media (max-width: 480px){
+   .container{
+      width: 100%;
+      .title{
+         font-size: 24px;
+      }
+      .contacts{
+         &_address{
+            font-size: 17px;
+            font-weight: 500;
+         }
+      }
+      .feedback{
+         &-form{
+            &_btn{
+               width: 100%;
+            }
+         }
+      }
+   }
+}
+@media (max-width: 400px){
+   .container{
+      .feedback{
+         &-form{
+            &_title{
+               font-size: 17px;
+            }
+         }
+      }
+   }
+}
