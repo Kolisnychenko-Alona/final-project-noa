@@ -1,1 +1,9 @@
-<p>auth-admin works!</p>
+<div class="container">
+   <h2 class="title">Вхід в кабінет <span class="title-color">адміністратора</span></h2>
+   <form class="form" [formGroup]="loginForm" (ngSubmit)="loginAdmin()">
+      <input class="form_input"  placeholder="*Ваш email" type="email" formControlName="email" required>
+      <input class="form_input" placeholder="*Пароль" type="password" formControlName="password" required>
+      <button class="form_button" color="primary" [disabled]="loginForm.invalid" type="submit">
+         Увійти в кабінет</button>
+   </form>
+</div>
