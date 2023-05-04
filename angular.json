@@ -97,6 +97,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "noa-ua:build:production",
+            "firebaseProject": "noa-project-fb654",
+            "firebaseHostingSite": "noa-project-fb654"
+          }
         }
       }
     }

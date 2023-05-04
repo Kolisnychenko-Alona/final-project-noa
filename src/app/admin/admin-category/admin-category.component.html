@@ -1,1 +1,63 @@
-<p>admin-category works!</p>
+<div class="container">
+   <div class="button">
+      <button 
+      (mousedown)="down()" 
+      [class.down]="isDown" 
+      (mouseup)="up()" 
+      (click)="add()" 
+      [disabled]="editStatus"
+      >ДОДАТИ КАТЕГОРІЮ</button>
+   </div>
+   <form 
+   class="adding" 
+   *ngIf="isAdding" 
+   [formGroup]="categoryForm" 
+   (ngSubmit)="saveCategory()">
+      <div class="adding_inner">
+         <div class="adding_input">
+            <div class="adding_input-top">
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="name" formControlName="name" placeholder="*Назва">
+                  <div class="err" *ngIf="isControlInvalid('name')">Поле не може бути порожнім</div>
+               </div>
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="path" formControlName="path" placeholder="*Шлях">
+                  <div class="err" *ngIf="isControlInvalid('path')">Поле не може бути порожнім</div>
+               </div>
+            </div>
+            <div class="adding_input-bottom">
+               <input class="field" type="file" formControlName="imagePath" (change)="upload($event)">
+               <div class="err" *ngIf="isControlInvalid('imagePath')">Додайте картинку</div>
+            </div>
+         </div>
+         <ng-container  *ngIf="isUploaded">
+            <img class='adding_img' [src]="valueByControl('imagePath')" alt="">
+            <button type="button" class="delImage" (click)="deleteImage()">X</button>
+         </ng-container>
+      </div>
+      <button class="adding_btn" type="submit" [disabled]="categoryForm.invalid">{{ editStatus ? 'Зберегти' : 'Додати' }}</button>
+   </form>
+   <table class="table">
+      <thead class="table_head">
+         <tr>
+            <th class="table_head-cell">ID</th>
+            <th class="table_head-cell">Назва</th>
+            <th class="table_head-cell">Шлях</th>
+            <th class="table_head-cell">Картинка</th>
+            <th class="table_head-cell">Дії</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let category of adminCategories">
+            <td class="table_cell">{{category.id | slice:0:5}}... </td>
+            <td class="table_cell">{{category.name}}</td>
+            <td class="table_cell">{{category.path}}</td>
+            <td class="table_cell"><img [src]="category.imagePath"></td>
+            <td class="table_cell">
+               <button (click)="editCategory(category)">Редагувати</button>
+               <button (click)="deleteCategory(category)" [disabled]="editStatus">Видалити</button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>

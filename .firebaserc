@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "noa-project-fb654": {
+      "hosting": {
+        "noa-ua": [
+          "noa-project-fb654"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "noa-project-fb654"
+  }
+}

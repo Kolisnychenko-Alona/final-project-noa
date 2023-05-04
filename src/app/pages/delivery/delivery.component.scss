@@ -284,6 +284,7 @@
          }
          &_zones{
             padding: 0;
+            
          }
          &_zone{
             justify-content: start;
@@ -321,6 +322,7 @@
          margin-bottom: 20px;
       }
       .location{
+         grid-template-rows: 1fr 1.7fr;
          &_zone{
            margin-bottom: 20px; 
            &_image{
@@ -330,6 +332,12 @@
            &-title{
             font-size: 22px;
            }
+         }
+         &_map{
+            margin-bottom: 20px;
+            img{
+               width: 100%;
+            }
          }
       }
       .delivery{
@@ -412,5 +420,8 @@
 @media (max-width: 400px){
    .container{
       max-width: 360px;
+      .location{
+          grid-template-rows: 1fr 2fr;
+      }
    }
 }

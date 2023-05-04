@@ -34,7 +34,7 @@ const routes: Routes = [
       import('./pages/product/product.module').then((m) => m.ProductModule),
   },
   {
-    path: 'response',
+    path: 'responses',
     loadChildren: () =>
       import('./pages/response/response.module').then((m) => m.ResponseModule),
   },
