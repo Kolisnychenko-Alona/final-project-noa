@@ -45,10 +45,7 @@
    .header {
       width: 100%;
       height: 105px;
-      // position: fixed;
-      // top: 49px;
       border: 1px solid $dark;
-      // left: 0;
       background-image: url(https://noa.ua/wp-content/themes/tomatina/img/bg-header.jpg);
       display: flex;
       justify-content: space-between;
@@ -90,6 +87,7 @@
                   transition: 0.5s;
                   &:hover {
                      color: $main-color;
+                     cursor: pointer;
                      transition: 0.5s;
                   }
                }
@@ -341,7 +339,7 @@
 }
 
 .catalog {
-   width: 860px;
+   width: 1240px;
    flex-wrap: wrap;
    position: fixed;
    display: flex;
@@ -353,15 +351,20 @@
    background-color: $milk;
    z-index: 2;
    opacity: 0;
-   visibility: hidden;
-   transition: 0.5s;
+   visibility: hidden; 
    .header_catalog-item {
       width: 110px;
       height: 150px;
       padding: 5px;
+      margin-right: 10px;
+      transition: 0.5s;
+      &:hover{
+      cursor: pointer;
+      background-color: $white;
+      transition: 0.5s;
+   }
       img {
          width: 100%;
-         height: 110px;
       }
       p {
          width: 100%;
@@ -379,7 +382,7 @@
       width: 85px;
       height: 70px;
       top: -70px;
-      left: 20;
+      left: 207px;
       background-color: transparent;
    }
    &.second::before {
@@ -388,7 +391,7 @@
       width: 100px;
       height: 70px;
       top: -70px;
-      left: 140px;
+      left: 330px;
       background-color: transparent;
    }
 }
@@ -490,6 +493,20 @@
          }
       }
    }
+   .catalog{
+      width: 850px;
+      .header_catalog-item{
+         width: 90px;
+         height: 130px;
+      }
+       &.first::before{
+         left: 61px;
+         width: 47px;
+       }
+        &.second::before{
+         left: 152px;
+        }
+   }
 }
 @media (max-width: 1200px) {
    .container {
@@ -522,6 +539,15 @@
             }
          }
       }
+   }
+   .catalog{
+      width: 744px;
+       &.first::before{
+         left: 177px;
+       }
+        &.second::before{
+         left: 250px;
+        }
    }
 }
 @media (max-width: 990px) {
@@ -559,11 +585,18 @@
       }
    }
    .catalog{
-      width: 740px;
+      width: 614px;
+      .header_catalog-item{
+         width: 70px;
+         height: 110px;
+      }
       .header_catalog-item{
          p{
            font-size: 12px; 
          }
+      }
+      &.first::before{
+         left: 237px;
       }
    }
 }
@@ -580,6 +613,21 @@
             padding: 12px 20px;
          }
       }
+   }
+   .catalog{
+      width: 570px;
+      top: 150px;
+      .header_catalog-item{
+         p{
+           font-size: 12px; 
+         }
+      }
+      &.first::before{
+         left: 214px;
+      }
+   }
+   .openCatalog{
+      top:130px;
    }
 }
 @media (max-width: 600px) {
@@ -619,18 +667,12 @@
             margin-left: 30px;
          }
       }
-   }
-   .catalog{
-      width: 500px;
-      top: 150px;
-      .header_catalog-item{
-         p{
-           font-size: 12px; 
+      .catalog{
+         width: 520px;
+         &.first::before{
+            left: 190px;
          }
       }
-   }
-   .openCatalog{
-      top:130px;
    }
 }
 @media( max-width: 550px){
@@ -642,6 +684,17 @@
          &_item{
             margin-bottom: 5px;
             padding: 12px 15px;
+         }
+      }
+      .catalog{
+         width: 450px;
+         .header_catalog-item{
+            p{
+            font-size: 12px; 
+            }
+         }
+         &.first::before{
+            left: 154px;
          }
       }
    }
@@ -679,12 +732,10 @@
             font-size: 14px;
          }
       }
-   }
-   .catalog{
-      width: 380px;
-      .header_catalog-item{
-         p{
-           font-size: 12px; 
+      .catalog{
+         width: 370px;
+         &.first::before{
+            left: 104px;
          }
       }
    }

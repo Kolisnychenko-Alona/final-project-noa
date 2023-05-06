@@ -1,0 +1,35 @@
+@import '../../shared/styles/variables';
+
+.container{
+   max-width: 1840px;
+   margin: 0 auto;
+   padding: 0 60px;
+   .categories{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      background-color: $milk;
+      border-radius: 6px;
+      .category{
+         padding: 15px 24px;
+         margin-right: 5px;
+         border-radius: 6px;
+         color: $text-color;
+         text-transform: uppercase;
+         font-size: 14px;
+         font-weight: 500;
+         transition: 0.25s;
+         &.active{
+            background-color: $main-color;
+            color: $white;
+         }
+         &:hover{
+            background-color: $main-color;
+            color: $white;
+            cursor: pointer;
+            transition: 0.25s;
+         }
+      }
+   }
+}

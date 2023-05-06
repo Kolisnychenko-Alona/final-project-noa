@@ -3,7 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeliveryComponent } from 'src/app/pages/delivery/delivery.component';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 import { BasketDialogComponent } from '../basket-dialog/basket-dialog.component';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
+import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
+import { CategoryService } from 'src/app/shared/services/category/category.service';
 
 @Component({
   selector: 'app-header',
@@ -16,9 +18,17 @@ export class HeaderComponent implements OnInit {
   public isOpenMenu = false;
   public isDown = false;
 
-  constructor(public dialog: MatDialog) {}
+  public userCategories: Array<ICategoryResponse> = [];
 
-  ngOnInit(): void {}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private categoryService: CategoryService
+  ) {}
+
+  ngOnInit(): void {
+    this.getCategories();
+  }
 
   down(btn: HTMLElement): void {
     btn.classList.add('down');
@@ -32,6 +42,11 @@ export class HeaderComponent implements OnInit {
   closeCatalog(catalog: HTMLElement): void {
     catalog.classList.remove('openCatalog');
   }
+  toProducts(catalog: HTMLElement): void {
+    catalog.classList.remove('openCatalog');
+    this.router.navigate(['/product']);
+  }
+  
   openProducts(catalog: HTMLElement): void {
     this.closeCatalog(catalog);
   }
@@ -66,6 +81,12 @@ export class HeaderComponent implements OnInit {
       width: '500px',
       height: '100vh',
       position: { top: '0', right: '0' },
+    });
+  }
+
+  getCategories() {
+    this.categoryService.getAll().subscribe((data) => {
+      this.userCategories = data as ICategoryResponse[];
     });
   }
 }
