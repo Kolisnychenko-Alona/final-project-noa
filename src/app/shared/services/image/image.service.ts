@@ -24,8 +24,7 @@ export class ImageService {
       try {
         const storageRef = ref(this.storage, path);
         const task = uploadBytesResumable(storageRef, file);
-
-        await task;
+        await task;        
         url = await getDownloadURL(storageRef);
       } catch (e: any) {
         console.error(e);

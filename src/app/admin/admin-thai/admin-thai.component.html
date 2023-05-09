@@ -1,18 +1,9 @@
 <div class="container">
    <div class="button">
-      <button 
-      (mousedown)="down()" 
-      [class.down]="isDown" 
-      (mouseup)="up()" 
-      (click)="add()" 
-      [disabled]="editStatus"
-      >ДОДАТИ КАТЕГОРІЮ</button>
+      <button (mousedown)="down()" [class.down]="isDown" (mouseup)="up()" (click)="add()" [disabled]="editStatus">ДОДАТИ
+         КАТЕГОРІЮ</button>
    </div>
-   <form 
-   class="adding" 
-   *ngIf="isAdding" 
-   [formGroup]="categoryForm" 
-   (ngSubmit)="saveCategory()">
+   <form class="adding" *ngIf="isAdding" [formGroup]="thaiCategoryForm" (ngSubmit)="saveCategory()">
       <div class="adding_inner">
          <div class="adding_input">
             <div class="adding_input-top">
@@ -30,12 +21,13 @@
                <div class="err" *ngIf="isControlInvalid('imageUrl')">Додайте картинку</div>
             </div>
          </div>
-         <ng-container  *ngIf="isUploaded">
+         <ng-container *ngIf="isUploaded">
             <img class='adding_img' [src]="valueByControl('imagePath')" alt="">
             <button type="button" class="delImage" (click)="deleteImage()">X</button>
          </ng-container>
       </div>
-      <button class="adding_btn" type="submit" [disabled]="categoryForm.invalid">{{ editStatus ? 'Зберегти' : 'Додати' }}</button>
+      <button class="adding_btn" type="submit" [disabled]="thaiCategoryForm.invalid">{{ editStatus ? 'Зберегти' : 'Додати'
+         }}</button>
    </form>
    <table class="table">
       <thead class="table_head">
@@ -48,7 +40,7 @@
          </tr>
       </thead>
       <tbody>
-         <tr *ngFor="let category of adminCategories">
+         <tr *ngFor="let category of adminThaiCategories">
             <td class="table_cell">{{category.id | slice:0:5}}... </td>
             <td class="table_cell">{{category.name}}</td>
             <td class="table_cell">{{category.path}}</td>

@@ -1,1 +1,96 @@
-<p>admin-vacancies works!</p>
+<div class="container">
+   <div class="button">
+      <button (mousedown)="down()" [class.down]="isDown" (mouseup)="up()" (click)="add()" [disabled]="editStatus">ДОДАТИ
+         ВАКАНСІЮ</button>
+   </div>
+   <form class="adding" *ngIf="isAdding" [formGroup]="vacancyForm" (ngSubmit)="saveVacancy()">
+      <div class="adding_inner">
+         <div class="adding_input">
+            <div class="adding_input-top">
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="name" formControlName="name" placeholder="*Назва">
+                  <div class="err" *ngIf="isControlInvalid('name')">Поле не може бути порожнім</div>
+               </div>
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="path" formControlName="path" placeholder="*Шлях">
+                  <div class="err" *ngIf="isControlInvalid('path')">Поле не може бути порожнім</div>
+               </div>
+            </div>
+            <div class="adding_input-top">
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="title" formControlName="title" placeholder="*Заголовок">
+                  <div class="err" *ngIf="isControlInvalid('title')">Поле не може бути порожнім</div>
+               </div>
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="city" formControlName="city" placeholder="*Місто">
+                  <div class="err" *ngIf="isControlInvalid('city')">Поле не може бути порожнім</div>
+               </div>
+            </div>
+            <div class="adding_input-top">
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="place" formControlName="place" placeholder="*Місце роботи">
+                  <div class="err" *ngIf="isControlInvalid('place')">Поле не може бути порожнім</div>
+               </div>
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="employment" formControlName="employment" placeholder="*Зайнятість">
+                  <div class="err" *ngIf="isControlInvalid('employment')">Поле не може бути порожнім</div>
+               </div>
+            </div>
+            <div class="adding_input-textArea">
+               <textarea class="text-area" name="description" formControlName="description" placeholder="*Опис вакансії"></textarea>
+               <div class="err" *ngIf="isControlInvalid('description')">Поле не може бути пустим</div>
+            </div>
+            <div class="adding_input-bottom">
+               <input class="field" type="file" formControlName="imageUrl" (change)="upload($event)">
+               <div class="err" *ngIf="isControlInvalid('imageUrl')">Додайте картинку</div>
+            </div>
+         </div>
+         <ng-container *ngIf="isUploaded">
+            <img class='adding_img' [src]="valueByControl('imagePath')" alt="">
+            <button type="button" class="delImage" (click)="deleteImage()">X</button>
+         </ng-container>
+      </div>
+      <button class="adding_btn" type="submit" [disabled]="vacancyForm.invalid">{{ editStatus ? 'Зберегти' :
+         'Додати'
+         }}</button>
+   </form>
+   <table class="table">
+      <thead class="table_head">
+         <tr>
+            <th class="table_head-cell">ID</th>
+            <th class="table_head-cell">Назва</th>
+            <th class="table_head-cell">Шлях</th>
+            <th class="table_head-cell">Заголовок</th>
+            <th class="table_head-cell">Місто</th>
+            <th class="table_head-cell">Місце</th>
+            <th class="table_head-cell">Зайнятість</th>
+            <th class="table_head-cell">Опис</th>
+            <th class="table_head-cell">Картинка</th>
+            <th class="table_head-cell">Дії</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let vacancy of adminVacancies">
+            <td class="table_cell drop">{{vacancy.id | slice:0:5 }}
+               <button class="btn" type="button" (click)="openMore(id)">...</button>
+               <div class="more" #id>{{vacancy.id}}</div>
+            </td>
+            <td class="table_cell">{{vacancy.name}}</td>
+            <td class="table_cell">{{vacancy.path}}</td>
+            <td class="table_cell">{{vacancy.title}}</td>
+            <td class="table_cell">{{vacancy.city}}</td>
+            <td class="table_cell">{{vacancy.place}}</td>
+            <td class="table_cell">{{vacancy.employment}}</td>
+            <td class="table_cell drop">{{ vacancy.description| slice:0:5}}
+               <button class="btn" type="button" (click)="openMore(description)">...</button>
+               <div class="more" #description>{{vacancy.description}}</div>
+            </td>
+            <td class="table_cell"><img [src]="vacancy.imagePath"></td>
+            <td class="table_cell">
+               <button (click)="editVacancy(vacancy)">Редагувати</button>
+               <button (click)="deleteVacancy(vacancy)" [disabled]="editStatus">Видалити</button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>

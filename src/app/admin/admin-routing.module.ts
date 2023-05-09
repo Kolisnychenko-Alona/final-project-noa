@@ -6,6 +6,7 @@ import { AdminProductComponent } from './admin-product/admin-product.component';
 import { AdminResponseComponent} from './admin-response/admin-response.component';
 import { AdminVacanciesComponent } from './admin-vacancies/admin-vacancies.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
+import { AdminThaiComponent } from './admin-thai/admin-thai.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'category', component: AdminCategoryComponent },
+      { path: 'thai', component: AdminThaiComponent},
       { path: 'product', component: AdminProductComponent },
       { path: 'response', component: AdminResponseComponent },
       { path: 'orders', component: AdminOrdersComponent },

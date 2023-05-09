@@ -23,7 +23,6 @@ export class DeliveryComponent implements OnInit {
       const storageRef = ref(this.storage, path);
       
       this.imageURL = await getDownloadURL(storageRef);
-      console.log(this.imageURL);
     } catch (e: any) {
       console.error(e);
     }

@@ -2,28 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
-import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { ImageService } from 'src/app/shared/services/image/image.service';
+import { ThaiMarketService } from 'src/app/shared/services/thai/thai-market.service';
 
 @Component({
-  selector: 'app-admin-category',
-  templateUrl: './admin-category.component.html',
-  styleUrls: ['./admin-category.component.scss'],
+  selector: 'app-admin-thai',
+  templateUrl: './admin-thai.component.html',
+  styleUrls: ['./admin-thai.component.scss'],
 })
-export class AdminCategoryComponent implements OnInit {
+export class AdminThaiComponent implements OnInit {
   public isDown = false;
   public isAdding = false;
   public editStatus = false;
-  private currentCategoryId!: string;
-  public categoryForm!: FormGroup;
+  private currentThaiCategoryId!: string;
+  public thaiCategoryForm!: FormGroup;
   public isUploaded = false;
-  public adminCategories: Array<ICategoryResponse> = [];
+  public adminThaiCategories: Array<ICategoryResponse> = [];
 
   constructor(
-    private categoryService: CategoryService,
+    private thaiService: ThaiMarketService,
     private imageService: ImageService,
     private fb: FormBuilder,
-     private toastr: ToastrService
+    private toastr: ToastrService
   ) {}
   ngOnInit(): void {
     this.getCategories();
@@ -42,7 +42,7 @@ export class AdminCategoryComponent implements OnInit {
   }
 
   initCategoryForm(): void {
-    this.categoryForm = this.fb.group({
+    this.thaiCategoryForm = this.fb.group({
       name: [null, Validators.required],
       path: [null, Validators.required],
       imageUrl: [null, Validators.required],
@@ -51,45 +51,45 @@ export class AdminCategoryComponent implements OnInit {
   }
 
   getCategories(): void {
-    this.categoryService.getAll().subscribe((data) => {
-      this.adminCategories = data as ICategoryResponse[];
+    this.thaiService.getAll().subscribe((data) => {
+      this.adminThaiCategories = data as ICategoryResponse[];
     });
   }
 
   saveCategory(): void {
     if (this.editStatus) {
-      this.categoryService
-        .update(this.categoryForm.value, this.currentCategoryId)
+      this.thaiService
+        .update(this.thaiCategoryForm.value, this.currentThaiCategoryId)
         .then(() => {
           this.getCategories();
           this.toastr.success('Category successfully updated');
         });
     } else {
-      this.categoryService.create(this.categoryForm.value).then(() => {
+      this.thaiService.create(this.thaiCategoryForm.value).then(() => {
         this.getCategories();
         this.toastr.success('Category successfully create');
       });
     }
     this.editStatus = false;
-    this.categoryForm.reset();
+    this.thaiCategoryForm.reset();
     this.isAdding = !this.isAdding;
     this.isUploaded = false;
   }
 
-  editCategory(category: ICategoryResponse): void {
+  editCategory(thaiCategory: ICategoryResponse): void {
     this.editStatus = true;
-    this.categoryForm.patchValue({
-      name: category.name,
-      path: category.path,
-      imagePath: category.imagePath,
+    this.thaiCategoryForm.patchValue({
+      name: thaiCategory.name,
+      path: thaiCategory.path,
+      imagePath: thaiCategory.imagePath,
     });
     this.isUploaded = true;
     this.isAdding = true;
-    this.currentCategoryId = category.id;
+    this.currentThaiCategoryId = thaiCategory.id;
   }
 
-  deleteCategory(category: ICategoryResponse): void {
-    this.categoryService.delete(category.id).then(() => {
+  deleteCategory(thaiCategory: ICategoryResponse): void {
+    this.thaiService.delete(thaiCategory.id).then(() => {
       this.getCategories();
       this.toastr.success('Category successfully deleted');
     });
@@ -101,10 +101,9 @@ export class AdminCategoryComponent implements OnInit {
       .uploadFile('category-images', file.name, file)
       .then((data) => {
         this.isUploaded = true;
-        this.categoryForm.patchValue({
-          imagePath: data,
+        this.thaiCategoryForm.patchValue({
+          imagePath: data
         });
-        
       })
       .catch((err) => {
         console.log(err);
@@ -117,7 +116,7 @@ export class AdminCategoryComponent implements OnInit {
       .then(() => {
         console.log('File deleted');
         this.isUploaded = false;
-        this.categoryForm.patchValue({ imagePath: null });
+        this.thaiCategoryForm.patchValue({ imagePath: null });
       })
       .catch((err) => {
         console.log(err);
@@ -125,11 +124,11 @@ export class AdminCategoryComponent implements OnInit {
   }
 
   valueByControl(control: string): string {
-    return this.categoryForm.get(control)?.value;
+    return this.thaiCategoryForm.get(control)?.value;
   }
 
   isControlInvalid(controlName: string): boolean {
-    const control = this.categoryForm.controls[controlName];
+    const control = this.thaiCategoryForm.controls[controlName];
     const result = control.invalid && control.touched;
     return result;
   }

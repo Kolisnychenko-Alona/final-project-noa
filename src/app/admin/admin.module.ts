@@ -8,6 +8,7 @@ import { AdminProductComponent } from './admin-product/admin-product.component';
 import { AdminResponseComponent } from './admin-response/admin-response.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { AdminVacanciesComponent } from './admin-vacancies/admin-vacancies.component';
+import { AdminThaiComponent } from './admin-thai/admin-thai.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AdminVacanciesComponent } from './admin-vacancies/admin-vacancies.compo
     AdminResponseComponent,
     AdminOrdersComponent,
     AdminVacanciesComponent,
+    AdminThaiComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
 })
