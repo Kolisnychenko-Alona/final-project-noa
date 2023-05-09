@@ -1,1 +1,109 @@
-<p>admin-product works!</p>
+<div class="container">
+   <div class="button">
+      <button (mousedown)="down()" [class.down]="isDown" (mouseup)="up()" (click)="add()" [disabled]="editStatus">ДОДАТИ
+         ТОВАР</button>
+   </div>
+   <form class="adding" *ngIf="isAdding" [formGroup]="productForm" (ngSubmit)="saveProduct()">
+      <div class="adding_inner">
+         <div class="adding_input">
+            <div class="adding_input-wrapper">
+               <div class="adding_input-field">
+                  <label class="select-label" for="category">Оберіть категорію</label>
+                  <select class="select" name="category" formControlName="category">
+                     <option value="Оберіть категорію" selected disabled>Оберіть категорію</option>
+                     <option [ngValue]="category" *ngFor="let category of adminCategories">{{category.name}}</option>
+                  </select>
+                  <div class="err" *ngIf="isControlInvalid('category')">Виберіть категорію</div>
+               </div>
+               <div class="adding_input-field">
+                  <input class="check-box" type="checkbox" name="special" id="special" formControlName="culSpecial" >
+                  <label class="check-box_label" for="special">Culinasia Special</label>
+                  <input class="check-box" type="checkbox" name="noRise" id="noRice" formControlName="noRise" >
+                  <label class="check-box_label" for="noRise">No Rice</label>
+               </div>
+            </div>
+            <div class="adding_input-wrapper">
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="name" formControlName="name" placeholder="*Назва">
+                  <div class="err" *ngIf="isControlInvalid('name')">Поле не може бути порожнім</div>
+               </div>
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="path" formControlName="path" placeholder="*Шлях">
+                  <div class="err" *ngIf="isControlInvalid('path')">Поле не може бути порожнім</div>
+               </div>
+            </div>
+            <div class="adding_input-wrapper">
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="weight" formControlName="weight" placeholder="Вага">
+               </div>
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="price" formControlName="price" placeholder="*Ціна">
+                  <div class="err" *ngIf="isControlInvalid('price')">Поле не може бути порожнім</div>
+               </div>
+            </div>
+            <div class="adding_input-wrapper">
+               <div class="adding_input-textArea">
+                  <textarea class="text-area" name="description" formControlName="description" placeholder="Опис"></textarea>
+               </div>
+               <div class="adding_input-textArea">
+                  <textarea class="text-area" name="allergens" formControlName="allergens" placeholder="Алергени"></textarea>
+               </div>
+            </div>
+            <div class="adding_input-image">
+               <input class="field" type="file" formControlName="imageUrl" (change)="upload($event)">
+               <div class="err" *ngIf="isControlInvalid('imageUrl')">Додайте картинку</div>
+            </div>
+         </div>
+         <ng-container *ngIf="isUploaded">
+            <img class='adding_img' [src]="valueByControl('imagePath')" alt="">
+            <button type="button" class="delImage" (click)="deleteImage()">X</button>
+         </ng-container>
+      </div>
+      <button class="adding_btn" type="submit" [disabled]="productForm.invalid">{{ editStatus ? 'Зберегти' :
+         'Додати' }}</button>
+   </form>
+   <table class="table">
+      <thead class="table_head">
+         <tr>
+            <th class="table_head-cell">ID</th>
+            <th class="table_head-cell">Назва</th>
+            <th class="table_head-cell">Шлях</th>
+            <th class="table_head-cell">Вага</th>
+            <th class="table_head-cell">Ціна</th>
+            <th class="table_head-cell">Опис</th>
+            <th class="table_head-cell">Алергени</th>
+            <th class="table_head-cell">Culinasia Special</th>
+            <th class="table_head-cell">No Rice</th>
+            <th class="table_head-cell">Картинка</th>
+            <th class="table_head-cell">Дії</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let product of adminProducts">
+            <td class="table_cell drop">{{product.id | slice:0:5 }}
+               <button class="btn" type="button" (click)="openMore(id)">...</button>
+               <div class="more" #id>{{product.id}}</div>
+            </td>
+            <td class="table_cell">{{product.name}}</td>
+            <td class="table_cell">{{product.path}}</td>
+            <td class="table_cell">{{product.weight}}</td>
+            <td class="table_cell">{{product.price}}</td>
+            <td class="table_cell drop">{{ product.description| slice:0:5}}
+               <button class="btn" type="button" (click)="openMore(description)">...</button>
+               <div class="more" #description>{{product.description}}</div>
+            </td>
+            <td class="table_cell drop">{{ product.allergens| slice:0:5}}
+               <button class="btn" type="button" (click)="openMore(allergens)">...</button>
+               <div class="more" #allergens>{{product.allergens}}</div>
+            </td>
+            <td class="table_cell">{{product.culSpecial ? 'Так' : 'Ні'}}</td>
+            <td class="table_cell">{{product.noRise ? 'Так' : 'Ні'}}</td>
+            <td class="table_cell"><img [src]="product.imagePath"></td>
+            <td class="table_cell">
+               <button (click)="editProduct(product)">Редагувати</button>
+               <button (click)="deleteProduct(product)" [disabled]="editStatus">Видалити</button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>

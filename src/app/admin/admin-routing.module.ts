@@ -14,12 +14,12 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'category', component: AdminCategoryComponent },
-      { path: 'thai', component: AdminThaiComponent},
+      { path: 'thai', component: AdminThaiComponent },
       { path: 'product', component: AdminProductComponent },
       { path: 'response', component: AdminResponseComponent },
       { path: 'orders', component: AdminOrdersComponent },
       { path: 'vacancies', component: AdminVacanciesComponent },
-      { path: '', pathMatch: 'full', redirectTo: 'product' },
+      { path: '', pathMatch: 'full', redirectTo: 'orders' },
     ],
   },
 ];
