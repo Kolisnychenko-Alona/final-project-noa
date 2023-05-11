@@ -29,7 +29,7 @@ const routes: Routes = [
       import('./pages/market/market.module').then((m) => m.MarketModule),
   },
   {
-    path: 'product',
+    path: 'product/:category',
     loadChildren: () =>
       import('./pages/product/product.module').then((m) => m.ProductModule),
   },

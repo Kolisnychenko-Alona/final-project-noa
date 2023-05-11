@@ -1,21 +1,29 @@
 <div class="container">
    <div class="categories">
-      <div class="category" *ngFor="let category of userCategories">{{category.name}}</div>
+      <div class="category" 
+      *ngFor="let category of userCategories" 
+      [class.active]="category.path === currentCategory"
+      [routerLink]="['/product', category.path]"
+      >{{category.name}}</div>
    </div>
    <div class="categories-select">
-      <select name="" id="" class="select">
-         <option [value]="category.name" *ngFor="let category of userCategories">{{category.name}}</option>
+      <select name="" id="" class="select" (change)="changeCategory(select.value)" #select>
+         <option 
+         [value]="category.path" 
+         *ngFor="let category of userCategories"
+         [selected]="category.path === currentCategory"
+         >{{category.name}}</option>
       </select>
    </div>
    <div class="filters">
-      <input class="filters_radio" type="radio" id="all" name="filter" checked>
+      <input class="filters_radio" type="radio" id="all" name="filter" checked (change)="filtering(all.id)" #all>
       <label class="filters_label" for="all">Всі</label>
-      <input class="filters_radio" type="radio" id="cul-special" name="filter">
+      <input class="filters_radio" type="radio" id="cul-special" name="filter" (change)="filtering(culSpesial.id)" #culSpesial>
       <label class="filters_label" for="cul-special">CULINASIA SPECIAL</label>
-      <input class="filters_radio" type="radio" id="no-rice" name="filter">
+      <input class="filters_radio" type="radio" id="no-rice" name="filter" (change)="filtering(noRice.id)" #noRice>
       <label class="filters_label" for="no-rice">NO RICE</label>
       <label class="filters_label" for="sort">Сортувати по:</label>
-      <select class="filters_sort" name="sort" id="">
+      <select class="filters_sort" name="sort" id="" (change)="sorting(sort.value)" #sort>
          <option value="price up" selected >Ціна up</option>
          <option value="price down">Ціна down</option>
          <option value="weight up">Вага up</option>
@@ -44,12 +52,13 @@
             <div class="product_title-price">{{product.price}}</div>
          </div>
          <div class="product_info" >
+            <p class="product_info-weight" *ngIf="product.category.path === 'napoyi'">{{product.weight}}</p>
             <p class="product_info-components" >{{product.description}}
             </p>
             <p class="product_info-allergens">
                <span *ngIf="product.allergens">*Містить алергени: </span>
                {{product.allergens}}
-            </p>
+            </p> 
          </div>
          <div class="product_controlls">
             <div class="count">
@@ -63,3 +72,4 @@
    </div>
 </div>
 
+ 

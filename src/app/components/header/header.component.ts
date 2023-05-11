@@ -52,13 +52,12 @@ export class HeaderComponent implements OnInit {
   
   openProducts(catalog: HTMLElement): void {
     this.closeCatalog(catalog);
+    
   }
   openPhoneDialog(phone: HTMLElement): void {
-    console.log(phone);
     phone.classList.add('openPhone');
   }
   closePhoneDialog(phone: HTMLElement): void {
-    console.log('close phone', phone);
     phone.classList.remove('openPhone');
   }
 

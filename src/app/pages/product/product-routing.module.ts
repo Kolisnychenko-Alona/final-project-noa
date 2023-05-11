@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { ProductInfoResolver } from 'src/app/shared/services/product/product-info.resolver';
 import { ProductInfoComponent } from './product-info/product-info.component';
 import { ProductComponent } from './product.component';
+import { ProductInfoResolver } from 'src/app/shared/services/product/product-info.resolver';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: ProductInfoComponent,
-   //  resolve: { productInfo: ProductInfoResolver },
+    resolve: { productInfo: ProductInfoResolver },
   },
 ];
 

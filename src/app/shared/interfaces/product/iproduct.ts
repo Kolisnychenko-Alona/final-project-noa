@@ -5,7 +5,7 @@ export interface IProductRequest {
   name: string;
   path: string;
   description?: string;
-  weight?: number;
+  weight: string;
   allergens?: string;
   price: number;
   imagePath: string;

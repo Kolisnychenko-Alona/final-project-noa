@@ -15,8 +15,8 @@
                <li class="header_menu-item">
                   <a (mouseover)="openCatalog(catalog)" (click)="toProducts(catalog)">Меню</a>
                   <div class="catalog first" (mouseleave)="closeCatalog(catalog)" #catalog>
-                     <div class="header_catalog-item" (click)='openProducts(catalog)' *ngFor="let category of userCategories">
-                        <img [src]="category.imagePath" alt="" [routerLink]="[ '/product']" >
+                     <div class="header_catalog-item" (click)='closeCatalog(catalog)' *ngFor="let category of userCategories" [routerLink]="[ '/product', category.path]">
+                        <img [src]="category.imagePath" alt="">
                         <p class="title">{{category.name}}</p>
                      </div>
                   </div>
@@ -26,7 +26,7 @@
                      Market</a>
                   <div class="catalog second" (mouseleave)="closeCatalog(market)" #market>
                      <div class="header_catalog-item" (click)='openProducts(market)' *ngFor="let thaiCategory of userThaiCategories" >
-                        <img [src]="thaiCategory.imagePath" alt="" [routerLink]="[ '/product']" >
+                        <img [src]="thaiCategory.imagePath" alt="" [routerLink]="[ '/product', thaiCategory.path]" >
                         <p class="title">{{thaiCategory.name}}</p>
                      </div>
                   </div>

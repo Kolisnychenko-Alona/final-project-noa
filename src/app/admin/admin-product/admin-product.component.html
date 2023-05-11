@@ -34,7 +34,8 @@
             </div>
             <div class="adding_input-wrapper">
                <div class="adding_input-field">
-                  <input class="field" type="text" name="weight" formControlName="weight" placeholder="Вага">
+                  <input class="field" type="text" name="weight" formControlName="weight" placeholder="*Вага">
+                  <div class="err" *ngIf="isControlInvalid('weight')">Поле не може бути порожнім</div>
                </div>
                <div class="adding_input-field">
                   <input class="field" type="text" name="price" formControlName="price" placeholder="*Ціна">
