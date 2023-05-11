@@ -2,5 +2,58 @@
    <div class="categories">
       <div class="category" *ngFor="let category of userCategories">{{category.name}}</div>
    </div>
-   <div class="products"></div>
+   <div class="filters">
+      <input class="filters_radio" type="radio" id="all" name="filter" checked>
+      <label class="filters_label" for="all">Всі</label>
+      <input class="filters_radio" type="radio" id="cul-special" name="filter">
+      <label class="filters_label" for="cul-special">CULINASIA SPECIAL</label>
+      <input class="filters_radio" type="radio" id="no-rice" name="filter">
+      <label class="filters_label" for="no-rice">NO RICE</label>
+      <label class="filters_label" for="sort">Сортувати по:</label>
+      <select class="filters_sort" name="sort" id="">
+         <option value="price up" selected >Ціна</option>
+         <option value="price down">Ціна</option>
+         <option value="weight up">Вага</option>
+         <option value="weight down">Вага</option>
+      </select>
+   </div>
+   <div class="products">
+      <div class="product" *ngFor="let product of userProducts">
+         <div class="product_image">
+            <div class="product_image-top">
+               <div class="product_image-label">
+                  <div class="cul-special" *ngIf="product.culSpecial">Culinasia special</div>
+                  <div class="no-rice" *ngIf="product.noRise">No Rice</div>
+               </div>
+               <div class="product_image-favorite">
+                  <div class="favorite-bnt"></div>
+               </div>
+            </div>
+            <img class="image" [src]="product.imagePath" alt="">
+            <div class="product_image-button">
+               <button class="btn" type="button">Швидке замовлення</button>
+            </div>
+         </div>
+         <div class="product_title">
+            <div class="product_title-name">{{product.name}}</div>
+            <div class="product_title-price">{{product.price}}</div>
+         </div>
+         <div class="product_info" >
+            <p class="product_info-components" >{{product.description}}
+            </p>
+            <p class="product_info-allergens">
+               <span *ngIf="product.allergens">*Містить алергени: </span>
+               {{product.allergens}}
+            </p>
+         </div>
+         <div class="product_controlls">
+            <div class="count">
+               <button class="count_btn" (click)="productCount(product, false)">-</button>
+               <input class="count_value" type="text" [value]="product.count" readonly>
+               <button class="count_btn" (click)="productCount(product, true)">+</button>
+            </div>
+            <button class="add-btn" type="button">Замовити</button>
+         </div>
+      </div>
+   </div>
 </div>

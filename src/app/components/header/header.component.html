@@ -16,7 +16,7 @@
                   <a (mouseover)="openCatalog(catalog)" (click)="toProducts(catalog)">Меню</a>
                   <div class="catalog first" (mouseleave)="closeCatalog(catalog)" #catalog>
                      <div class="header_catalog-item" (click)='openProducts(catalog)' *ngFor="let category of userCategories">
-                        <img [src]="category.imagePath" alt="">
+                        <img [src]="category.imagePath" alt="" [routerLink]="[ '/product']" >
                         <p class="title">{{category.name}}</p>
                      </div>
                   </div>
@@ -25,9 +25,9 @@
                   <a routerLink="/market" (mouseover)="openCatalog(market)" (click)="closeCatalog(market)">Thai
                      Market</a>
                   <div class="catalog second" (mouseleave)="closeCatalog(market)" #market>
-                     <div class="header_catalog-item" (click)='openProducts(market)'>
-                        <img src="https://noa.ua/wp-content/uploads/2023/04/salmon-sushi-burger-1-110x110.webp" alt="">
-                        <p class="title">Cnhfdfg</p>
+                     <div class="header_catalog-item" (click)='openProducts(market)' *ngFor="let thaiCategory of userThaiCategories" >
+                        <img [src]="thaiCategory.imagePath" alt="" [routerLink]="[ '/product']" >
+                        <p class="title">{{thaiCategory.name}}</p>
                      </div>
                   </div>
                </li>

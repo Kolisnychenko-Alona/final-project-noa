@@ -6,6 +6,7 @@ import { BasketDialogComponent } from '../basket-dialog/basket-dialog.component'
 import { Router } from '@angular/router';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
+import { ThaiMarketService } from 'src/app/shared/services/thai/thai-market.service';
 
 @Component({
   selector: 'app-header',
@@ -19,11 +20,13 @@ export class HeaderComponent implements OnInit {
   public isDown = false;
 
   public userCategories: Array<ICategoryResponse> = [];
+  public userThaiCategories: Array<ICategoryResponse> = [];
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private thaiMarketService: ThaiMarketService
   ) {}
 
   ngOnInit(): void {
@@ -87,6 +90,11 @@ export class HeaderComponent implements OnInit {
   getCategories() {
     this.categoryService.getAll().subscribe((data) => {
       this.userCategories = data as ICategoryResponse[];
+    });
+  }
+  getThaiCategories() {
+    this.thaiMarketService.getAll().subscribe((data) => {
+      this.userThaiCategories = data as ICategoryResponse[];
     });
   }
 }
