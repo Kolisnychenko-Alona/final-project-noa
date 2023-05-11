@@ -3,16 +3,16 @@
 
 
 $primary-default-value: (
-  50: #c7e1f7,
-  100: #c7e1f7,
-  200: #c7e1f7,
-  300: #b5d8f7,
-  400: #b5d8f7,
-  500: #b5d8f7,
-  600: #b5d8f7,
-  700: #9bcefc,
-  800: #9bcefc,
-  900: #9bcefc,
+  50: $border-color,
+  100: $border-color,
+  200: $border-color,
+  300: $border-color,
+  400: $border-color,
+  500: $border-color,
+  600: $border-color,
+  700: $border-color,
+  800: $border-color,
+  900: $border-color,
   contrast: (
     50: white,
     100: white,

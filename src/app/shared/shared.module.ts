@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 const MATERIAL = [
   MatDialogModule,
+  MatSelectModule
 ];
 
 //other modules
