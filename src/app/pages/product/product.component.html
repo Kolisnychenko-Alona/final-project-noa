@@ -24,10 +24,10 @@
       <label class="filters_label" for="no-rice">NO RICE</label>
       <label class="filters_label" for="sort">Сортувати по:</label>
       <select class="filters_sort" name="sort" id="" (change)="sorting(sort.value)" #sort>
-         <option value="price up" selected >Ціна up</option>
-         <option value="price down">Ціна down</option>
-         <option value="weight up">Вага up</option>
-         <option value="weight down">Вага down</option>
+         <option value="price up" selected >Ціна <i class="uil uil-arrow-up"></i></option>
+         <option value="price down">Ціна <i class="uil uil-arrow-down"></i></option>
+         <option value="weight up">Вага <i class="uil uil-arrow-up"></i></option>
+         <option value="weight down">Вага <i class="uil uil-arrow-down"></i></option>
       </select>
    </div>
    <div class="products">
@@ -48,7 +48,9 @@
             </div>
          </div>
          <div class="product_title">
-            <div class="product_title-name">{{product.name}}</div>
+            <div class="product_title-name" 
+               [routerLink]="['/product/'+product.category.path, product.id]"
+               >{{product.name}}</div>
             <div class="product_title-price">{{product.price}}</div>
          </div>
          <div class="product_info" >
