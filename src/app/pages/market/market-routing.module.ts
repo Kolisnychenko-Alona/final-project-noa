@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MarketComponent } from './market.component';
-import { MarketProductInfoComponent } from './market-product-info/market-product-info.component';
 import { ThaiProductInfoResolver } from 'src/app/shared/services/thai-product/thai-product-info.resolver';
+import { MarketProductInfoComponent } from './market-product-info/market-product-info/market-product-info.component';
 
 const routes: Routes = [
   {

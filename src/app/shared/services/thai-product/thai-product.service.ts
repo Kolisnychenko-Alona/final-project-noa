@@ -16,10 +16,9 @@ import {
 import { DocumentData, collection } from '@firebase/firestore';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThaiProductService {
-
   private productCollection!: CollectionReference<DocumentData>;
 
   constructor(private afs: Firestore) {

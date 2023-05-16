@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
-  Router, Resolve,
+  Router,
+  Resolve,
   RouterStateSnapshot,
-  ActivatedRouteSnapshot
+  ActivatedRouteSnapshot,
 } from '@angular/router';
 import { DocumentData } from 'firebase/firestore';
 import { Observable, of } from 'rxjs';
