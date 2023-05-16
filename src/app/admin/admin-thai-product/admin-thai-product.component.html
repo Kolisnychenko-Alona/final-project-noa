@@ -1,0 +1,94 @@
+<div class="container">
+   <div class="button">
+      <button (mousedown)="down()" [class.down]="isDown" (mouseup)="up()" (click)="add()" [disabled]="editStatus">ДОДАТИ
+         ТОВАР</button>
+   </div>
+   <form class="adding" *ngIf="isAdding" [formGroup]="thaiProductForm" (ngSubmit)="saveThaiProduct()">
+      <div class="adding_inner">
+         <div class="adding_input">
+            <div class="adding_input-wrapper">
+               <div class="adding_input-field choose">
+                  <label class="select-label" for="category">Оберіть категорію</label>
+                  <select class="select" name="category" formControlName="category">
+                     <option value="Оберіть категорію" selected disabled>Оберіть категорію</option>
+                     <option [ngValue]="category" *ngFor="let category of adminThaiCategories">{{category.name}}</option>
+                  </select>
+                  <div class="err" *ngIf="isControlInvalid('category')">Виберіть категорію</div>
+               </div>
+            </div>
+            <div class="adding_input-wrapper">
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="name" formControlName="name" placeholder="*Назва">
+                  <div class="err" *ngIf="isControlInvalid('name')">Поле не може бути порожнім</div>
+               </div>
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="path" formControlName="path" placeholder="*Шлях">
+                  <div class="err" *ngIf="isControlInvalid('path')">Поле не може бути порожнім</div>
+               </div>
+            </div>
+            <div class="adding_input-wrapper">
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="weight" formControlName="weight" placeholder="*Вага">
+                  <div class="err" *ngIf="isControlInvalid('weight')">Поле не може бути порожнім</div>
+               </div>
+               <div class="adding_input-field">
+                  <input class="field" type="text" name="price" formControlName="price" placeholder="*Ціна">
+                  <div class="err" *ngIf="isControlInvalid('price')">Поле не може бути порожнім</div>
+               </div>
+            </div>
+            <div class="adding_input-wrapper">
+               <div class="adding_input-textArea">
+                  <textarea class="text-area" name="description" formControlName="description"
+                     placeholder="Опис"></textarea>
+               </div>
+            </div>
+            <div class="adding_input-image">
+               <input class="field" type="file" formControlName="imageUrl" (change)="upload($event)">
+               <div class="err" *ngIf="isControlInvalid('imageUrl')">Додайте картинку</div>
+            </div>
+         </div>
+         <ng-container *ngIf="isUploaded">
+            <img class='adding_img' [src]="valueByControl('imagePath')" alt="">
+            <button type="button" class="delImage" (click)="deleteImage()">X</button>
+         </ng-container>
+      </div>
+      <button class="adding_btn" type="submit" [disabled]="thaiProductForm.invalid">{{ editStatus ? 'Зберегти' :
+         'Додати' }}</button>
+   </form>
+   <table class="table">
+      <thead class="table_head">
+         <tr>
+            <th class="table_head-cell">ID</th>
+            <th class="table_head-cell">Назва</th>
+            <th class="table_head-cell">Шлях</th>
+            <th class="table_head-cell">Вага</th>
+            <th class="table_head-cell">Ціна</th>
+            <th class="table_head-cell">Опис</th>
+            <th class="table_head-cell">Картинка</th>
+            <th class="table_head-cell">Дії</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let product of adminThaiProducts">
+            <td class="table_cell drop">{{product.id? (product.id | slice:0:5) : product.id }}
+               <button class="btn" type="button" (click)="openMore(id)">...</button>
+               <div class="more" #id>{{product.id}}</div>
+            </td>
+            <td class="table_cell">{{product.name}}</td>
+            <td class="table_cell">{{product.path}}</td>
+            <td class="table_cell">{{product.weight}}</td>
+            <td class="table_cell">{{product.price}}</td>
+            <td class="table_cell drop">{{ product.description? (product.description | slice:0:10) :product.description }}
+               <button class="btn" type="button" (click)="openMore(description)">...</button>
+               <div class="more" #description>{{product.description}}</div>
+            </td>
+            <td class="table_cell"><img [src]="product.imagePath"></td>
+            <td class="table_cell">
+               <button (click)="editThaiProduct(product)">Редагувати</button>
+               <button (click)="deleteThaiProduct(product)" [disabled]="editStatus">Видалити</button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+

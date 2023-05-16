@@ -1,4 +1,4 @@
-@import "../../../shared/styles/variables";
+@import "../../../../shared/styles/variables";
 
 .navigation {
    width: 100%;
@@ -15,7 +15,6 @@
       border-radius: 50%;
       border: 2px solid $main-color;
       margin: 0 15px 0 10px;
-      // background-color: $dark-gray;
    }
    &-url {
       cursor: pointer;
@@ -36,26 +35,6 @@
          top: 0;
          left: 0;
          width: 100%;
-      }
-      &-label {
-         width: fit-content;
-         .cul-special,
-         .no-rice {
-            padding: 8px 10px;
-            font-size: 10px;
-            line-height: 1;
-            color: $white;
-            border-radius: 3px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 700;
-         }
-         .cul-special {
-            background-color: #ff951f;
-         }
-         .no-rice {
-            background-color: black;
-         }
       }
       &-favorite {
          width: 100%;
@@ -262,26 +241,6 @@
                   left: 0;
                   width: 100%;
                }
-               &-label {
-                  width: fit-content;
-                  .cul-special,
-                  .no-rice {
-                     padding: 8px 10px;
-                     font-size: 10px;
-                     line-height: 1;
-                     color: $white;
-                     border-radius: 3px;
-                     text-transform: uppercase;
-                     letter-spacing: 0.1em;
-                     font-weight: 700;
-                  }
-                  .cul-special {
-                     background-color: #ff951f;
-                  }
-                  .no-rice {
-                     background-color: black;
-                  }
-               }
                &-favorite {
                   width: 100%;
                   position: absolute;
@@ -373,11 +332,6 @@
                color: $light-gray;
                &-components {
                   height: 40px;
-                  margin-bottom: 10px;
-                  overflow: hidden;
-               }
-               &-allergens {
-                  height: 20px;
                   margin-bottom: 10px;
                   overflow: hidden;
                }

@@ -1,6 +1,43 @@
 <div class="container">
    <div class="categories">
-      <div class="category" *ngFor="let category of userThaiCategories">{{category.name}}</div>
+      <div class="category"
+         *ngFor="let category of userThaiCategories" 
+         [class.active]="category.path === currentCategory" 
+         [routerLink]="['/market', category.path]">
+         {{category.name}}
+      </div>
    </div>
-   <div class="products"></div>
+   <div class="categories-select">
+      <select name="" id="" class="select" (change)="changeCategory(select.value)" #select>
+         <option [value]="category.path" *ngFor="let category of userThaiCategories"
+            [selected]="category.path === currentCategory">{{category.name}}</option>
+      </select>
+   </div>
+   <div class="products">
+      <div class="product" *ngFor="let product of userThaiProducts">
+         <div class="product_image">
+            <img class="image" [src]="product.imagePath" alt="" [routerLink]="['/market/'+product.category.path, product.id]">
+            <div class="product_image-button">
+               <button class="btn" type="button">Швидке замовлення</button>
+            </div>
+         </div>
+         <div class="product_title">
+            <div class="product_title-name" [routerLink]="['/market/'+product.category.path, product.id]">
+               {{product.name}}</div>
+            <div class="product_title-price">{{product.price}}</div>
+         </div>
+         <div class="product_info">
+            <p class="product_info-components">{{product.description}}
+            </p>
+         </div>
+         <div class="product_controlls">
+            <div class="count">
+               <button class="count_btn" (click)="productCount(product, false)">-</button>
+               <input class="count_value" type="text" [value]="product.count" readonly>
+               <button class="count_btn" (click)="productCount(product, true)">+</button>
+            </div>
+            <button class="add-btn" type="button">Замовити</button>
+         </div>
+      </div>
+   </div>
 </div>

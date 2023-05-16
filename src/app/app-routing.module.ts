@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   {
-    path: 'market',
+    path: 'market/:category',
     loadChildren: () =>
       import('./pages/market/market.module').then((m) => m.MarketModule),
   },

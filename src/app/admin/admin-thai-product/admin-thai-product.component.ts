@@ -3,36 +3,36 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
 import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
-import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { ImageService } from 'src/app/shared/services/image/image.service';
-import { ProductService } from 'src/app/shared/services/product/product.service';
+import { ThaiProductService } from 'src/app/shared/services/thai-product/thai-product.service';
+import { ThaiMarketService } from 'src/app/shared/services/thai/thai-market.service';
 
 @Component({
-  selector: 'app-admin-product',
-  templateUrl: './admin-product.component.html',
-  styleUrls: ['./admin-product.component.scss'],
+  selector: 'app-admin-thai-product',
+  templateUrl: './admin-thai-product.component.html',
+  styleUrls: ['./admin-thai-product.component.scss'],
 })
-export class AdminProductComponent implements OnInit {
+export class AdminThaiProductComponent implements OnInit {
   public isDown = false;
   public isAdding = false;
   public editStatus = false;
-  private currentProductId!: string;
-  public productForm!: FormGroup;
+  private currentThaiProductId!: string;
+  public thaiProductForm!: FormGroup;
   public isUploaded = false;
-  public adminProducts: Array<IProductResponse> = [];
-  public adminCategories: Array<ICategoryResponse> = [];
+  public adminThaiProducts: Array<IProductResponse> = [];
+  public adminThaiCategories: Array<ICategoryResponse> = [];
 
   constructor(
-    private productService: ProductService,
-    private categoryService: CategoryService,
+    private thaiProductService: ThaiProductService,
+    private thaiMarket: ThaiMarketService,
     private imageService: ImageService,
     private fb: FormBuilder,
     private toastr: ToastrService
   ) {}
   ngOnInit(): void {
-    this.getProducts();
+    this.getThaiProducts();
     this.getCategories();
-    this.initProductForm();
+    this.initThaiProductForm();
   }
 
   down(): void {
@@ -46,74 +46,68 @@ export class AdminProductComponent implements OnInit {
     this.isAdding = !this.isAdding;
   }
 
-  initProductForm(): void {
-    this.productForm = this.fb.group({
+  initThaiProductForm(): void {
+    this.thaiProductForm = this.fb.group({
       category: [null, Validators.required],
       name: [null, Validators.required],
       path: [null, Validators.required],
       description: [null],
-      weight: [0],
-      allergens: [null],
+      weight: [null],
       price: [null, Validators.required],
       count: [1],
-      culSpecial: [false],
-      noRise: [false],
       imageUrl: [null, Validators.required],
       imagePath: [null],
     });
   }
 
   getCategories(): void {
-    this.categoryService.getAll().subscribe((data) => {
-      this.adminCategories = data as ICategoryResponse[];
+    this.thaiMarket.getAll().subscribe((data) => {
+      this.adminThaiCategories = data as ICategoryResponse[];
     });
   }
-  getProducts(): void {
-    this.productService.getAll().subscribe((data) => {
-      this.adminProducts = data as IProductResponse[];
+  getThaiProducts(): void {
+    this.thaiProductService.getAll().subscribe((data) => {
+      this.adminThaiProducts = data as IProductResponse[];
     });
   }
-  saveProduct(): void {
+  saveThaiProduct(): void {
     if (this.editStatus) {
-      this.productService
-        .update(this.productForm.value, this.currentProductId)
+      this.thaiProductService
+        .update(this.thaiProductForm.value, this.currentThaiProductId)
         .then(() => {
-          this.getProducts();
+          this.getThaiProducts();
           this.toastr.success('Product successfully updated');
         });
     } else {
-      this.productService.create(this.productForm.value).then(() => {
-        this.getProducts();
+      this.thaiProductService.create(this.thaiProductForm.value).then(() => {
+        this.getThaiProducts();
         this.toastr.success('Product successfully created');
       });
     }
     this.editStatus = false;
-    this.productForm.reset();
+    this.thaiProductForm.reset();
     this.isAdding = !this.isAdding;
     this.isUploaded = false;
-    console.log(this.productForm.invalid);
+    console.log(this.thaiProductForm.invalid);
   }
-  editProduct(product: IProductResponse): void {
-    this.productForm.patchValue({
+  editThaiProduct(product: IProductResponse): void {
+    this.thaiProductForm.patchValue({
       category: product.category,
       name: product.name,
       path: product.path,
       description: product.description,
-      allergens: product.allergens,
       weight: product.weight,
       price: product.price,
-      culSpecial: product.culSpecial,
-      noRise: product.noRise,
       imagePath: product.imagePath,
     });
     this.editStatus = true;
     this.isUploaded = true;
     this.isAdding = true;
-    this.currentProductId = product.id;
+    this.currentThaiProductId = product.id;
   }
-  deleteProduct(product: IProductResponse): void {
-    this.productService.delete(product.id).then(() => {
-      this.getProducts();
+  deleteThaiProduct(product: IProductResponse): void {
+    this.thaiProductService.delete(product.id).then(() => {
+      this.getThaiProducts();
       this.toastr.success('Product successfully deleted');
     });
   }
@@ -124,7 +118,7 @@ export class AdminProductComponent implements OnInit {
       .uploadFile('product-images', file.name, file)
       .then((data) => {
         this.isUploaded = true;
-        this.productForm.patchValue({
+        this.thaiProductForm.patchValue({
           imagePath: data,
         });
       })
@@ -139,7 +133,7 @@ export class AdminProductComponent implements OnInit {
       .then(() => {
         console.log('File deleted');
         this.isUploaded = false;
-        this.productForm.patchValue({ imagePath: null });
+        this.thaiProductForm.patchValue({ imagePath: null });
       })
       .catch((err) => {
         console.log(err);
@@ -147,11 +141,11 @@ export class AdminProductComponent implements OnInit {
   }
 
   valueByControl(control: string): string {
-    return this.productForm.get(control)?.value;
+    return this.thaiProductForm.get(control)?.value;
   }
 
   isControlInvalid(controlName: string): boolean {
-    const control = this.productForm.controls[controlName];
+    const control = this.thaiProductForm.controls[controlName];
     const result = control.invalid && control.touched;
     return result;
   }

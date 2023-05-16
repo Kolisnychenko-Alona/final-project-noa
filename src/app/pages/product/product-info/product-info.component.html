@@ -58,7 +58,7 @@
                         <div class="favorite-bnt"></div>
                      </div>
                   </div>
-                  <img class="image" [src]="product.imagePath" alt="">
+                  <img class="image" [src]="product.imagePath" alt="" [routerLink]="['/product/'+product.category.path, product.id]">
                   <div class="product_image-button">
                      <button class="btn" type="button">Швидке замовлення</button>
                   </div>

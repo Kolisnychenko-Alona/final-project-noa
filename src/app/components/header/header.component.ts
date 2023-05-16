@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
+    this.getThaiCategories();
   }
 
   down(btn: HTMLElement): void {
@@ -44,15 +45,6 @@ export class HeaderComponent implements OnInit {
   }
   closeCatalog(catalog: HTMLElement): void {
     catalog.classList.remove('openCatalog');
-  }
-  toProducts(catalog: HTMLElement): void {
-    catalog.classList.remove('openCatalog');
-    this.router.navigate(['/product']);
-  }
-  
-  openProducts(catalog: HTMLElement): void {
-    this.closeCatalog(catalog);
-    
   }
   openPhoneDialog(phone: HTMLElement): void {
     phone.classList.add('openPhone');
