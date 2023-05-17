@@ -6,6 +6,7 @@ import {
   collectionData,
   deleteDoc,
   doc,
+  docData,
   updateDoc,
 } from '@angular/fire/firestore';
 import { DocumentData, collection } from '@firebase/firestore';
@@ -23,6 +24,10 @@ export class VacancyService {
 
   getAll() {
     return collectionData(this.vacancyCollection, { idField: 'id' });
+  }
+  getOne(id: string) {
+    const vacancyDocumentReference = doc(this.afs, `vacancies/${id}`);
+    return docData(vacancyDocumentReference, { idField: 'id' });
   }
   create(vacancy: IVacancyRequest) {
     return addDoc(this.vacancyCollection, vacancy);

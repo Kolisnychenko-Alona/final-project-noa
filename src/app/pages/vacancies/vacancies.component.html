@@ -1,11 +1,11 @@
 <div class="container">
    <h1 class="title">Приєднуйся до команди <span class="title-color">NOA</span></h1>
    <div class="vacancies">
-      <div class="vacancy" *ngFor="let vacancy of userVacancies">
+      <div class="vacancy" *ngFor="let vacancy of userVacancies"  [routerLink]="[ '/vacancies', vacancy.id ]">
          <div class="vacancy_image">
             <img class="image" [src]="vacancy.imagePath" alt="image">
          </div>
-         <h2 class="vacancy_name">{{vacancy.name}}</h2>
+         <h2 class="vacancy_name" [routerLink]="[ '/vacancies', vacancy.id ]">{{vacancy.name}}</h2>
       </div>
    </div>
 </div>
