@@ -1,1 +1,68 @@
-
+<section class="header">
+   <div class="header_image" [style.backgroundImage]="'url(' + vacancy.imagePath + ')'"></div>
+   <div class="navigation">
+      <span class="navigation-url" [routerLink]="[ '/home/']">Головна</span>
+      <span class="navigation-dot"></span>
+      <span class="navigation-url" [routerLink]="[ '/vacancies/']">Вакансії</span>
+      <span class="navigation-dot"></span>
+      <span class="navigation-url">{{vacancy.name }}</span>
+   </div>
+   <div class="info" >
+      <h1 class="info_title">{{vacancy.title}}</h1>
+      <div class="info_text ">
+         <div class="info_text-block">Місто<br>{{vacancy.city}}</div>
+         <div class="info_text-block">Місце праці<br>{{vacancy.place}}</div>
+         <div class="info_text-block">Зайнятість<br>{{vacancy.employment}}</div>
+      </div>
+   </div>
+</section>
+<section class="information">
+   <div class="information_title">{{vacancy.title}}</div>
+   <div class="information_text"><span class="information_text-left">Місто</span><span>{{vacancy.city}}</span></div>
+   <div class="information_text"><span class="information_text-left">Місце праці</span><span>{{vacancy.place}}</span></div>
+   <div class="information_text"><span class="information_text-left">Зайнятість</span><span>{{vacancy.employment}}</span></div>
+</section>
+<section class="content">
+   <div class="description">
+      <div class="description_main">{{vacancy.description}}</div>
+      <p class="description_title">Тому ми гарантуємо:</p>
+      <ul class="description_list">
+         <li class="description_item">позмінний графік — 2/2 або 3/3</li>
+         <li class="description_item">зрозумілу систему оплати праці 2 рази на місяць</li>
+         <li class="description_item">знижка -40% на меню закладу</li>
+         <li class="description_item">таксі за рахунок компанії</li>
+         <li class="description_item">винагорода до 1500 грн за кожного друга, якого привів до нас</li>
+         <li class="description_item">компенсація вартості медогляду</li>
+         <li class="description_item">обіди за рахунок компанії</li>
+         <li class="description_item">можливість стати менеджером або шефом</li>
+      </ul>
+      <p class="description_title">Окрім цього:</p>
+      <ul class="description_list">
+         <li class="description_item">ми навчаємо тебе та платимо за стажування</li>
+         <li class="description_item">за перший рік твоя зарплата зросте на 20% (через 6 міс + 10%, і ще через 6 міс + 10%</li>
+      </ul>
+      <p class="description_title">Впевнені, що ти точно легко справишся із:</p>
+      <ul class="description_list">
+         <li class="description_item">приготування всього необхідного – ми все покажемо</li>
+         <li class="description_item">дотриманням санітарних норм в роботі</li>
+      </ul>
+      <p class="description_text">Приєднуйся до команди! — залишай заявку або телефонуй за номером</p>
+      <p class="description_text"><span>+380676996634 Марія</span><br><span>+380671070761 Анастасія</span></p>
+      <p class="description_text">Детальніше про відкриті вакансії: rabota.ua</p>
+   </div>
+   <div class="application">
+      <h3 class="application_title">Заявка на вакансію</h3>
+      <p class="application_text">Заповніть дану заявку і ми зв’яжемося з вами найблищим часом</p>
+      <form  class="application_form">
+         <div class="application_form-block">
+            <input class="application_form-field half" type="text" placeholder="Ваше ім'я">
+            <input class="application_form-field half" type="text" placeholder="Ваше прізвище">
+         </div>
+         <input class="application_form-field" type="text" placeholder="Ваш телефон">
+         <input class="application_form-field" type="text" placeholder="Ваш e-mail">
+         <textarea class="application_form-text-area"  placeholder="Чому ви хочете працювати з нами?" ></textarea>
+         <input class="application_form-field" type="file"><i class="uil uil-times"></i>
+         <button class="application_form-btn" type="submit">надіслати</button>
+      </form>
+   </div>
+</section>
