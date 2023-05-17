@@ -66,3 +66,24 @@
       </form>
    </div>
 </section>
+<section class="other-vacancies">
+   <h2 class="other-vacancies_title">Інші <span class="color">вакансії</span></h2>
+   <div class="other-vacancies_swipper">
+      <button type="button" class="other-vacancies_btn" [disabled]="!left" (click)="slideVacancies(false, wrapper)">
+         <i class="uil uil-angle-left"></i>
+      </button>
+      <div class="inner">
+         <div class="wrapper" #wrapper>
+            <div class="vacancy" *ngFor="let vacancy of userVacancies" [style.width]="vacancyWidth" [routerLink]="[ '/vacancies', vacancy.id ]">
+               <div class="vacancy_image">
+                  <img class="image" [src]="vacancy.imagePath" alt="image">
+               </div>
+               <h3 class="vacancy_name" [routerLink]="[ '/vacancies', vacancy.id ]">{{vacancy.name}}</h3>
+            </div>
+         </div>
+      </div>
+      <button type="button" class="other-vacancies_btn" (click)="slideVacancies(true, wrapper)" [disabled]="!right">
+         <i class="uil uil-angle-right"></i>
+      </button>
+   </div>
+</section>
