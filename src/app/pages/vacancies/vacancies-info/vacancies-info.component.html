@@ -57,16 +57,17 @@
       <div class="application">
          <h3 class="application_title">Заявка на вакансію</h3>
          <p class="application_text">Заповніть дану заявку і ми зв’яжемося з вами найблищим часом</p>
-         <form class="application_form">
+         <form class="application_form" [formGroup]="applicationForm" (ngSubmit)="sendApplication()">
             <div class="application_form-block">
-               <input class="application_form-field half" type="text" placeholder="Ваше ім'я">
-               <input class="application_form-field half" type="text" placeholder="Ваше прізвище">
+               <input class="application_form-field half" type="text" formControlName="firstName" placeholder="Ваше ім'я">
+               <input class="application_form-field half" type="text" formControlName="secondName" placeholder="Ваше прізвище">
             </div>
-            <input class="application_form-field" type="text" placeholder="Ваш телефон">
-            <input class="application_form-field" type="text" placeholder="Ваш e-mail">
-            <textarea class="application_form-text-area" placeholder="Чому ви хочете працювати з нами?"></textarea>
-            <input class="application_form-field" type="file"><i class="uil uil-times"></i>
-            <button class="application_form-btn" type="submit">надіслати</button>
+            <input class="application_form-field" type="text" formControlName="phone" placeholder="Ваш телефон">
+            <input class="application_form-field" type="text" formControlName="email" placeholder="Ваш e-mail">
+            <textarea class="application_form-text-area" formControlName="text" placeholder="Чому ви хочете працювати з нами?"></textarea>
+            <input class="application_form-field" type="file" formControlName="fileUrl" (change)="upload($event)">
+            <i class="uil uil-times" *ngIf="isUploaded" (click)="deleteFile()" ></i>
+            <button class="application_form-btn" type="submit" [disabled]="applicationForm.invalid">надіслати</button>
          </form>
       </div>
    </section>
