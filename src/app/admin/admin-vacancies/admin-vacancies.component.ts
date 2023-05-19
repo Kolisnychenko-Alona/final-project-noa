@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { IVacancyApplicationResponse } from 'src/app/shared/interfaces/vacancy-application/IVacancyApplication';
 import { IVacancyResponse } from 'src/app/shared/interfaces/vacancy/IVacancy';
 import { ImageService } from 'src/app/shared/services/image/image.service';
+import { VacancyApplicationService } from 'src/app/shared/services/vacancy-application/vacancy-application.service';
 import { VacancyService } from 'src/app/shared/services/vacancy/vacancy.service';
 
 @Component({
@@ -20,15 +22,19 @@ export class AdminVacanciesComponent implements OnInit {
   public more = false;
   public adminVacancies: Array<IVacancyResponse> = [];
 
+  public applications: Array<IVacancyApplicationResponse> = [];
+
   constructor(
     private vacancyService: VacancyService,
     private imageService: ImageService,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private vacancyApplicationService: VacancyApplicationService
   ) {}
   ngOnInit(): void {
     this.getVacancies();
     this.initVacancyForm();
+    this.getApplications();
   }
 
   down(): void {
@@ -143,7 +149,20 @@ export class AdminVacanciesComponent implements OnInit {
     const result = control.invalid && control.touched;
     return result;
   }
-  openMore(value: HTMLElement): void{
+  openMore(value: HTMLElement): void {
     value.classList.toggle('details');
+  }
+  getApplications(): void {
+    this.vacancyApplicationService.getAll().subscribe((data) => {
+      this.applications = data as IVacancyApplicationResponse[];
+      console.log(this.applications);
+    });
+  }
+  deleteApplication(id: string): void{
+    this.vacancyApplicationService.delete(id)
+      .then(() => {
+        this.getApplications();
+        this.toastr.success('Vacancy application successfully deleted');
+      })
   }
 }

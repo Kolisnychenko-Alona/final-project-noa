@@ -212,6 +212,95 @@
          }
       }
    }
+   .application{
+      width: 1200px;
+      padding-bottom: 50px;
+      &_title{
+         font-size: 24px;
+         font-weight: 600;
+         margin: 20px 0;
+         color: $text-color;
+      }
+      &_table{
+         width: 100%;
+         &-head {
+            height: 40px;
+            .application_table-cell{
+               font-weight: 700;
+               border-bottom: 3px solid $main-color;
+            }
+         }
+         &-cell {
+            color: $text-color;
+            vertical-align: middle;
+            height: 100px;
+            border-bottom: 2px solid $border-color;
+            padding-right: 10px;
+            word-wrap: break-word;
+            font-size: 18px;
+            &.drop{
+               position: relative;
+               .btn{
+                  border: none;
+                  background-color: transparent;
+                  font-size: 20px;
+                  font-weight: 700;
+                  z-index: 1;
+                  transition: 0.25s;
+                  &:hover{
+                     text-decoration-color: $main-color;
+                     text-decoration: underline;
+                     cursor: pointer;
+                     transition: 0.25s;
+                  }
+               }
+               .more{
+                  width: 250px;
+                  padding: 10px;
+                  border: 1px solid $border-color;
+                  border-radius: 6px;
+                  background-color: $milk;
+                  position: absolute;
+                  top: 80px;
+                  left: 0;
+                  font-size: 12px;
+                  display: none;
+                  opacity: 100;
+                  z-index: 2;
+                  &.details{
+                     display: block;
+                  }
+               }
+            }
+            .uil-file-download-alt{
+               font-size: 50px;
+               color: $main-color;
+            }
+            &:last-child {
+               display: flex;
+               justify-content: start;
+               align-items: center;
+               button {
+                  padding: 15px 10px;
+                  font-size: 18px;
+                  font-weight: bold;
+                  color: $main-color;
+                  text-align: start;
+                  background-color: transparent;
+                  border: 2px solid $main-color;
+                  border-radius: 6px;
+                  transition: 0.5s;
+                  &:hover {
+                     cursor: pointer;
+                     color: $white;
+                     background-color: $main-color;
+                  }
+               }
+            }
+         }
+      }
+      
+   }
 }
 
 .down {
@@ -236,6 +325,9 @@
       .table{
          width: 1000px;
       }
+      .application{
+         width: 1000px;
+      }
    }
 }
 @media (max-width: 1400px){
@@ -246,6 +338,9 @@
          }
       }
       .table{
+         width: 900px;
+      }
+      .application{
          width: 900px;
       }
    }
@@ -277,6 +372,19 @@
                   font-size: 16px;
                }
             }   
+         }
+      }
+      .application{
+         width: 800px;
+         &_table{
+           &_cell{
+            font-size: 16px;
+            &:last-child{
+               button{
+                  font-size: 16px;
+               }
+            }   
+         } 
          }
       }
    }
@@ -327,6 +435,24 @@
             }   
          }
       }
+      .application{
+         width: 700px;
+         &_table{
+            &-head{
+               .application_table-cell{
+                  font-size: 16px;
+               }
+            }
+            &_cell{
+               font-size: 14px;
+               &:last-child{
+                  button{
+                     font-size: 14px;
+                  }  
+               }   
+            } 
+         }
+      }
    }
 }
 @media (max-width: 1100px){
@@ -337,6 +463,10 @@
          }
       }
       .table{
+         width: 900px;
+         margin: 0 auto;
+      }
+      .application{
          width: 900px;
          margin: 0 auto;
       }
@@ -355,6 +485,9 @@
       .table{
          width: 800px;
       }
+      .application{
+         width: 800px;
+      }
    }
 }
 @media (max-width: 900px){
@@ -368,6 +501,10 @@
          }
       }
       .table{
+         width: 700px;
+         margin: 0 auto;
+      }
+      .application{
          width: 700px;
          margin: 0 auto;
       }
@@ -386,6 +523,9 @@
       .table{
          width: 600px;
       }
+      .application{
+         width: 600px;
+      }
    }
 }
 @media (max-width: 650px){
@@ -399,6 +539,9 @@
          }
       }
       .table{
+         width: 500px;
+      }
+      .application{
          width: 500px;
       }
    }
@@ -441,6 +584,18 @@
             }
          }
       }
+      .application{
+         width: 400px;
+         &_table{
+            &_cell{
+               &:last-child{
+                  button{
+                     width: 100%;
+                  }  
+               }   
+            } 
+         }
+      }
    }
 }
 @media (max-width: 450px){
@@ -451,6 +606,9 @@
          }
       }
       .table{
+         width: 350px;
+      }
+      .application{
          width: 350px;
       }
    }

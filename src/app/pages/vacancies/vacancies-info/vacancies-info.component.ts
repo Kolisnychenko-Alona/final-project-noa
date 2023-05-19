@@ -95,6 +95,7 @@ export class VacanciesInfoComponent implements OnInit {
       .create(this.applicationForm.value)
       .then(() => {
         this.applicationForm.reset();
+        this.initApplicationForm();
         this.isUploaded = false;
         this.toastr.success(
           "Ваша заявка прийнята. Наш менеджер зв'яжеться з вами."
@@ -119,7 +120,7 @@ export class VacanciesInfoComponent implements OnInit {
       .deleteUploadFile(this.valueByControl('filePath'))
       .then(() => {
         this.isUploaded = false;
-        this.applicationForm.patchValue({ imagePath: null });
+        this.applicationForm.patchValue({ imageUrl: null });
       })
       .catch((err) => {
         console.log(err);

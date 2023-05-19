@@ -93,4 +93,42 @@
          </tr>
       </tbody>
    </table>
+   <section class="application">
+      <h3 class="application_title">Відгуки на вакансії</h3>
+      <table class="application_table">
+         <thead class="application_table-head">
+            <tr>
+               <th class="application_table-cell">Ім'я, Прізвище</th>
+               <th class="application_table-cell">Телефон</th>
+               <th class="application_table-cell">E-mail</th>
+               <th class="application_table-cell">Текст</th>
+               <th class="application_table-cell">Вакансія</th>
+               <th class="application_table-cell">Резюме</th>
+               <th class="application_table-cell">Дії</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let application of applications">
+               <td class="application_table-cell">{{application.firstName}} {{application.secondName}}</td>
+               <td class="application_table-cell">{{application.phone}}</td>
+               <td class="application_table-cell">{{application.email}}</td>
+               <td class="application_table-cell drop">
+                  {{application.text? (application.text | slice: 0:25) : application.text}}
+                  <button 
+                     class="btn" 
+                     type="button" 
+                     (click)="openMore(text)"
+                     *ngIf="application.text && application.text.length>25"
+                     >...</button>
+                  <div class="more" #text>{{application.text}}</div>
+               </td>
+               <td class="application_table-cell">{{application.vacancyName}}</td>
+               <td class="application_table-cell"><a [href]="application.filePath"><i class="uil uil-file-download-alt"></i></a></td>
+               <td class="application_table-cell">
+                  <button type="button" (click)="deleteApplication(application.id)">Видалити</button>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </section>
 </div>
