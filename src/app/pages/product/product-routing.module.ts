@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductInfoComponent } from './product-info/product-info.component';
 import { ProductComponent } from './product.component';
 import { ProductInfoResolver } from 'src/app/shared/services/product/product-info.resolver';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {

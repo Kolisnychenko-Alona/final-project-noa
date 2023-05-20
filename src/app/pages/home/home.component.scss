@@ -1,0 +1,111 @@
+@import '../../shared/styles/variables';
+.banner{
+   width: 100%;
+   height:792px;
+   margin-top: -47px;
+   margin-bottom: 60px;
+   &_link{
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-image: url(https://noa.ua/wp-content/uploads/2023/04/noa-culspecial-site-banner-fullhd-min-1-1550x630.png);
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-size: cover;
+   }
+}
+.title{
+   width: 100%;
+   text-align: center;
+   font-size: 42px;
+   font-weight: 700;
+   line-height: 1.2em;
+   margin-bottom: 40px;
+   color: $text-color;
+   &_color{
+      color: $main-color;
+   }
+}
+@media (max-width: 1790px){
+   .banner{
+      height:700px;
+   }
+}
+@media (max-width: 1590px){
+   .banner{
+      height:650px;
+   }
+}
+@media (max-width: 1450px){
+   .banner{
+      height:600px;
+   }
+}
+
+@media (max-width: 1366px){
+   .banner{
+      height:550px;
+      margin-top: -32px;
+      margin-bottom: 40px;
+   }
+   .title{
+      font-size: 38px;
+      margin-bottom: 20px;
+   }
+}
+
+@media (max-width: 1250px){
+   .banner{
+      height:500px;
+   }
+}
+@media (max-width: 1150px){
+   .banner{
+      height:450px;
+   }
+}
+
+@media (max-width: 991px){
+   .banner{
+      height:400px;
+   }
+}
+@media (max-width: 891px){
+   .banner{
+      height:350px;
+   }
+}
+@media (max-width: 791px){
+   .banner{
+      height:300px;
+   }
+}
+@media (max-width: 767px){
+   .banner{
+      height: 400px;
+      &_link{
+         width: auto;
+         margin: 0 auto;
+         background-image: url(https://noa.ua/wp-content/uploads/2023/04/noa-culspecial-site-banner-fullhd_m-min-1.png);
+         background-size: contain;
+      }
+   }
+   .title{
+      font-size: 34px;
+   }
+}
+@media (max-width: 575px){
+   .banner{
+      height: 330px;
+      &_link{
+         width: 100%;
+         background-size: cover;
+      }
+   }
+}
+@media (max-width: 480px){
+   .title{
+      font-size: 24px;
+   }
+}

@@ -42,9 +42,12 @@ export class ProductComponent implements OnInit, OnDestroy {
     });
   }
   loadProducts(): void {
-    const categoryName = this.activatedRoute.snapshot.paramMap.get(
+    let categoryName = this.activatedRoute.snapshot.paramMap.get(
       'category'
     ) as string;
+    if( !categoryName ){
+      categoryName = 'culinasia-special';
+    }
     this.currentCategory = categoryName;
     let products: Array<IProductResponse> = [];
     this.productService.getAllByCategory(categoryName).then((data) => {

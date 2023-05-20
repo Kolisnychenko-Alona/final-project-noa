@@ -2,11 +2,11 @@ import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { IVacancyApplicationResponse } from 'src/app/shared/interfaces/vacancy-application/IVacancyApplication';
 import { IVacancyResponse } from 'src/app/shared/interfaces/vacancy/IVacancy';
-import { VacancyApplicationService } from 'src/app/shared/services/vacancy-application/vacancy-application.service';
 import { VacancyService } from 'src/app/shared/services/vacancy/vacancy.service';
 import { ImageService } from 'src/app/shared/services/image/image.service';
+import { IVacancyApplicationResponse } from 'src/app/shared/interfaces/vacancy-application/IVacancyApplication';
+import { VacancyApplicationService } from 'src/app/shared/services/vacancy-application/vacancy-application.service';
 
 @Component({
   selector: 'app-vacancies-info',
