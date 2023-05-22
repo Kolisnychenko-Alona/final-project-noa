@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DeliveryComponent } from 'src/app/pages/delivery/delivery.component';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 import { BasketDialogComponent } from '../basket-dialog/basket-dialog.component';
 import { Router } from '@angular/router';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { ThaiMarketService } from 'src/app/shared/services/thai/thai-market.service';
+import { DeliveryDialogComponent } from '../delivery-dialog/delivery-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -54,19 +54,19 @@ export class HeaderComponent implements OnInit {
   }
 
   openDeliveryDialog(): void {
-    this.dialog.open(DeliveryComponent, {
+    this.dialog.open(DeliveryDialogComponent, {
       backdropClass: 'dialog-back',
       panelClass: 'dialog-inner',
-      width: '750px',
-      height: '425px',
-      // disableClose: true
+      maxWidth: '750px',
+      maxHeight: '550px',
+      disableClose: true
     });
   }
   openAuthDialog(): void {
     this.dialog.open(AuthDialogComponent, {
       backdropClass: 'dialog-back',
-      minWidth: '380px',
-      height: '200px',
+      maxWidth: '750px',
+      maxHeight: '480px',
     });
   }
   openBasketDialog(): void {

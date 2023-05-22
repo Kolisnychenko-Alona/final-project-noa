@@ -74,9 +74,9 @@ $custom-theme: mat.define-light-theme($custom-theme-primary, $custom-theme-accen
 }
 
 .dialog-inner {
-  min-width: 300px;
-  min-height: 350px;
-  padding: 20px;
+  // min-width: 300px;
+  // min-height: 350px;
+  padding: 0 10px;
   .mat-mdc-dialog-container .mdc-dialog__surface {
     border-radius: 6px;
   }

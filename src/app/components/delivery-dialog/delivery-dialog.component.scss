@@ -1,0 +1,134 @@
+@import '../../shared/styles/variables';
+
+.container{
+   width: 100%;
+   height: fit-content;
+   padding: 65px 100px 75px;
+   scroll-behavior: smooth;
+   .title{
+      font-size: 34px;
+      line-height: 1.2em;
+      font-weight: 700;
+      padding-bottom: 25px;
+      color: $text-color;
+      text-align: center;
+      &_color{
+         color: $main-color;
+      }
+   }
+   .content{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &_block{
+         width: 226px;
+         height: 187px;
+         background-color: $white;
+         border: 2px solid $border-color;
+         border-radius: 6px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         transition: 0.5s;
+         &-or{
+            width: fit-content;
+            height: 187px;
+            font-size: 14px;
+            letter-spacing: 0.03em;
+            color: $light-gray;
+            line-height: 187px;
+            padding: 0 20px;
+         }
+         &:hover{
+            border: 2px solid $main-color;
+            cursor: pointer;
+         }
+         &-image{
+            width: 98px;
+            height: 98px;
+         }
+         &-text{
+            padding-top: 10px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: $text-color;
+         }
+      }
+   }
+}
+
+@media (max-width: 1366px){
+   .container{
+      .title{
+         font-size: 27px;
+      }
+   }
+}
+@media (max-width: 767px){
+   .container{
+      padding: 50px;
+      .title{
+         font-size: 25px;
+      }
+      .content{
+         &_block{
+            width: 181px;
+            height: 150px;
+            &-or{
+               height: 150px;
+               line-height: 150px;
+            }
+            &-image{
+               width: 78px;
+               height: 78px;
+            }
+         }
+      }
+   }
+}
+@media (max-width: 599px){
+   .container{
+      padding: 40px;
+      .content{
+         &_block{
+            width: 145px;
+            height: 120px;
+            &-or{
+               height: 120px;
+               line-height: 120px;
+            }
+            &-image{
+               width: 59px;
+               height: 59px;
+            }
+            &-text{
+               font-size: 10px;
+            }
+         }
+      }
+   }
+}
+@media (max-width: 480px){
+   .container{
+      .title{
+         font-size: 20px;
+      }
+      .content{
+         &_block{
+            width: 125px;
+            height: 100px;
+            &-or{
+               display: none;
+            }
+            &-image{
+               width: 50px;
+               height: 50px;
+            }
+         }
+      }
+   }
+}
