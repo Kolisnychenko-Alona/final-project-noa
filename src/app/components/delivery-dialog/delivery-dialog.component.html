@@ -2,12 +2,12 @@
    <h1 class="title">Привіт!<br>
    <span class="title_color">Обери спосіб отримання замовлення</span></h1>
    <div class="content">
-      <div class="content_block">
+      <div class="content_block" [mat-dialog-close]="true" (click)="changeDelivery(true)">
          <img class="content_block-image" src="https://noa.ua/wp-content/themes/tomatina/img/icons/delivery_popup_one.svg" alt="delivery">
          <p class="content_block-text">доставка кур'єром</p>
       </div>
       <div class="content_block-or">або</div>
-      <div class="content_block">
+      <div class="content_block" [mat-dialog-close]="true" (click)="changeDelivery(false)">
          <img class="content_block-image" src="https://noa.ua/wp-content/themes/tomatina/img/icons/delivery_popup_two.svg" alt="pick up">
          <p class="content_block-text">самовивіз</p>
       </div>

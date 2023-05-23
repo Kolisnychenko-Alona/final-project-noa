@@ -14,10 +14,11 @@ import { DeliveryDialogComponent } from '../delivery-dialog/delivery-dialog.comp
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public deliveryType: string = `Доставка кур'єром`;
+  public deliveryType!: string;
   public total!: number;
   public isOpenMenu = false;
   public isDown = false;
+
 
   public userCategories: Array<ICategoryResponse> = [];
   public userThaiCategories: Array<ICategoryResponse> = [];
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.getCategories();
     this.getThaiCategories();
+    this.openDeliveryDialog();
   }
 
   down(btn: HTMLElement): void {
@@ -60,6 +62,8 @@ export class HeaderComponent implements OnInit {
       maxWidth: '750px',
       maxHeight: '550px',
       disableClose: true
+    }).afterClosed().subscribe(result => {
+      this.deliveryType = result;
     });
   }
   openAuthDialog(): void {
