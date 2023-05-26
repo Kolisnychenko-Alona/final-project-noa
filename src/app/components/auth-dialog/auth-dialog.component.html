@@ -1,1 +1,39 @@
-<p>auth-dialog works!</p>
+<div class="container">
+   <div class="close" mat-dialog-close="true">
+      <i class="uil uil-times"></i>
+   </div>
+   <ng-container *ngIf="!isRegistration">
+      <h1 class="title">Вхід в кабінет</h1>
+      <form class="form">
+         <input class="form_field" type="email" placeholder="*Ваш email">
+         <input class="form_field" type="password" placeholder="*Пароль">
+         <button class="form_btn">Увійти в кабінет</button>
+      </form>
+      <p class="text" (click)="isRegistration = true"><span>Зареєструватись</span></p>
+   </ng-container>
+   <ng-container *ngIf="isRegistration">
+      <h1 class="title">Зареєструватись</h1>
+      <form class="form">
+         <div class="form_box">
+            <input class="form_field" type="text" placeholder="*Ваше ім'я">
+            <input class="form_field" type="text" placeholder="*Ваше прізвище">
+         </div>
+         <input class="form_field" type="text" placeholder="*Ваш телефон">
+         <input class="form_field" type="email" placeholder="Ваш email*">
+         <div class="form_box">
+            <input class="form_field" type="password" placeholder="*Пароль">
+            <input class="form_field" type="password" placeholder="*Повторіть пароль">
+         </div>
+         <div class="form_check">
+            <input class="form_checkbox" type="checkbox" id="subscribe">
+            <label class="form_label" for="subscribe">Хочу отримувати пропозиції на email</label>
+         </div>
+         <div class="form_check">
+            <input class="form_checkbox" type="checkbox" id="ruels">
+            <label class="form_label"  for="ruels">Я погоджуюсь з <span class="form_label-color" >Правилами користування</span></label>
+         </div>
+         <button class="form_btn">Зареєструватись</button>
+      </form>
+      <p class="text" >Вже заруєстровані? <span class="text_color" (click)="isRegistration = false">Увійти</span></p>
+   </ng-container>
+</div>

@@ -1,0 +1,195 @@
+@import '../../shared/styles/variables';
+
+.container{
+   width: 100%;
+   padding: 70px;
+   position: relative;
+   .close{
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 47px;
+      height: 47px;
+      border-radius: 50%;
+      border: 1px solid $main-color;
+      background-color: $main-color;;
+      color: $white;
+      text-align: center;
+      line-height: 47px;
+      transition: 0.3s;
+      &:hover{
+         cursor: pointer;
+      }
+      .uil-times{
+         font-size: 24px;
+         font-weight: 500;
+      }
+   }
+   .title{
+      width: 100%;
+      padding-bottom: 15px;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.2em;
+      color: $text-color;
+      text-align: center;
+   }
+   .form{
+      width: 540px;
+      &_box{
+         width: 100%;
+         display: flex;
+         justify-content: space-between;
+         .form_field{
+            width: calc(48% - 40px);
+         }
+      }
+      &_field{
+         display: block;
+         width: calc(100% - 40px);
+         height: 54px;
+         padding: 0 20px;
+         margin-bottom: 15px;
+         font-size: 16px;
+         line-height: 51px;
+         text-overflow: ellipsis;
+         color: $text-color;
+         border: 1px solid $border-color;
+         border-radius: 3px;
+         transition: 0.25s;
+         &:focus{
+            border-color: $main-color;
+         }
+         &:invalid{
+            border-color: #DD2A26;
+         }
+      }
+      &_check{
+         display: block;
+         width: 100%;
+         margin-bottom: 30px;
+         display: flex;
+         justify-content: start;
+      }
+      &_checkbox{
+         width: 20px;
+         height: 20px;
+         border-color: $border-color;
+         margin: 0 20px;
+
+      }
+      &_label{
+         position: relative;
+         font-size: 16px;
+         line-height: 20px;
+         display: block;
+         color: #5c5752;
+         &-color{
+            color: $main-color;
+            transition: 0.3s;
+            &:hover{
+               cursor: pointer;
+            }
+         }
+      }
+      &_btn{
+         display: block;
+         width: 100%;
+         padding: 18px 30px;
+         color: $white;
+         background: $main-color;
+         border: 2px solid $main-color;
+         border-radius: 6px;
+         text-align: center;
+         font-size: 14px;
+         line-height: 20px;
+         font-weight: 700;
+         letter-spacing: .15em;
+         text-transform: uppercase;
+         cursor: pointer;
+         transition: 0.3s;
+         &:hover{
+            background-color: $white;
+            color: $main-color;
+         }
+      }
+   }
+   .text{
+      width: 100%;
+      padding-top: 20px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 20px;
+      color: $light-gray;
+      text-align: center;
+      transition: 0.3s;
+      span{
+         border-bottom: 3px solid transparent;
+         &:hover{
+            border-color: $border-color;
+            cursor: pointer;
+         }
+      }
+      &_color{
+         color: $main-color;
+         &:hover{
+            border-color: $main-color;
+         }
+      }
+   }
+}
+
+@media (max-width: 1366px){
+   .container{
+      .title{
+         font-size: 28px ;
+      }
+   }
+}
+@media (max-width: 767px){
+   .container{
+      .title{
+         font-size: 26px;
+      }
+      .text{
+         font-size: 15px;
+      }
+   }
+}
+@media (max-width: 700px){
+   .container{
+      .form{
+         width: 400px;
+      }
+   }
+}
+@media (max-width: 575px){
+   .container{
+      padding: 40px 15px 25px 15px;
+      .form{
+         width: 400px;
+         &_box{
+            flex-direction: column;
+            justify-content: start;
+            .form_field{
+               width: calc(100% - 40px);
+            }
+         }
+      }
+   }
+}
+@media (max-width: 475px){
+   .container{
+      padding: 40px 15px 25px 15px;
+      .form{
+         width: 300px;
+         &_box{
+            flex-direction: column;
+            justify-content: start;
+            .form_field{
+               width: calc(100% - 40px);
+            }
+         }
+      }
+   }
+}

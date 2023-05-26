@@ -69,8 +69,9 @@ export class HeaderComponent implements OnInit {
   openAuthDialog(): void {
     this.dialog.open(AuthDialogComponent, {
       backdropClass: 'dialog-back',
-      maxWidth: '750px',
-      maxHeight: '480px',
+      panelClass: 'dialog-inner',
+      maxWidth: '680px',
+      maxHeight: '690px',
     });
   }
   openBasketDialog(): void {
