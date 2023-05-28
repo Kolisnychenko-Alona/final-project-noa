@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
 import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
+import { OrderService } from 'src/app/shared/services/orders/order.service';
 import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-// private orderService: OrderService
+    private orderService: OrderService
   ) {
     this.eventSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -88,29 +89,33 @@ export class ProductComponent implements OnInit, OnDestroy {
     }
   }
   addToBasket(product: IProductResponse): void {
-    // let basket: Array<IProductResponse> = [];
-    // if (localStorage.length > 0 && localStorage.getItem('basket')) {
-    //   basket = JSON.parse(localStorage.getItem('basket') as string);
-    //   if (basket.some((prod) => prod.id === product.id)) {
-    //     const index = basket.findIndex((prod) => prod.id === product.id);
-    //     basket[index].count += product.count;
-    //   } else {
-    //     basket.push(product);
-    //   }
-    // } else {
-    //   basket.push(product);
-    // }
-    // localStorage.setItem('basket', JSON.stringify(basket));
-    // product.count = 1;
-    // this.orderService.changeBasket.next(true);
+    let basket: Array<IProductResponse> = [];
+    if (localStorage.length > 0 && localStorage.getItem('basket')) {
+      basket = JSON.parse(localStorage.getItem('basket') as string);
+      if (basket.some((prod) => prod.id === product.id)) {
+        const index = basket.findIndex((prod) => prod.id === product.id);
+        basket[index].count += product.count;
+      } else {
+        basket.push(product);
+      }
+    } else {
+      basket.push(product);
+    }
+    localStorage.setItem('basket', JSON.stringify(basket));
+    product.count = 1;
+    this.orderService.changeBasket.next(true);
   }
+
   changeCategory(value: string) {
     this.router.navigate(['/product', value]);
   }
+
   filtering(id: string) {
     this.filter = id;
     this.loadProducts();
   }
+
+  
   sorting(value: string){
     this.sort = value;
     this.loadProducts();

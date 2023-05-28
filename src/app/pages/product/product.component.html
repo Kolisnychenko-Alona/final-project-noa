@@ -68,7 +68,7 @@
                <input class="count_value" type="text" [value]="product.count" readonly>
                <button class="count_btn" (click)="productCount(product, true)">+</button>
             </div>
-            <button class="add-btn" type="button">Замовити</button>
+            <button class="add-btn" type="button" (click)="addToBasket(product)">Замовити</button>
          </div>
       </div>
    </div>
