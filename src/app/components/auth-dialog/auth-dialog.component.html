@@ -4,35 +4,35 @@
    </div>
    <ng-container *ngIf="!isRegistration">
       <h1 class="title">Вхід в кабінет</h1>
-      <form class="form">
-         <input class="form_field" type="email" placeholder="*Ваш email">
-         <input class="form_field" type="password" placeholder="*Пароль">
-         <button class="form_btn">Увійти в кабінет</button>
+      <form class="form" [formGroup]="loginForm">
+         <input class="form_field" type="email" formControlName="email" placeholder="*Ваш email">
+         <input class="form_field" type="password" formControlName="password" placeholder="*Пароль">
+         <button class="form_btn" (click)="loginUser()">Увійти в кабінет</button>
       </form>
       <p class="text" (click)="isRegistration = true"><span>Зареєструватись</span></p>
    </ng-container>
    <ng-container *ngIf="isRegistration">
       <h1 class="title">Зареєструватись</h1>
-      <form class="form">
+      <form class="form" [formGroup]="registrationForm">
          <div class="form_box">
-            <input class="form_field" type="text" placeholder="*Ваше ім'я">
-            <input class="form_field" type="text" placeholder="*Ваше прізвище">
+            <input class="form_field" type="text" formControlName="firstName" placeholder="*Ваше ім'я">
+            <input class="form_field" type="text" formControlName="lastName" placeholder="*Ваше прізвище">
          </div>
-         <input class="form_field" type="text" placeholder="*Ваш телефон">
-         <input class="form_field" type="email" placeholder="Ваш email*">
+         <input class="form_field" type="text" formControlName="phone" placeholder="*Ваш телефон">
+         <input class="form_field" type="email" formControlName="email" placeholder="Ваш email*">
          <div class="form_box">
-            <input class="form_field" type="password" placeholder="*Пароль">
-            <input class="form_field" type="password" placeholder="*Повторіть пароль">
+            <input class="form_field" type="password" formControlName="password" placeholder="*Пароль">
+            <input class="form_field" type="password" formControlName="confirmPassword" placeholder="*Повторіть пароль">
          </div>
          <div class="form_check">
-            <input class="form_checkbox" type="checkbox" id="subscribe">
+            <input class="form_checkbox" type="checkbox" formControlName="subscribe" id="subscribe">
             <label class="form_label" for="subscribe">Хочу отримувати пропозиції на email</label>
          </div>
          <div class="form_check">
-            <input class="form_checkbox" type="checkbox" id="ruels">
-            <label class="form_label"  for="ruels">Я погоджуюсь з <span class="form_label-color" >Правилами користування</span></label>
+            <input class="form_checkbox" type="checkbox" formControlName="rules" id="rules">
+            <label class="form_label"  for="rules">Я погоджуюсь з <span class="form_label-color" >Правилами користування</span></label>
          </div>
-         <button class="form_btn">Зареєструватись</button>
+         <button class="form_btn" (click)="registerUser()" [disabled]="registrationForm.invalid" >Зареєструватись</button>
       </form>
       <p class="text" >Вже заруєстровані? <span class="text_color" (click)="isRegistration = false">Увійти</span></p>
    </ng-container>
