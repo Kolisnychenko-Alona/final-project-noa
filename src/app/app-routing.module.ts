@@ -4,10 +4,6 @@ import { AdminAuthGuard } from './shared/guards/admin-auth/admin-auth.guard';
 import { AuthUserGuard } from './shared/guards/auth-user/auth-user.guard';
 
 
-// import { AuthGuard } from './shared/guards/auth/auth.guard';
-// import { AdminGuard } from './shared/guards/auth/admin.guard';
-
-
 const routes: Routes = [
   {
     path: 'about',

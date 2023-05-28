@@ -85,11 +85,13 @@ export class AuthDialogComponent implements OnInit {
     );
     docData(doc(this.afs, 'users', credential.user.uid)).subscribe(
       (user) => {
-        const currentUser = { ...user, uid: credential.user.uid };
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        this.accountService.isLogin$.next(true);
         if (user && user['role'] === ROLE.USER) {
+          const currentUser = { ...user, uid: credential.user.uid };
+          localStorage.setItem('currentUser', JSON.stringify(currentUser));
+          this.accountService.isLogin$.next(true);
           this.router.navigate(['/cabinet']);
+        } else {
+          this.toastr.error('Wrong data');
         }
         this.isLogin = false;
       },
