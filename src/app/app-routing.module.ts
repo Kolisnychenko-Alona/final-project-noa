@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AdminAuthGuard } from './shared/guards/admin-auth/admin-auth.guard';
+import { AuthUserGuard } from './shared/guards/auth-user/auth-user.guard';
 
 
 // import { AuthGuard } from './shared/guards/auth/auth.guard';
@@ -14,6 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'cabinet',
+    canActivate: [AuthUserGuard],
     loadChildren: () =>
       import('./pages/cabinet/cabinet.module').then((m) => m.CabinetModule),
   },
@@ -74,13 +77,16 @@ const routes: Routes = [
   },
   {
     path: 'admin',
+    canActivate: [AdminAuthGuard],
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: 'auth-admin',
     loadChildren: () =>
-      import('./admin/auth-admin/auth-admin.module').then((m) => m.AuthAdminModule),
+      import('./admin/auth-admin/auth-admin.module').then(
+        (m) => m.AuthAdminModule
+      ),
   },
 ];
 
