@@ -1,1 +1,18 @@
-<p>cabinet works!</p>
+<div class="container">
+   <ul class="list">
+      <li class="list_item" [routerLink]="['personal-data']" routerLinkActive="active" >Особисті дані</li>
+      <li class="list_item" [routerLink]="['history']" routerLinkActive="active">Історія замовлень</li>
+      <li class="list_item" [routerLink]="['favorite-products']" routerLinkActive="active">Улюблені</li>
+      <li class="list_item" [routerLink]="['change-password']" routerLinkActive="active">Зміна паролю</li>
+   </ul>
+   <div class="list-select">
+      <select name="" id="" class="select" (change)="changePath(select)" #select>
+         <option [value]="'personal-data'">Особисті дані</option>
+         <option [value]="'history'" >Історія замовлень</option>
+         <option [value]="'favorite-products'" >Улюблені</option>
+         <option [value]="'change-password'" >Зміна паролю</option>
+      </select>
+   </div>
+   <router-outlet></router-outlet>
+   <button class="logout-btn" type="button" (click)="logOut()">Вихід</button>
+</div>

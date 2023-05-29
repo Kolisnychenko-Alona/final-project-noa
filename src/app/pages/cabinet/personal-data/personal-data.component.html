@@ -1,0 +1,46 @@
+<div class="container">
+   <div class="title">
+      <span class="title_number">1.</span>
+      <span class="title_text">Особисті дані</span>
+   </div>
+   <form class="form" [formGroup]="personalForm" >
+      <div class="form_double">
+         <input class="form_field"  type="text" formControlName="firstName" placeholder="*Ваше ім'я">
+         <input class="form_field"  type="text" formControlName="lastName" placeholder="*Ваше прізвище">
+      </div>
+      <input class="form_field" type="text" formControlName="phone" placeholder="*Ваш телефон">
+      <input class="form_field"  type="email" formControlName="email" placeholder="*Ваш email">
+   </form>
+   <div class="title">
+      <span class="title_number">2.</span>
+      <span class="title_text">Адреси</span>
+   </div>
+   <ng-container *ngIf="userAddress">
+      <table>
+         <thead>
+            <th>Місто</th>
+            <th>Вулиця</th>
+            <th>№ Будинку</th>
+            <th>№ Квартири</th>
+            <th>Під"їзд</th>
+            <th>Поверх</th>
+            <th>Домофон</th>
+         </thead>
+         <tbody>
+            <tr *ngFor="let address of userAddress">
+               <td>{{address.city}}</td>
+               <td>{{address.street}}</td>
+               <td>{{address.house}}</td>
+               <td>{{address.apartment}}</td>
+               <td>{{address.entrance}}</td>
+               <td>{{address.flor}}</td>
+               <td>{{address.cod}}</td>
+            </tr>
+         </tbody>
+      </table>
+   </ng-container>
+   <div class="buttons">
+      <button class="buttons_btn" type="button" (click)="addAdress()">Додати адресу</button>
+      <button class="buttons_btn save" type="button" (click)="saveChanges()">Зберегти зміни</button>
+   </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ElementRef, HostListener } from '@angular
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
+import { OrderService } from 'src/app/shared/services/orders/order.service';
 import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private router: Router,
     private elementRef: ElementRef,
+    private orderService: OrderService
   ) {
     this.windowWidth = window.innerWidth;
     this.findKoef();
@@ -73,7 +75,25 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     }
   }
 
-  findKoef(): void{
+  addToBasket(product: IProductResponse): void {
+    let basket: Array<IProductResponse> = [];
+    if (localStorage.length > 0 && localStorage.getItem('basket')) {
+      basket = JSON.parse(localStorage.getItem('basket') as string);
+      if (basket.some((prod) => prod.id === product.id)) {
+        const index = basket.findIndex((prod) => prod.id === product.id);
+        basket[index].count += product.count;
+      } else {
+        basket.push(product);
+      }
+    } else {
+      basket.push(product);
+    }
+    localStorage.setItem('basket', JSON.stringify(basket));
+    product.count = 1;
+    this.orderService.changeBasket.next(true);
+  }
+
+  findKoef(): void {
     if (this.windowWidth <= 1400 && this.windowWidth > 990) {
       this.koef = 0.33;
     } else if (this.windowWidth <= 990) {
@@ -82,7 +102,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
       this.koef = 0.25;
     }
   }
-  changeProductWidth(): void{
+  changeProductWidth(): void {
     const swiperWidth =
       this.elementRef.nativeElement.querySelector('.inner').clientWidth;
     this.productWidth = `${swiperWidth * this.koef}px`;
@@ -94,7 +114,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     let boxCount!: number;
     this.windowWidth = window.innerWidth;
     if (this.windowWidth <= 1400 && this.windowWidth > 990) {
-       boxCount = 3;
+      boxCount = 3;
     } else if (this.windowWidth <= 990) {
       boxCount = 2;
     } else if (this.windowWidth > 1400) {
