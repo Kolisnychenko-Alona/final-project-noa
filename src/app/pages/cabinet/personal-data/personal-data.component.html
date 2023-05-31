@@ -13,7 +13,7 @@
    </form>
    <div class="title">
       <span class="title_number">2.</span>
-      <span class="title_text">Адреси</span>
+      <span class="title_text">Адреса</span>
    </div>
    <ng-container *ngIf="userAddress">
       <table>
@@ -27,14 +27,14 @@
             <th>Домофон</th>
          </thead>
          <tbody>
-            <tr *ngFor="let address of userAddress">
-               <td>{{address.city}}</td>
-               <td>{{address.street}}</td>
-               <td>{{address.house}}</td>
-               <td>{{address.apartment}}</td>
-               <td>{{address.entrance}}</td>
-               <td>{{address.flor}}</td>
-               <td>{{address.cod}}</td>
+            <tr>
+               <td>{{userAddress.city}}</td>
+               <td>{{userAddress.street}}</td>
+               <td>{{userAddress.house}}</td>
+               <td>{{userAddress.apartment}}</td>
+               <td>{{userAddress.entrance}}</td>
+               <td>{{userAddress.flor}}</td>
+               <td>{{userAddress.cod}}</td>
             </tr>
          </tbody>
       </table>

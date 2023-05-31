@@ -14,7 +14,7 @@ import { IAddress } from 'src/app/shared/interfaces/adress/IAddress';
 export class PersonalDataComponent implements OnInit {
   public personalForm!: FormGroup;
   public currentUserId!: string;
-  public userAddress: Array<IAddress> = [];
+  public userAddress!: IAddress;
 
   constructor(
     public dialog: MatDialog,
@@ -55,10 +55,15 @@ export class PersonalDataComponent implements OnInit {
       backdropClass: 'dialog-back',
       panelClass: 'dialog-inner',
       maxWidth: '680px',
+    }).afterClosed().subscribe(result => {
+      this.userAddress = result;
     });
   }
 
   saveChanges(): void {
+    this.personalForm.patchValue({
+      address: this.userAddress
+    });
     this.accountService
       .update(this.personalForm.value, this.currentUserId)
       .then(() => {
