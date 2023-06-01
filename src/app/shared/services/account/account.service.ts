@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../../interfaces/user/IUser';
-import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, deleteDoc, doc, updateDoc } from '@angular/fire/firestore';
  
 
 @Injectable({
@@ -25,5 +25,10 @@ export class AccountService {
   update(credential: IUser, id: string) {
     const userDocumentReference = doc(this.afs, `users/${id}`);
     return updateDoc(userDocumentReference, { ...credential });
+  }
+  delete(id: string) {
+    const userDocumentReference = doc(this.afs, `users/${id}`);
+    console.log( userDocumentReference)
+    // return deleteDoc(userDocumentReference);
   }
 }

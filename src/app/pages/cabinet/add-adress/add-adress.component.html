@@ -35,12 +35,12 @@
          <input class="form_field house" type="text"formControlName="house" placeholder="*№ будинку">
       </div>
       <div class="form_box">
-         <input class="form_field" type="password" formControlName="apartment" placeholder="№ квартири">
-         <input class="form_field" type="password" formControlName="entrance" placeholder="Під'їзд">
+         <input class="form_field" type="text" formControlName="apartment" placeholder="№ квартири">
+         <input class="form_field" type="text" formControlName="entrance" placeholder="Під'їзд">
       </div>
       <div class="form_box">
-         <input class="form_field" type="password" formControlName="flor" placeholder="Поверх">
-         <input class="form_field" type="password" formControlName="cod" placeholder="Домофон">
+         <input class="form_field" type="text" formControlName="flor" placeholder="Поверх">
+         <input class="form_field" type="text" formControlName="cod" placeholder="Домофон">
       </div>
       <button class="form_btn" (click)="add()" [disabled]="addressForm.invalid">Зберегти</button>
    </form>

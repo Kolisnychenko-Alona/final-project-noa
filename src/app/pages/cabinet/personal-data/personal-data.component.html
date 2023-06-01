@@ -15,7 +15,7 @@
       <span class="title_number">2.</span>
       <span class="title_text">Адреса</span>
    </div>
-   <ng-container *ngIf="userAddress">
+   <ng-container *ngIf="userAddress.length>0">
       <table>
          <thead>
             <th>Місто</th>
@@ -25,22 +25,24 @@
             <th>Під"їзд</th>
             <th>Поверх</th>
             <th>Домофон</th>
+            <th>Дії</th>
          </thead>
          <tbody>
-            <tr>
-               <td>{{userAddress.city}}</td>
-               <td>{{userAddress.street}}</td>
-               <td>{{userAddress.house}}</td>
-               <td>{{userAddress.apartment}}</td>
-               <td>{{userAddress.entrance}}</td>
-               <td>{{userAddress.flor}}</td>
-               <td>{{userAddress.cod}}</td>
+            <tr *ngFor="let address of userAddress">
+               <td>{{address.city}}</td>
+               <td>{{address.street}}</td>
+               <td>{{address.house}}</td>
+               <td>{{address.apartment}}</td>
+               <td>{{address.entrance}}</td>
+               <td>{{address.flor}}</td>
+               <td>{{address.cod}}</td>
+               <td><button type="button" (click)="deleteAddress()">Видалити адресу</button></td>
             </tr>
          </tbody>
       </table>
    </ng-container>
    <div class="buttons">
-      <button class="buttons_btn" type="button" (click)="addAdress()">Додати адресу</button>
-      <button class="buttons_btn save" type="button" (click)="saveChanges()">Зберегти зміни</button>
+      <button class="buttons_btn"  type="button" (click)="addAdress()">Додати адресу</button>
+      <button class="buttons_btn save" type="button" (click)="saveChanges()" >Зберегти зміни</button>
    </div>
 </div>
