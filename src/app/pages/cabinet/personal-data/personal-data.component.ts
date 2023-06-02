@@ -16,6 +16,7 @@ export class PersonalDataComponent implements OnInit {
   public personalForm!: FormGroup;
   public currentUserId!: string;
   public userAddress!: Array<IAddress>;
+  public isEdit = false;
 
   constructor(
     public dialog: MatDialog,
@@ -26,6 +27,9 @@ export class PersonalDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.personalForm.valueChanges.subscribe(() => {
+      this.isEdit = true;
+    });
   }
 
   initForm(): void {
@@ -65,10 +69,9 @@ export class PersonalDataComponent implements OnInit {
         this.personalForm.patchValue({
           address: this.userAddress,
         });
-        let user = JSON.parse(localStorage.getItem('currentUser') as string);
-        user.address.push(result);
-        console.log(user);
-        localStorage.setItem('currentUser', JSON.stringify(user))
+         let user = JSON.parse(localStorage.getItem('currentUser') as string);
+         user.address.push(result);
+         localStorage.setItem('currentUser', JSON.stringify(user));
       });
   }
 
@@ -78,8 +81,16 @@ export class PersonalDataComponent implements OnInit {
       .then(() => {
         this.toastr.success('Changes successfully saved');
     });
+    this.isEdit = false;
   }
-  deleteAddress(): void{
-    this.accountService.delete(this.currentUserId);
+  deleteAddress(i: number): void{
+    this.userAddress.splice(i, 1);
+    let user = JSON.parse(localStorage.getItem('currentUser') as string);
+    user.address = this.userAddress;
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.personalForm.patchValue({
+      address: this.userAddress,
+    });
   }
+
 }

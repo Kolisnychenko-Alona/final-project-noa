@@ -3,46 +3,37 @@
       <span class="title_number">1.</span>
       <span class="title_text">Особисті дані</span>
    </div>
-   <form class="form" [formGroup]="personalForm" >
+   <form class="form" [formGroup]="personalForm">
       <div class="form_double">
-         <input class="form_field"  type="text" formControlName="firstName" placeholder="*Ваше ім'я">
-         <input class="form_field"  type="text" formControlName="lastName" placeholder="*Ваше прізвище">
+         <input class="form_field" type="text" formControlName="firstName" placeholder="*Ваше ім'я">
+         <input class="form_field" type="text" formControlName="lastName" placeholder="*Ваше прізвище">
       </div>
       <input class="form_field" type="text" formControlName="phone" placeholder="*Ваш телефон">
-      <input class="form_field"  type="email" formControlName="email" placeholder="*Ваш email">
+      <input class="form_field" type="email" formControlName="email" placeholder="*Ваш email">
    </form>
    <div class="title">
       <span class="title_number">2.</span>
       <span class="title_text">Адреса</span>
    </div>
    <ng-container *ngIf="userAddress.length>0">
-      <table>
-         <thead>
-            <th>Місто</th>
-            <th>Вулиця</th>
-            <th>№ Будинку</th>
-            <th>№ Квартири</th>
-            <th>Під"їзд</th>
-            <th>Поверх</th>
-            <th>Домофон</th>
-            <th>Дії</th>
-         </thead>
-         <tbody>
-            <tr *ngFor="let address of userAddress">
-               <td>{{address.city}}</td>
-               <td>{{address.street}}</td>
-               <td>{{address.house}}</td>
-               <td>{{address.apartment}}</td>
-               <td>{{address.entrance}}</td>
-               <td>{{address.flor}}</td>
-               <td>{{address.cod}}</td>
-               <td><button type="button" (click)="deleteAddress()">Видалити адресу</button></td>
-            </tr>
-         </tbody>
-      </table>
+      <div class="addresses">
+         <div class="address" *ngFor="let address of userAddress; index as i">
+            <ul class="address_list">
+               <li class="address_item"><b>Місто:  </b>{{address.city}}</li>
+               <li class="address_item"><b>Вулиця:  </b> {{address.street}}</li>
+               <li class="address_item"><b>Будинок № </b>{{address.house}}</li>
+               <li class="address_item"><b>Квартира №  </b> {{address.apartment}}</li>
+               <li class="address_item"><b>Під'їзд №  </b> {{address.entrance}}</li>
+               <li class="address_item"><b>Поверх  </b> {{address.flor}}</li>
+               <li class="address_item"><b>Домофон:  </b> {{address.cod}}</li>
+            </ul>
+            <button class="address_btn" type="button" (click)="deleteAddress(i)">Видалити адресу</button>
+         </div>
+      </div>
    </ng-container>
    <div class="buttons">
-      <button class="buttons_btn"  type="button" (click)="addAdress()">Додати адресу</button>
-      <button class="buttons_btn save" type="button" (click)="saveChanges()" >Зберегти зміни</button>
+      <button class="buttons_btn" type="button" (click)="addAdress()">Додати адресу</button>
+      <button class="buttons_btn save" type="button" (click)="saveChanges()" [disabled]="!isEdit">Зберегти
+         зміни</button>
    </div>
 </div>
