@@ -22,4 +22,5 @@ export class HomeComponent implements OnInit {
       moreText.style.height = '0';
     }
   }
+  
 }

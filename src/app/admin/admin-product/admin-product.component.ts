@@ -60,6 +60,7 @@ export class AdminProductComponent implements OnInit {
       noRise: [false],
       imageUrl: [null, Validators.required],
       imagePath: [null],
+      favorite: [false]
     });
   }
 

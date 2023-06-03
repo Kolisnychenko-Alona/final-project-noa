@@ -16,7 +16,8 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {}
   logOut(): void {
     this.router.navigate(['/']);
-    localStorage.removeItem('currentUser');
+    localStorage.clear();
+    // localStorage.removeItem('currentUser');
     this.accountService.isLogin$.next(true);
   }
 }

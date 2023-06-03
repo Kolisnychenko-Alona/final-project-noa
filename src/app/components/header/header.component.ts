@@ -7,6 +7,9 @@ import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory'
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { ThaiMarketService } from 'src/app/shared/services/thai/thai-market.service';
 import { DeliveryDialogComponent } from '../delivery-dialog/delivery-dialog.component';
+import { AccountService } from 'src/app/shared/services/account/account.service';
+import { ROLE } from 'src/app/shared/constants/role.constant';
+
 
 @Component({
   selector: 'app-header',
@@ -18,7 +21,8 @@ export class HeaderComponent implements OnInit {
   public total!: number;
   public isOpenMenu = false;
   public isDown = false;
-
+  public userName!: string;
+  public isUser = false;
 
   public userCategories: Array<ICategoryResponse> = [];
   public userThaiCategories: Array<ICategoryResponse> = [];
@@ -27,13 +31,16 @@ export class HeaderComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private categoryService: CategoryService,
-    private thaiMarketService: ThaiMarketService
+    private thaiMarketService: ThaiMarketService,
+    private accountService: AccountService
   ) {}
 
   ngOnInit(): void {
     this.getCategories();
     this.getThaiCategories();
     this.openDeliveryDialog();
+    this.checkLogin();
+    this.checkUpdatesLogin();
   }
 
   down(btn: HTMLElement): void {
@@ -56,15 +63,18 @@ export class HeaderComponent implements OnInit {
   }
 
   openDeliveryDialog(): void {
-    this.dialog.open(DeliveryDialogComponent, {
-      backdropClass: 'dialog-back',
-      panelClass: 'dialog-inner',
-      maxWidth: '750px',
-      maxHeight: '550px',
-      disableClose: true
-    }).afterClosed().subscribe(result => {
-      this.deliveryType = result;
-    });
+    this.dialog
+      .open(DeliveryDialogComponent, {
+        backdropClass: 'dialog-back',
+        panelClass: 'dialog-inner',
+        maxWidth: '750px',
+        maxHeight: '550px',
+        disableClose: true,
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        this.deliveryType = result;
+      });
   }
   openAuthDialog(): void {
     this.dialog.open(AuthDialogComponent, {
@@ -92,5 +102,30 @@ export class HeaderComponent implements OnInit {
     this.thaiMarketService.getAll().subscribe((data) => {
       this.userThaiCategories = data as ICategoryResponse[];
     });
+  }
+  checkLogin(): void {
+    let user = JSON.parse(localStorage.getItem('currentUser') as string);
+    if (user) {
+      this.isUser = true;
+      this.userName = user.firstName;
+    } else{
+      this.isUser = false;
+      this.userName = '';
+    }
+  }
+  checkUpdatesLogin() {
+    this.accountService.isLogin$.subscribe(() => {
+      this.checkLogin();
+    });
+  }
+  navigateTo(): void{
+    let user = JSON.parse(localStorage.getItem('currentUser') as string);
+    if (user && user.role === ROLE.USER) {
+      this.router.navigate(['/cabinet']);
+    } else if (user && user.role === ROLE.ADMIN) {
+      this.router.navigate(['/admin']);
+    } else {
+      this.router.navigate(['/home']);
+    }
   }
 }

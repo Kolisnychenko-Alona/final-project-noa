@@ -13,7 +13,7 @@
             <div class="no-rice" *ngIf="product.noRise">No Rice</div>
          </div>
          <div class="image-favorite">
-            <div class="favorite-bnt"></div>
+            <div class="favorite-bnt" (click)="changeFavorite()"  [class.active]="product.favorite"></div>
          </div>
       </div>
       <img class="image-back" [src]="product.imagePath" alt="">

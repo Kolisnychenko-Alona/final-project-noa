@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
 import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
+import { AccountService } from 'src/app/shared/services/account/account.service';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { OrderService } from 'src/app/shared/services/orders/order.service';
 import { ProductService } from 'src/app/shared/services/product/product.service';
@@ -25,7 +26,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private accountService: AccountService
   ) {
     this.eventSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -36,6 +38,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getCategories();
+    this.updateProducts();
   }
   getCategories() {
     this.categoryService.getAll().subscribe((data) => {
@@ -119,6 +122,59 @@ export class ProductComponent implements OnInit, OnDestroy {
   sorting(value: string){
     this.sort = value;
     this.loadProducts();
+  }
+  changeFavorite(product: IProductResponse, id: string): void{
+    product.favorite = !product.favorite;
+    this.productService.update(product, id);
+    let user = JSON.parse(localStorage.getItem('currentUser') as string);
+    let favorites: Array<IProductResponse> = [];
+    if (localStorage.length > 0 && localStorage.getItem('favorites')) {
+      favorites = JSON.parse(localStorage.getItem('favorites') as string);
+      if (product.favorite) {
+        favorites.push(product);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        if (user) {
+          user.favorites.push(product);
+          this.accountService.update(user, user.uid);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+      } else if (!product.favorite) {
+        const index = favorites.findIndex((prod) => prod.id === product.id);
+        if (index === 0) {
+          favorites.shift();
+        } else if (index === favorites.length - 1) {
+          favorites.pop();
+        } else {
+          favorites.splice(1, index);
+        }
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        if (user) {
+          if (index === 0) {
+            user.favorites.shift();
+          } else if (index === favorites.length - 1) {
+            user.favorites.pop();
+          } else {
+            user.favorites.splice(1, index);
+          }
+          this.accountService.update(user, user.uid);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+      }
+    } else {
+      favorites.push(product);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      if (user) {
+        user.favorites.push(product);
+        this.accountService.update(user, user.uid);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+    }
+    this.accountService.changeFavorites$.next(true);
+  }
+  updateProducts(): void {
+    this.accountService.changeFavorites$.subscribe(() => {
+      this.loadProducts();
+    });
   }
 
   ngOnDestroy(): void {

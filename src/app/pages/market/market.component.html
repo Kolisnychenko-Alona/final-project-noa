@@ -17,6 +17,9 @@
       <div class="product" *ngFor="let product of userThaiProducts">
          <div class="product_image">
             <img class="image" [src]="product.imagePath" alt="" [routerLink]="['/market/'+product.category.path, product.id]">
+            <div class="product_image-favorite">
+               <div class="favorite-bnt" (click)="changeFavorite(product, product.id)" [class.active]="product.favorite"></div>
+            </div>
             <div class="product_image-button">
                <button class="btn" type="button">Швидке замовлення</button>
             </div>

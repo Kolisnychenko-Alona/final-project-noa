@@ -9,7 +9,7 @@
    <div class="image">
       <div class="image-top">
          <div class="image-favorite">
-            <div class="favorite-bnt"></div>
+            <div class="favorite-bnt" (click)="changeFavorite()" [class.active]="thaiProduct.favorite"></div>
          </div>
       </div>
       <img class="image-back" [src]="thaiProduct.imagePath" alt="">

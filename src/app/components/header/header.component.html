@@ -100,9 +100,13 @@
                   <p>Працюємо Пн-Нд з <b>10:00</b> до <b>22:30</b></p>
                </div>
             </li>
-            <li class="header_buttons-item" (click)="openAuthDialog()">
+            <li class="header_buttons-item" *ngIf="!isUser" (click)="openAuthDialog()">
                <img src="https://noa.ua/wp-content/themes/tomatina/img/icons/user.svg" alt="user icon">
                <span>Вхід</span>
+            </li>
+            <li class="header_buttons-item" *ngIf="isUser" (click)="navigateTo()" >
+               <img src="https://noa.ua/wp-content/themes/tomatina/img/icons/user.svg" alt="user icon">
+               <span>{{userName}}</span>
             </li>
             <li class="header_buttons-item" (click)="isOpenMenu = true" (mousedown)="down(menu)" (mouseup)="up(menu)"  #menu>
                <svg class="bg circle" width="47" height="47" viewBox="0 0 47 47" fill="none"

@@ -1,5 +1,6 @@
 import { IAddress } from "../adress/IAddress";
 import { IOrderResponse } from "../order/IOrder";
+import { IProductResponse } from "../product/iproduct";
 
 export interface IRegister {
   firstName: string;
@@ -9,6 +10,7 @@ export interface IRegister {
   password: string;
   address?: Array<IAddress>;
   orders?: Array<IOrderResponse>;
+  favorites?: Array<IProductResponse>;
   confirmPassword: string;
   subscribe: boolean;
   rules: boolean;

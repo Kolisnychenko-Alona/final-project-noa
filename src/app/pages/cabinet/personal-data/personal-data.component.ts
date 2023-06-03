@@ -5,7 +5,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { IAddress } from 'src/app/shared/interfaces/adress/IAddress';
-import { IRegister } from 'src/app/shared/interfaces/auth/IRegister';
+import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
+import { ProductService } from 'src/app/shared/services/product/product.service';
+import { Router } from '@angular/router';
+import { ThaiProductService } from 'src/app/shared/services/thai-product/thai-product.service';
 
 @Component({
   selector: 'app-personal-data',
@@ -22,7 +25,10 @@ export class PersonalDataComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     private accountService: AccountService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router,
+    private productService: ProductService,
+    private thaiService: ThaiProductService,
   ) {}
 
   ngOnInit(): void {
@@ -69,9 +75,9 @@ export class PersonalDataComponent implements OnInit {
         this.personalForm.patchValue({
           address: this.userAddress,
         });
-         let user = JSON.parse(localStorage.getItem('currentUser') as string);
-         user.address.push(result);
-         localStorage.setItem('currentUser', JSON.stringify(user));
+        let user = JSON.parse(localStorage.getItem('currentUser') as string);
+        user.address.push(result);
+        localStorage.setItem('currentUser', JSON.stringify(user));
       });
   }
 
@@ -80,10 +86,10 @@ export class PersonalDataComponent implements OnInit {
       .update(this.personalForm.value, this.currentUserId)
       .then(() => {
         this.toastr.success('Changes successfully saved');
-    });
+      });
     this.isEdit = false;
   }
-  deleteAddress(i: number): void{
+  deleteAddress(i: number): void {
     this.userAddress.splice(i, 1);
     let user = JSON.parse(localStorage.getItem('currentUser') as string);
     user.address = this.userAddress;
@@ -92,5 +98,25 @@ export class PersonalDataComponent implements OnInit {
       address: this.userAddress,
     });
   }
-
+  logOut(): void {
+    this.router.navigate(['/']);
+    let favorites = JSON.parse(localStorage.getItem('favorites') as string);
+    if (favorites) {
+      favorites.forEach((prod: IProductResponse) => (prod.favorite = false));
+      for (let i = 0; i < favorites.length; i++) {
+        this.productService.getOne(favorites[i].id).subscribe((data) => {
+          if (data) {
+            this.productService.update(favorites[i], favorites[i].id);
+          }
+        });
+        this.thaiService.getOne(favorites[i].id).subscribe((data) => {
+          if (data) {
+            this.thaiService.update(favorites[i], favorites[i].id);
+          }
+        });
+      }
+    }
+    localStorage.clear();
+    this.accountService.isLogin$.next(true);
+  }
 }

@@ -12,6 +12,7 @@ export interface IProductRequest {
   count: 1;
   culSpecial: boolean;
   noRise: boolean;
+  favorite: boolean;
 }
 export interface IProductResponse extends IProductRequest {
   id: string;

@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
+import { AccountService } from 'src/app/shared/services/account/account.service';
 import { ThaiProductService } from 'src/app/shared/services/thai-product/thai-product.service';
 
 @Component({
@@ -30,7 +31,8 @@ export class MarketProductInfoComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private thaiProductService: ThaiProductService,
     private router: Router,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private accountService: AccountService
   ) {
     this.windowWidth = window.innerWidth;
     this.findKoef();
@@ -116,6 +118,62 @@ export class MarketProductInfoComponent implements OnInit, OnDestroy {
     this.slide === -productWidth * (this.userThaiProducts.length - boxCount)
       ? (this.right = false)
       : (this.right = true);
+  }
+
+  changeFavorite(): void {
+    this.thaiProduct.favorite = !this.thaiProduct.favorite;
+    this.thaiProductService.update(this.thaiProduct, this.thaiProduct.id);
+    let user = JSON.parse(localStorage.getItem('currentUser') as string);
+    let favorites: Array<IProductResponse> = [];
+    if (localStorage.length > 0 && localStorage.getItem('favorites')) {
+      favorites = JSON.parse(localStorage.getItem('favorites') as string);
+      if (this.thaiProduct.favorite) {
+        favorites.push(this.thaiProduct);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        if (user) {
+          user.favorites.push(this.thaiProduct);
+          this.accountService.update(user, user.uid);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+      } else if (!this.thaiProduct.favorite) {
+        const index = favorites.findIndex(
+          (prod) => prod.id === this.thaiProduct.id
+        );
+        if (index === 0) {
+          favorites.shift();
+        } else if (index === favorites.length - 1) {
+          favorites.pop();
+        } else {
+          favorites.splice(1, index);
+        }
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        if (user) {
+          if (index === 0) {
+            user.favorites.shift();
+          } else if (index === favorites.length - 1) {
+            user.favorites.pop();
+          } else {
+            user.favorites.splice(1, index);
+          }
+          this.accountService.update(user, user.uid);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+      }
+    } else {
+      favorites.push(this.thaiProduct);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      if (user) {
+        user.favorites.push(this.thaiProduct);
+        this.accountService.update(user, user.uid);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+    }
+    this.accountService.changeFavorites$.next(true);
+  }
+  updateProducts(): void {
+    this.accountService.changeFavorites$.subscribe(() => {
+      this.loadProducts();
+    });
   }
 
   ngOnDestroy(): void {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
 import { AccountService } from 'src/app/shared/services/account/account.service';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
   selector: 'app-cabinet',
@@ -12,7 +14,6 @@ export class CabinetComponent implements OnInit {
   
   constructor(
     private router: Router,
-    private accountService: AccountService
   )
    { }
   
@@ -21,11 +22,5 @@ export class CabinetComponent implements OnInit {
   changePath(select: HTMLSelectElement): void{
     this.path = select.value;
     this.router.navigate(['/cabinet/' + this.path])
-  }
-  
-  logOut(): void {
-    this.router.navigate(['/']);
-    localStorage.removeItem('currentUser');
-    this.accountService.isLogin$.next(true);
   }
 }

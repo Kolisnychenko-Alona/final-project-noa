@@ -60,7 +60,7 @@ export class AuthDialogComponent implements OnInit {
         [Validators.required, ConfirmPassword('password')],
       ],
       subscribe: [true],
-      rules: [null, Validators.requiredTrue]
+      rules: [null, Validators.requiredTrue],
     });
   }
   
@@ -137,6 +137,8 @@ export class AuthDialogComponent implements OnInit {
       rules: this.registrationData.rules,
       role: 'USER',
       orders: [],
+      address: [],
+      favorites: []
     };
     setDoc(doc(this.afs, 'users', credential.user.uid), user);
   }

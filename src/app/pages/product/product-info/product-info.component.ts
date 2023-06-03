@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ElementRef, HostListener } from '@angular
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
+import { AccountService } from 'src/app/shared/services/account/account.service';
 import { OrderService } from 'src/app/shared/services/orders/order.service';
 import { ProductService } from 'src/app/shared/services/product/product.service';
 
@@ -26,7 +27,8 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private router: Router,
     private elementRef: ElementRef,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private accountService: AccountService
   ) {
     this.windowWidth = window.innerWidth;
     this.findKoef();
@@ -130,6 +132,60 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     this.slide === -productWidth * (this.userProducts.length - boxCount)
       ? (this.right = false)
       : (this.right = true);
+  }
+
+  changeFavorite(): void {
+    this.product.favorite = !this.product.favorite;
+    this.productService.update(this.product, this.product.id);
+    let user = JSON.parse(localStorage.getItem('currentUser') as string);
+    let favorites: Array<IProductResponse> = [];
+    if (localStorage.length > 0 && localStorage.getItem('favorites')) {
+      favorites = JSON.parse(localStorage.getItem('favorites') as string);
+      if (this.product.favorite) {
+        favorites.push(this.product);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        if (user) {
+          user.favorites.push(this.product);
+          this.accountService.update(user, user.uid);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+      } else if (!this.product.favorite) {
+        const index = favorites.findIndex((prod) => prod.id === this.product.id);
+        if (index === 0) {
+          favorites.shift();
+        } else if (index === favorites.length - 1) {
+          favorites.pop();
+        } else {
+          favorites.splice(1, index);
+        }
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        if (user) {
+          if (index === 0) {
+            user.favorites.shift();
+          } else if (index === favorites.length - 1) {
+            user.favorites.pop();
+          } else {
+            user.favorites.splice(1, index);
+          }
+          this.accountService.update(user, user.uid);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+      }
+    } else {
+      favorites.push(this.product);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      if (user) {
+        user.favorites.push(this.product);
+        this.accountService.update(user, user.uid);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+    }
+    this.accountService.changeFavorites$.next(true);
+  }
+  updateProducts(): void {
+    this.accountService.changeFavorites$.subscribe(() => {
+      this.loadProducts();
+    });
   }
 
   ngOnDestroy(): void {

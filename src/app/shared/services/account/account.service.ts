@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../../interfaces/user/IUser';
 import { Firestore, deleteDoc, doc, updateDoc } from '@angular/fire/firestore';
+import { IRegister } from '../../interfaces/auth/IRegister';
  
 
 @Injectable({
@@ -14,6 +15,7 @@ export class AccountService {
   private api = { auth: `${this.url}/auth` };
   public isLogin$ = new Subject<boolean>();
   public isAdmin$ = new Subject<boolean>();
+  public changeFavorites$ = new Subject<boolean>();
 
   constructor(private http: HttpClient, private afs: Firestore) {}
 
@@ -22,13 +24,8 @@ export class AccountService {
       `${this.api.auth}?email=${credential.email}&password=${credential.password}`
     );
   }
-  update(credential: IUser, id: string) {
+  update(credential: IRegister, id: string) {
     const userDocumentReference = doc(this.afs, `users/${id}`);
     return updateDoc(userDocumentReference, { ...credential });
-  }
-  delete(id: string) {
-    const userDocumentReference = doc(this.afs, `users/${id}`);
-    console.log( userDocumentReference)
-    // return deleteDoc(userDocumentReference);
   }
 }

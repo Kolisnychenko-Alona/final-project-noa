@@ -23,7 +23,7 @@
       <input class="filters_radio" type="radio" id="no-rice" name="filter" (change)="filtering(noRice.id)" #noRice>
       <label class="filters_label" for="no-rice">NO RICE</label>
       <label class="filters_label" for="sort">Сортувати по:</label>
-      <select class="filters_sort" name="sort" id="" (change)="sorting(sort.value)" #sort>
+      <select class="filters_sort" name="" id="sort" (change)="sorting(sort.value)" #sort>
          <option value="price up" selected >Ціна <i class="uil uil-arrow-up"></i></option>
          <option value="price down">Ціна <i class="uil uil-arrow-down"></i></option>
          <option value="weight up">Вага <i class="uil uil-arrow-up"></i></option>
@@ -39,7 +39,9 @@
                   <div class="no-rice" *ngIf="product.noRise">No Rice</div>
                </div>
                <div class="product_image-favorite">
-                  <div class="favorite-bnt"></div>
+                  <div class="favorite-bnt" 
+                  (click)="changeFavorite(product, product.id)"
+                  [class.active]="product.favorite"></div>
                </div>
             </div>
             <img class="image" [src]="product.imagePath" alt="">
