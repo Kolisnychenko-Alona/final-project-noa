@@ -76,6 +76,14 @@ export class HeaderComponent implements OnInit {
         this.deliveryType = result;
       });
   }
+  navigateToFavorite(): void{
+    let user = JSON.parse(localStorage.getItem('currentUser') as string);
+    if (user) {
+      this.router.navigate(['/cabinet/favorite-products']);
+    } else {
+      this.router.navigate(['/favorites']);
+    }
+  }
   openAuthDialog(): void {
     this.dialog.open(AuthDialogComponent, {
       backdropClass: 'dialog-back',
@@ -108,7 +116,7 @@ export class HeaderComponent implements OnInit {
     if (user) {
       this.isUser = true;
       this.userName = user.firstName;
-    } else{
+    } else {
       this.isUser = false;
       this.userName = '';
     }
@@ -118,7 +126,7 @@ export class HeaderComponent implements OnInit {
       this.checkLogin();
     });
   }
-  navigateTo(): void{
+  navigateTo(): void {
     let user = JSON.parse(localStorage.getItem('currentUser') as string);
     if (user && user.role === ROLE.USER) {
       this.router.navigate(['/cabinet']);

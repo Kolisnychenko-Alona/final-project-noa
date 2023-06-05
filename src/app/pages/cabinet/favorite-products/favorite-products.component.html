@@ -7,8 +7,9 @@
                <div class="no-rice" *ngIf="product.noRise">No Rice</div>
             </div>
             <div class="product_image-favorite">
-               <div class="favorite-bnt" (click)="deleteFavoriteProduct(product, product.id)"
-                  [class.active]="product.favorite"><i class="uil uil-multiply"></i></div>
+               <div class="favorite-bnt" (click)="deleteFavoriteProduct(product, product.id)">
+                  <i class="uil uil-multiply"></i>
+               </div>
             </div>
          </div>
          <img class="image" [src]="product.imagePath" alt="">
