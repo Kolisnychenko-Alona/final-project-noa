@@ -9,6 +9,7 @@ import { ThaiMarketService } from 'src/app/shared/services/thai/thai-market.serv
 import { DeliveryDialogComponent } from '../delivery-dialog/delivery-dialog.component';
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { ROLE } from 'src/app/shared/constants/role.constant';
+import { ResponseComponent } from 'src/app/pages/response/response.component';
 
 
 @Component({
@@ -76,7 +77,15 @@ export class HeaderComponent implements OnInit {
         this.deliveryType = result;
       });
   }
-  navigateToFavorite(): void{
+  openResponseDialog(): void{
+    this.dialog.open(ResponseComponent, {
+      backdropClass: 'dialog-back',
+      panelClass: 'dialog-inner',
+      width: '750px',
+      maxHeight: '690px',
+    });
+  }
+  navigateToFavorite(): void {
     let user = JSON.parse(localStorage.getItem('currentUser') as string);
     if (user) {
       this.router.navigate(['/cabinet/favorite-products']);

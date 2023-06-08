@@ -44,7 +44,7 @@
       <section class="header_buttons">
          <ul class="header_buttons-list">
             <li class="header_buttons-item" (mousedown)="down(response)" (mouseup)="up(response)" #response>
-               <a routerLink="/response">Залишити відгук</a>
+               <a (click)="openResponseDialog()">Залишити відгук</a>
             </li>
 
             <li class="header_buttons-item" (mousedown)="down(favorites)" (mouseup)="up(favorites)" #favorites>

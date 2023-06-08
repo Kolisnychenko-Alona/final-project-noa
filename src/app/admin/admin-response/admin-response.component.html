@@ -1,1 +1,18 @@
-<p>admin-response works!</p>
+<table class="table">
+   <thead class="table_head">
+      <tr>
+         <th class="table_head-cell">Оцінка</th>
+         <th class="table_head-cell">Відгук</th>
+         <th class="table_head-cell">Ім'я</th>
+         <th class="table_head-cell">Телефон</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr *ngFor="let response of responses">
+         <td class="table_cell">{{response.rating}}</td>
+         <td class="table_cell">{{response.text}}</td>
+         <td class="table_cell">{{response.name}}</td>
+         <td class="table_cell">{{response.phone}}</td>
+      </tr>
+   </tbody>
+</table>

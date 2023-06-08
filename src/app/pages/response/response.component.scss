@@ -1,0 +1,98 @@
+@import '../../shared/styles/variables';
+
+.container{
+   width: 90%;
+   margin: 0 auto;
+   padding: 20px;
+   .title{
+      text-align: center;
+      font-size: 38px;
+      color: $text-color;
+      padding-bottom: 50px;
+   }
+   .form{
+      width: 100%;
+      &_rating{
+         width: 100%;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         .star{
+            width: 100px;
+            height: 100px; 
+            font-size: 100px;
+            color: $main-color; 
+            input{
+               width: 0;
+               height: 0;
+               border: none;
+               display: none;
+            }  
+            &:hover{
+               cursor: pointer;
+            } 
+            path{
+               fill: $main-color;
+            }   
+         }
+      }
+      &_text{
+         width: calc( 100% - 40px);
+         height: 100px;
+         resize: none;
+         border: 2px solid $border-color;
+         border-radius: 6px;
+         padding: 20px;
+         margin: 30px 0;
+         font-size: 16px;
+         color: $text-color;
+      }
+      &_data{
+         width: 100%;
+         display: flex;
+         justify-content: space-between;
+      }
+      &_field{
+         width: calc( 48% - 40px);
+         height: 54px;
+         border: 2px solid $border-color;
+         border-radius: 6px;
+         padding: 0 20px;
+         margin-bottom: 50px;
+         font-size: 16px;
+         color: $text-color;
+      }
+      &_btn{
+         display: block;
+         margin: 0 auto 50px;
+         padding: 18px 50px;
+         font-size: 16px;
+         text-transform: uppercase;
+         letter-spacing: 2px;
+         border: 2px solid $main-color;
+         border-radius: 6px;
+         background-color: $main-color;
+         color: $white;
+         position: relative;
+         i{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 4px;
+            font-size: 34px;
+
+         }
+         &:hover{
+            cursor: pointer;
+            background-color: $white;
+            color: $main-color;
+         }
+         &:disabled{
+            background-color: rgb(199, 198, 198);
+            color: rgb(155, 154, 154);
+            border-color:rgb(185, 184, 184) ;
+            cursor: auto;
+         }
+      }
+   }
+}
