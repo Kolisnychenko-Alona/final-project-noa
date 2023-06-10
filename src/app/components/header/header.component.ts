@@ -83,6 +83,7 @@ export class HeaderComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         this.deliveryType = result;
+        this.orderService.deliveryType.next(result);
       });
   }
   openResponseDialog(): void {

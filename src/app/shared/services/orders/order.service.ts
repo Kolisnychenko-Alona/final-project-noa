@@ -11,6 +11,7 @@ export class OrderService {
   private orderCollection!: CollectionReference<DocumentData>;
 
   public changeBasket = new Subject<boolean>();
+  public deliveryType = new Subject<string>();
 
   constructor(private afs: Firestore) {
     this.orderCollection = collection(this.afs, 'orders');
