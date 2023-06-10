@@ -143,6 +143,9 @@
                   justify-content: center;
                   align-items: center;
                   position: relative;
+                  &:hover{
+                     cursor: auto;
+                  }
                   .phone {
                      margin-left: 1px;
                      position: absolute;

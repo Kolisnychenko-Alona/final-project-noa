@@ -155,7 +155,6 @@ export class AdminVacanciesComponent implements OnInit {
   getApplications(): void {
     this.vacancyApplicationService.getAll().subscribe((data) => {
       this.applications = data as IVacancyApplicationResponse[];
-      console.log(this.applications);
     });
   }
   deleteApplication(id: string): void{

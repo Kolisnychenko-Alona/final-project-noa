@@ -130,16 +130,16 @@
             </li>
          </ul>
       </section>
-      <section class="header_basket">
+      <section class="header_basket" *ngIf="basket.length>0">
          <img class="basket-bg" src="https://noa.ua/wp-content/themes/tomatina/img/icons/basket_blue.svg"
             alt="basket backgroung">
          <div class="header_basket-inner" (click)="openBasketDialog()">
             <div class="header_basket-icon">
                <img src="https://noa.ua/wp-content/themes/tomatina/img/icons/basket.svg" alt="basket logo">
-               <span>1</span>
+               <span>{{count}}</span>
             </div>
             <div class="header_basket-total">
-               <p><strong>{{total}}25</strong></p>
+               <p><strong>{{total}}</strong></p>
                <p>грн</p>
             </div>
          </div>

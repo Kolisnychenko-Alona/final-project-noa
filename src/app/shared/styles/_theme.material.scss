@@ -79,26 +79,3 @@ $custom-theme: mat.define-light-theme($custom-theme-primary, $custom-theme-accen
     border-radius: 6px;
   }
 }
-.slide-dialog{
-  animation: slide 0.3s ease-in-out forwards;
-}
-// .dialog-basket-back{
-//   display: flex;
-//   justify-content: flex-end;
-//   align-items: flex-start;
-//   z-index: 10;
-//   background-color: rgba(0, 0, 0, 0.701);
-// }
-// .basket-dialog{
-//   width: 600px;
-//   min-height: 140px;
-//   .mat-mdc-dialog-container .mdc-dialog__surface {
-//     border-radius: 0;
-//     border-bottom-left-radius: 10px;
-//   }
-// }
-// .call-dialog{
-//   width: 500px;
-//   min-height: 350px;
-//   padding: 20px;
-// }

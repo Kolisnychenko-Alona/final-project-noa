@@ -10,6 +10,8 @@ import { DeliveryDialogComponent } from '../delivery-dialog/delivery-dialog.comp
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { ROLE } from 'src/app/shared/constants/role.constant';
 import { ResponseComponent } from 'src/app/pages/response/response.component';
+import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
+import { OrderService } from 'src/app/shared/services/orders/order.service';
 
 
 @Component({
@@ -20,20 +22,24 @@ import { ResponseComponent } from 'src/app/pages/response/response.component';
 export class HeaderComponent implements OnInit {
   public deliveryType!: string;
   public total!: number;
+  public count!: number;
   public isOpenMenu = false;
   public isDown = false;
   public userName!: string;
   public isUser = false;
+  public isBasket = false;
 
   public userCategories: Array<ICategoryResponse> = [];
   public userThaiCategories: Array<ICategoryResponse> = [];
+  public basket: Array<IProductResponse> = [];
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
     private categoryService: CategoryService,
     private thaiMarketService: ThaiMarketService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private orderService: OrderService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +48,8 @@ export class HeaderComponent implements OnInit {
     this.openDeliveryDialog();
     this.checkLogin();
     this.checkUpdatesLogin();
+    this.loadBasket();
+    this.updateBasket();
   }
 
   down(btn: HTMLElement): void {
@@ -77,7 +85,7 @@ export class HeaderComponent implements OnInit {
         this.deliveryType = result;
       });
   }
-  openResponseDialog(): void{
+  openResponseDialog(): void {
     this.dialog.open(ResponseComponent, {
       backdropClass: 'dialog-back',
       panelClass: 'dialog-inner',
@@ -87,8 +95,10 @@ export class HeaderComponent implements OnInit {
   }
   navigateToFavorite(): void {
     let user = JSON.parse(localStorage.getItem('currentUser') as string);
-    if (user) {
+    if (user && user.role === ROLE.USER) {
       this.router.navigate(['/cabinet/favorite-products']);
+    } else if (user && user.role === ROLE.ADMIN) {
+      this.router.navigate(['/favorites']);
     } else {
       this.router.navigate(['/favorites']);
     }
@@ -101,10 +111,39 @@ export class HeaderComponent implements OnInit {
       maxHeight: '690px',
     });
   }
+
+  loadBasket(): void {
+    if (localStorage.length > 0 && localStorage.getItem('basket')) {
+      this.basket = JSON.parse(localStorage.getItem('basket') as string);
+    } else this.basket = [];
+    this.getTotalPrice();
+    this.getTotalCount();
+  }
+
+  getTotalPrice(): void {
+    this.total = this.basket.reduce(
+      (total: number, prod: IProductResponse) =>
+        total + prod.count * prod.price,
+      0
+    );
+  }
+  getTotalCount(): void{
+    this.count = this.basket.reduce(
+      (count: number, prod: IProductResponse) => count + prod.count,
+      0
+    );
+  }
+
+  updateBasket(): void {
+    this.orderService.changeBasket.subscribe(() => {
+      this.loadBasket();
+    });
+  }
   openBasketDialog(): void {
     this.dialog.open(BasketDialogComponent, {
       backdropClass: 'dialog-back',
-      width: '500px',
+      width: '680px',
+      maxWidth: '100vw',
       height: '100vh',
       position: { top: '0', right: '0' },
     });

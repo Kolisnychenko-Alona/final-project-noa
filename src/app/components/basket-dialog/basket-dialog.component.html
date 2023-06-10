@@ -1,1 +1,31 @@
-<p>basket-dialog works!</p>
+<div class="wrapper">
+   <header class="header">
+      <h1 class="header_title">Кошик</h1>
+      <div class="header_buttons">
+         <button class="header_btn" type="button" mat-dialog-close (click)="clearBasket()">очистити кошик</button>
+         <button class="header_btn close" type="button" mat-dialog-close><i class="uil uil-times"></i></button>
+      </div>
+   </header>
+   <main class="container">
+      <div class="product" *ngFor="let product of basket">
+         <div class="product_image">
+            <img [src]="product.imagePath" alt="product photo">
+         </div>
+         <div class="product_info">
+            <div class="product_delete" (click)="deleteProduct(product)"><i class="uil uil-times"></i></div>
+            <div class="product_name" [routerLink]="['/product/'+product.category.path, product.id]">{{product.name}}
+            </div>
+            <div class="product_count">
+               <button class="product_count-btn" (click)="productCount(product, false)">-</button>
+               <input class="product_count-value" type="text" [value]="product.count" readonly>
+               <button class="product_count-btn" (click)="productCount(product, true)">+</button>
+            </div>
+            <div class="product_price"><b>{{product.count*product.price}}</b> грн</div>
+         </div>
+      </div>
+   </main>
+   <footer class="footer">
+      <div class="total">Сума: <b>{{total}}</b> грн</div>
+      <button class="footer_btn" type="button" mat-dialog-close [routerLink]="['/checkout']">оформити замовлення</button>
+   </footer>
+</div>
