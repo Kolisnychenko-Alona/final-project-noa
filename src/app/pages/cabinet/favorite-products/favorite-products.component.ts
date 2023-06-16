@@ -76,7 +76,7 @@ export class FavoriteProductsComponent implements OnInit {
     }
     localStorage.setItem('basket', JSON.stringify(basket));
     product.count = 1;
-    this.orderService.changeBasket.next(true);
+    this.orderService.changeBasket$.next(true);
   }
   deleteFavoriteProduct(product: IProductResponse, id: string): void {
     product.favorite = false;

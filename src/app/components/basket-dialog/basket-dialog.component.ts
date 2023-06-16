@@ -37,7 +37,7 @@ export class BasketDialogComponent implements OnInit {
     );
   }
   updateBasket(): void {
-    this.orderService.changeBasket.subscribe(() => {
+    this.orderService.changeBasket$.subscribe(() => {
       this.loadBasket();
     });
   }
@@ -63,13 +63,13 @@ export class BasketDialogComponent implements OnInit {
       }
     }
     localStorage.setItem('basket', JSON.stringify(basket));
-    this.orderService.changeBasket.next(true);
+    this.orderService.changeBasket$.next(true);
     if (basket.length === 0) {
       this.dialog.closeAll();
     }
   }
   clearBasket(): void{
     localStorage.removeItem('basket');
-    this.orderService.changeBasket.next(true);
+    this.orderService.changeBasket$.next(true);
   }
 }

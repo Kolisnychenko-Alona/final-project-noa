@@ -1,44 +1,48 @@
 <div class="container">
-   <div class="title"></div>
-   <form class="order">
-      <div class="order_part1">
+   <div class="main-title">Оформлення замовлення</div>
+   <form class="order" [formGroup]="orderForm" (ngSubmit)="sendOrder()">
+      <div class="order_part">
          <div class="title">
             <span class="title_number">1.</span>
             <span class="title_text">Контактні дані</span>
          </div>
-         <div class="form_double">
-            <input class="form_field" type="text"placeholder="*Ваше ім'я">
-            <input class="form_field" type="text" placeholder="*Ваше прізвище">
+         <div class="order_double name">
+            <input class="order_field" type="text" formControlName="firstName" placeholder="*Ваше ім'я">
+            <input class="order_field" type="text" formControlName="secondName" placeholder="*Ваше прізвище">
          </div>
-         <input class="form_field" type="text"  placeholder="*Ваш телефон">
-         <input class="form_field" type="email"  placeholder="*Ваш email">
+         <input class="order_field" type="text" formControlName="phone" placeholder="*Ваш телефон">
+         <input class="order_field" type="email" formControlName="email" placeholder="Email, щоб отримати копію замовлення">
          <div class="title">
             <span class="title_number">2.</span>
             <span class="title_text">Інформація про доставку</span>
          </div>
-         <div *ngIf="pickup">
-            <input type="radio" id="pickup" name="deliveryType" [checked]="pickup" value="Самовивіз">
-            <label for="pickup">Самовивіз</label>
+         <div class="input-box" *ngIf="pickup">
+            <input class="input-box_item" formControlName="deliveryType" type="radio" id="pickup" name="deliveryType" [checked]="pickup"
+               value="Самовивіз">
+            <label class="input-box_text" for="pickup">Самовивіз</label>
          </div>
-         <div class="pickup" *ngIf="pickup">
-            <select name="" id="">
-               <option value="">ТРЦ Viktoria Gardens, Кульпарківська 226А</option>
-               <option value="">Староєврейська 4</option>
-               <option value="">Крива Липа 8</option>
-               <option value="">ТРЦ Spartak, Мазепи 1Б</option>
-               <option value="">ТРЦ King Cross, Стрийська 30</option>
+         <div *ngIf="pickup">
+            <select class="order_field select" formControlName="place">
+               <option value="Виберіть ресторан" disabled selected>Виберіть ресторан</option>
+               <option value="ТРЦ Viktoria Gardens, Кульпарківська 226А">ТРЦ Viktoria Gardens, Кульпарківська 226А
+               </option>
+               <option value="Староєврейська 4">Староєврейська 4</option>
+               <option value="Крива Липа 8">Крива Липа 8</option>
+               <option value="ТРЦ Spartak, Мазепи 1Б">ТРЦ Spartak, Мазепи 1Б</option>
+               <option value="ТРЦ King Cross, Стрийська 30">ТРЦ King Cross, Стрийська 30</option>
             </select>
-            <div class="form_double" >
-               <input type="date" placeholder="Виберіть дату отримання замовлення">
-               <input type="text" placeholder="Вкажіть час отримання замовлення">
+            <div class="order_double">
+               <input class="order_field" formControlName="date" type="date" [min]="date">
+               <input class="order_field" formControlName="time" type="text" placeholder="Вкажіть час отримання замовлення">
             </div>
          </div>
-         <div *ngIf="delivery">
-            <input type="radio" id="delivery" name="deliveryType" [checked]="delivery" value="Доставка кур'єром">
-            <label for="delivery">Доставка кур'єром</label>
+         <div class="input-box" *ngIf="delivery">
+            <input class="input-box_item" formControlName="deliveryType" type="radio" id="delivery" name="deliveryType" [checked]="delivery"
+               value="Доставка кур'єром">
+            <label class="input-box_text" for="delivery">Доставка кур'єром</label>
          </div>
          <div class="delivery" *ngIf="delivery">
-            <select class="select" formControlName="city">
+            <select class="order_field select" formControlName="city" >
                <option value="Виберіть місто" disabled selected>Виберіть місто</option>
                <option value="Львів">Львів</option>
                <option value="Брюховичі">Брюховичі</option>
@@ -64,95 +68,94 @@
                <option value="Солонка">Солонка</option>
                <option value="Холодновідка">Холодновідка</option>
             </select>
-            <div class="form_double">
-               <input class="form_field address" type="text" formControlName="street" placeholder="*Введіть вулицю доставки">
-               <input class="form_field house" type="text" formControlName="house" placeholder="*№ будинку">
+            <div class="order_double">
+               <input class="order_field" formControlName="street" type="text"
+                  placeholder="*Введіть вулицю доставки">
+               <input class="order_field" formControlName="houseNumber" type="text"  placeholder="*№ будинку">
             </div>
-            <div class="form_box">
-               <input class="form_field" type="text" formControlName="apartment" placeholder="№ квартири">
-               <input class="form_field" type="text" formControlName="entrance" placeholder="Під'їзд">
-               <input class="form_field" type="text" formControlName="flor" placeholder="Поверх">
-               <input class="form_field" type="text" formControlName="cod" placeholder="Домофон">
+            <div class="order_double box">
+               <input class="order_field" formControlName="flat" type="text"  placeholder="№ квартири">
+               <input class="order_field" formControlName="entrance" type="text"  placeholder="Під'їзд">
+               <input class="order_field" formControlName="flor" type="text"  placeholder="Поверх">
+               <input class="order_field" formControlName="cod" type="text"  placeholder="Домофон">
             </div>
-            <div class="time">
-               <input type="checkbox" id="atTime" (click)="atTime=!atTime">
-               <label for="atTime">На час</label>
+            <div class="input-box">
+               <input class="input-box_item" type="checkbox" id="atTime" formControlName='atTime' (change)="atTime=!atTime">
+               <label class="input-box_text" for="atTime">На час</label>
             </div>
-           
-            <div class="form_double" *ngIf="atTime">
-               <input type="date" placeholder="Виберіть дату отримання замовлення">
-               <input type="text" placeholder="Вкажіть час отримання замовлення">
+            <div class="order_double" *ngIf="atTime">
+               <input class="order_field" formControlName="date" type="date" [min]="date">
+               <input class="order_field" formControlName="time" type="text" placeholder="Вкажіть час отримання замовлення">
             </div>
          </div>
       </div>
-      <div class="order_part2">
-         <div class="title">
-            <span class="title_text">Ваше замовлення</span>
-            <div class="container">
-               <div class="product" *ngFor="let product of basket">
-                  <div class="product_image">
-                     <img [src]="product.imagePath" alt="product photo">
-                  </div>
-                  <div class="product_info">
-                     <div class="product_delete" (click)="deleteProduct(product)"><i class="uil uil-times"></i></div>
-                     <div class="product_name" [routerLink]="['/product/'+product.category.path, product.id]">{{product.name}}
-                     </div>
-                     <div class="product_count">
-                        <button class="product_count-btn" (click)="productCount(product, false)">-</button>
-                        <input class="product_count-value" type="text" [value]="product.count" readonly>
-                        <button class="product_count-btn" (click)="productCount(product, true)">+</button>
-                     </div>
-                     <div class="product_price"><b>{{product.count*product.price}}</b> грн</div>
-                  </div>
+      <div class="order_part">
+         <div class="order-title">Ваше замовлення</div>
+         <div class="wrapper">
+            <div class="product" *ngFor="let product of basket">
+               <div class="product_image">
+                  <img [src]="product.imagePath" alt="product photo">
                </div>
-               <div class="cutlery" *ngIf="!withoutCutlery">
-                  <h3 class="cutlery_title">Прибори</h3>
-                  <p>Вкажіть кількість осіб, на яке робите замовлення</p>
-                  <div class="cutlery_count">
-                     <button class="cutlery_count-btn" (click)="cutleryCount(false)">-</button>
-                     <input class="cutlery_count-value" type="text" [value]="cutleryNumber" readonly>
-                     <button class="cutlery_count-btn" (click)="cutleryCount(true)">+</button>
+               <div class="product_info">
+                  <div class="product_delete" (click)="deleteProduct(product)"><i class="uil uil-times"></i></div>
+                  <div class="product_name" [routerLink]="['/product/'+product.category.path, product.id]">
+                     {{product.name}}
                   </div>
-                  <p>Безкоштовно</p>
-               </div>
-               <div class="is-cutlery" (click)="withoutCutlery=!withoutCutlery">
-                  <input type="checkbox" id="isCutlery">
-                  <label for="isCutlery">Без приборів та серветок, з любов'ю до навколишнього середовища</label>
+                  <div class="product_count">
+                     <button type="button" class="product_count-btn" (click)="productCount(product, false)">-</button>
+                     <input class="product_count-value" type="text" [value]="product.count" readonly>
+                     <button type="button" class="product_count-btn" (click)="productCount(product, true)">+</button>
+                  </div>
+                  <div class="product_price"><b>{{product.count*product.price}}</b> грн</div>
                </div>
             </div>
-            <div class="title">
-               <span class="title_number">3.</span>
-               <span class="title_text">Інформація про оплату</span>
+            <div class="cutlery" *ngIf="!withoutCutlery">
+               <h3 class="cutlery_title">Прибори</h3>
+               <p class="cutlery_text">Вкажіть кількість осіб, на яке робите замовлення</p>
+               <div class="cutlery_count">
+                  <button type="button" class="cutlery_count-btn" (click)="cutleryCount(false)">-</button>
+                  <input class="cutlery_count-value" formControlName="cutleryCount" type="text" [value]="cutleryNumber" readonly>
+                  <button type="button" class="cutlery_count-btn" (click)="cutleryCount(true)">+</button>
+               </div>
+               <p class="cutlery_text free">Безкоштовно</p>
             </div>
-            <div class="cash" >
-               <input type="radio" id="cash" name="payment" (change)="changePayment('cash')" [checked]="cash">
-               <label for="cash">Оплата готівкою</label>
+            <div class="input-box" >
+               <input class="input-box_item" type="checkbox" id="isCutlery" (change)="withoutCutlery=!withoutCutlery">
+               <label class="input-box_text" for="isCutlery">Без приборів та серветок, з любов'ю до навколишнього середовища</label>
             </div>
-            <div class="change" *ngIf="cash">
-               <span>Решта з</span>
-               <input type="text" placeholder="Сума">
-               <input type="checkbox" id="withoutChange">
-               <label for="withoutChange">Без решти</label>
-            </div>
-            <div class="liqPay" >
-               <input type="radio" id="liqPay" name="payment" (change)="changePayment('liqPay')" [checked]="liqPay">
-               <label for="liqPay">Online payment LiqPay</label>
-            </div>
-            <div class="noCall" *ngIf="liqPay">
-               <input type="checkbox" id="noCall">
-               <label for="noCall">Мені можна не телефонувати для підтвердження замовлення</label>
-            </div>
-            <div class="comment">"
-               <input type="checkbox" id="comment" (click)="comment=!comment">
-               <label for="comment">Коментар / промокод / інше</label>
-            </div>
-            <textarea *ngIf="comment" placeholder="Ваш коментар"></textarea>
-            <div class="total">
-               <div class="total_text">Сума:</div>
-               <div class="total_price"><b>{{total}}</b> грн</div>
-            </div>
-            <button>Оформити замовлення</button>
          </div>
+         <div class="title">
+            <span class="title_number">3.</span>
+            <span class="title_text">Інформація про оплату</span>
+         </div>
+         <div class="input-box">
+            <input class="input-box_item"  formControlName="payment" type="radio" id="cash" name="payment" value="cash" (change)="changePayment()" checked>
+            <label class="input-box_text" for="cash">Оплата готівкою</label>
+         </div>
+         <div class="input-box" class="change" *ngIf="cash">
+            <span class="input-box_text" *ngIf="!withoutChange">Решта з</span>
+            <input class="input-box_field" formControlName="banknote"  type="text" placeholder="Сума" *ngIf="!withoutChange">
+            <input class="input-box_item"  formControlName="change" type="checkbox" id="withoutChange" (change)="withoutChange = !withoutChange">
+            <label class="input-box_text" for="withoutChange">Без решти</label>
+         </div>
+         <div class="input-box" *ngIf="delivery">
+            <input class="input-box_item" formControlName="payment" type="radio" id="liqPay" name="payment" value="liqPay" (change)="changePayment()">
+            <label class="input-box_text" for="liqPay">Online payment LiqPay</label>
+         </div>
+         <div class="input-box" *ngIf="liqPay">
+            <input class="input-box_item" formControlName="callMe" type="checkbox" id="noCall">
+            <label class="input-box_text" for="noCall">Мені можна не телефонувати для підтвердження замовлення</label>
+         </div>
+         <div class="input-box">
+            <input class="input-box_item" type="checkbox" id="comment" (change)="comment=!comment">
+            <label class="input-box_text" for="comment">Коментар / промокод / інше</label>
+         </div>
+         <textarea class="textarea" formControlName="comment" *ngIf="comment" placeholder="Ваш коментар"></textarea>
+         <div class="total">
+            <div class="total_text">Сума:</div>
+            <div class="total_text"><b>{{total}}</b> грн</div>
+         </div>
+         <button class="order_btn" type="submit" [disabled]="orderForm.invalid">Оформити замовлення</button>
       </div>
    </form>
 </div>

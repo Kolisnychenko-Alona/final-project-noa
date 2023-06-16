@@ -1,0 +1,371 @@
+@import "../../shared/styles/variables";
+
+.container {
+   max-width: 1500px;
+   padding: 0 60px 50px;
+   margin: 0 auto;
+   .main-title {
+      font-size: 42px;
+      line-height: 1.2em;
+      font-weight: 700;
+      padding-bottom: 40px;
+      text-align: center;
+      color: $text-color;
+   }
+   .order {
+      display: flex;
+      justify-content: space-between;
+      &_part {
+         width: 48%;
+      }
+      &_double {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         .order_field {
+            width: calc(48% - 40px);
+         }
+         &.box {
+            .order_field {
+               width: calc(24% - 40px);
+            }
+         }
+      }
+      &_field {
+         width: calc(100% - 40px);
+         margin-bottom: 20px;
+         font-size: 16px;
+         height: 54px;
+         color: $text-color;
+         border: 1px solid $border-color;
+         background-color: $white;
+         line-height: 51px;
+         padding: 0 20px;
+         border-radius: 3px;
+         transition: 0.25s;
+         &.select{
+            width: 100%;
+         }
+         &.ng-touched.ng-invalid{
+            border-color: red;
+         }
+      }
+      &-title {
+         font-size: 20px;
+         color: $text-color;
+         margin-bottom: 20px;
+      }
+      .wrapper {
+         .product {
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 1px solid $border-color;
+            border-radius: 6px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            &_image {
+               width: 124px;
+               height: 124px;
+               img {
+                  width: 100%;
+               }
+            }
+            &_info {
+               margin-left: 30px;
+               flex-grow: 1;
+            }
+            &_delete {
+               text-align: end;
+               font-size: 26px;
+               color: $text-color;
+               cursor: pointer;
+               transition: 0.3s;
+               &:hover {
+                  color: $main-color;
+               }
+            }
+            &_name {
+               font-size: 18px;
+               color: $text-color;
+               font-weight: 500;
+               overflow: hidden;
+               max-height: 3em;
+               margin-bottom: 10px;
+            }
+            &_count {
+               display: flex;
+               justify-content: start;
+               align-items: center;
+               margin-bottom: 20px;
+               &-btn {
+                  width: 30px;
+                  height: 30px;
+                  border: none;
+                  font-size: 18px;
+                  font-weight: 700;
+                  color: $text-color;
+                  background-color: $milk;
+                  border-radius: 6px;
+                  transition: 0.25s;
+                  cursor: pointer;
+                  &:hover {
+                     background-color: $main-color;
+                     color: $white;
+                  }
+               }
+               &-value {
+                  width: 30px;
+                  height: 26px;
+                  font-weight: 500;
+                  color: $text-color;
+                  text-align: center;
+                  font-size: 16px;
+                  border: none;
+               }
+            }
+            &_price {
+               text-align: right;
+               font-size: 18px;
+               color: $text-color;
+            }
+         }
+         .cutlery {
+            padding: 40px 20px 20px;
+            margin-bottom: 10px;
+            border: 1px solid $border-color;
+            border-radius: 6px;
+            &_title {
+               font-size: 18px;
+               color: $text-color;
+               font-weight: 600;
+               line-height: 1.3em;
+               margin-bottom: 5px;
+            }
+            &_text {
+               font-size: 16px;
+               color: $text-color;
+               font-weight: 500;
+               line-height: 1.3em;
+               margin-bottom: 10px;
+               &.free {
+                  text-align: end;
+               }
+            }
+            &_count {
+               display: flex;
+               justify-content: start;
+               align-items: center;
+               margin-bottom: 20px;
+               &-btn {
+                  width: 30px;
+                  height: 30px;
+                  border: none;
+                  font-size: 18px;
+                  font-weight: 700;
+                  color: $text-color;
+                  background-color: $milk;
+                  border-radius: 6px;
+                  transition: 0.25s;
+                  cursor: pointer;
+                  &:hover {
+                     background-color: $main-color;
+                     color: $white;
+                  }
+               }
+               &-value {
+                  width: 30px;
+                  height: 26px;
+                  font-weight: 500;
+                  color: $text-color;
+                  text-align: center;
+                  font-size: 16px;
+                  border: none;
+               }
+            }
+         }
+      }
+      .textarea {
+         width: calc(100% - 40px);
+         height: 100px;
+         padding: 20px;
+         margin-bottom: 20px;
+         border: 1px solid $border-color;
+         border-radius: 3px;
+         font-size: 16px;
+         line-height: 18px;
+         color: $text-color;
+         display: block;
+         resize: none;
+         overflow: auto;
+      }
+      .total {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 10px 20px 20px;
+         &_text {
+            font-size: 20px;
+            line-height: 1.3em;
+            color: $text-color;
+         }
+      }
+      &_btn{
+         display: block;
+         width: 100%;
+         color: $white;
+         background: $main-color;
+         border: 2px solid $main-color;
+         border-radius: 6px;
+         padding: 18px 30px; 
+         font-size: 14px;
+         line-height: 20px;
+         font-weight: 700;
+         letter-spacing: .15em;
+         text-transform: uppercase;
+         transition: 0.3s;
+         cursor: pointer;
+         &:hover{
+            color: $main-color;
+            background: $white;
+         }
+         &:disabled{
+            background-color: rgb(216, 213, 213);
+            border-color: $light-gray;
+            color: $light-gray;
+            cursor: auto;
+         }
+      }
+   }
+}
+.title {
+   padding-bottom: 20px;
+   &_number {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background-color: $main-color;
+      border-radius: 6px;
+      margin-right: 10px;
+      color: $white;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 28px;
+      text-align: center;
+   }
+   &_text {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3em;
+      color: $text-color;
+   }
+}
+.input-box {
+   padding: 25px 0;
+   &_item {
+      width: 20px;
+      height: 20px;
+   }
+   &_text {
+      font-size: 16px;
+      color: $text-color;
+      margin-left: 20px;
+   }
+   &_field {
+      width: 80px;
+      margin-bottom: 20px;
+      margin: 0 20px;
+      font-size: 16px;
+      height: 54px;
+      color: $text-color;
+      border: 1px solid $border-color;
+      background-color: $white;
+      line-height: 51px;
+      padding: 0 20px;
+      border-radius: 3px;
+      transition: 0.25s;
+   }
+}
+
+@media (max-width: 1366px){
+   .container{
+      .main-title{
+         font-size: 38px;
+      }
+   }
+}
+@media (max-width: 1200px){
+   .container{
+      max-width: 970px;
+      padding: 0 15px 50px;
+   }
+}
+@media (max-width: 990px){
+   .container{
+      max-width: 720px;
+      padding: 0 15px 50px;
+      .order{
+         flex-direction: column;
+         justify-content: start;
+         align-items: center;
+         &_part {
+         width: 100%;
+      }
+      }
+   }
+}
+@media (max-width: 768px){
+   .container{
+      max-width: 540px;
+      .main-title{
+         font-size: 34px;
+      }
+   }
+   .order{
+      .wrapper{
+         .product{
+            &_count{
+               justify-content: end;
+            }
+         }
+      }
+   }
+}
+@media (max-width: 575px){
+   .container{
+      .order{
+         &_double{
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            .order_field {
+               width: calc(100% - 40px);
+            }
+            &.name{
+               flex-direction: row;
+               justify-content: space-between;
+               align-items: center;
+               .order_field {
+                  width: calc(48% - 40px);
+               }
+            }
+            &.box{
+               flex-direction: row;
+               justify-content: space-between;
+               align-items: center;
+               flex-wrap: wrap;
+               .order_field {
+                  width: calc(48% - 40px);
+               }
+            }
+         }
+      }
+   }
+}
+@media (max-width: 480px){
+   .container{
+      .main-title{
+         font-size: 24px;
+      }
+   }
+}

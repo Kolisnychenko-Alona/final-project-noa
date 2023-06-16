@@ -83,7 +83,7 @@ export class HeaderComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         this.deliveryType = result;
-        this.orderService.deliveryType.next(result);
+        this.orderService.deliveryType$.next(result);
       });
   }
   openResponseDialog(): void {
@@ -136,7 +136,7 @@ export class HeaderComponent implements OnInit {
   }
 
   updateBasket(): void {
-    this.orderService.changeBasket.subscribe(() => {
+    this.orderService.changeBasket$.subscribe(() => {
       this.loadBasket();
     });
   }

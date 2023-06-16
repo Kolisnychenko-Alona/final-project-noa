@@ -106,7 +106,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     }
     localStorage.setItem('basket', JSON.stringify(basket));
     product.count = 1;
-    this.orderService.changeBasket.next(true);
+    this.orderService.changeBasket$.next(true);
   }
 
   changeCategory(value: string) {
