@@ -23,7 +23,7 @@
          </div>
          <div *ngIf="pickup">
             <select class="order_field select" formControlName="place">
-               <option value="Виберіть ресторан" disabled selected>Виберіть ресторан</option>
+               <option value="null" disabled selected>Виберіть ресторан</option>
                <option value="ТРЦ Viktoria Gardens, Кульпарківська 226А">ТРЦ Viktoria Gardens, Кульпарківська 226А
                </option>
                <option value="Староєврейська 4">Староєврейська 4</option>
@@ -43,7 +43,7 @@
          </div>
          <div class="delivery" *ngIf="delivery">
             <select class="order_field select" formControlName="city" >
-               <option value="Виберіть місто" disabled selected>Виберіть місто</option>
+               <option value="null" disabled selected>Виберіть місто</option>
                <option value="Львів">Львів</option>
                <option value="Брюховичі">Брюховичі</option>
                <option value="Великі Грибовичі">Великі Грибовичі</option>

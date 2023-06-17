@@ -71,7 +71,7 @@ export class CheckoutComponent implements OnInit{
         phone: [user.phone, Validators.required],
         email: [user.email],
         deliveryType: [this.deliveryType, Validators.required],
-        place: ['Виберіть ресторан'],
+        place: [null],
         date: [this.date],
         time: [null],
         city: [
@@ -92,8 +92,9 @@ export class CheckoutComponent implements OnInit{
         callMe: [null],
         comment: [null],
         total: [this.total],
-        status: [false],
-        atTime: [false]
+        status: ['Нове'],
+        atTime: [false],
+        orderDate: [this.date],
       });
     } else {
       this.orderForm = this.fb.group({
@@ -103,10 +104,10 @@ export class CheckoutComponent implements OnInit{
         phone: [null, Validators.required],
         email: [null],
         deliveryType: [this.deliveryType, Validators.required],
-        place: ['Виберіть ресторан'],
+        place: [null],
         date: [this.date],
         time: [null],
-        city: ['Виберіть місто'],
+        city: [null],
         street: [null],
         houseNumber: [null],
         entrance: [null],
@@ -120,8 +121,9 @@ export class CheckoutComponent implements OnInit{
         callMe: [null],
         comment: [null],
         total: [this.total],
-        status: [false],
-        atTime: [false]
+        status: ['Нове'],
+        atTime: [false],
+        orderDate: [this.date]
       });
     }
     this.checkDelivery();

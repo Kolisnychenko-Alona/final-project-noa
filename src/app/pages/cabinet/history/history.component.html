@@ -1,1 +1,22 @@
-<p>history works!</p>
+<div class="container">
+   <div class="order" *ngFor="let order of orders">
+      <div class="order_title">
+         <div class="order_part">Дата замовлення: {{order.orderDate}}</div>
+         <div class="order_part">Загальна сума: <b>{{order.total}}</b> грн</div>
+      </div>
+      <div class="order_products" *ngFor="let product of order.basket">
+         <div class="product">
+            <div class="product_image">
+               <img [src]="product.imagePath" alt="product photo">
+            </div>
+            <div class="product_info">
+               <div class="product_part name" [routerLink]="['/product/'+product.category.path, product.id]">{{product.name}}
+               </div>
+               <div class="product_part">{{product.count}} шт</div>
+               <div class="product_part"><b>{{product.price}}</b> грн</div>
+            </div>
+         </div>
+      </div>
+      <div class="order_status">Статус замовлення: <span [class.green]="order.status === 'Виконане'">{{order.status}}</span></div>
+   </div>
+</div>

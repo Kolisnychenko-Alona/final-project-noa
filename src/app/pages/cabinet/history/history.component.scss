@@ -1,0 +1,129 @@
+@import '../../../shared/styles/variables';
+.container{
+   max-width: 1500px;
+   margin: 0 auto;
+   padding: 0 50px 50px;
+   .order{
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      &_title{
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 10px;
+      }
+      &_part{
+         text-align: start;
+         font-size: 18px;
+         color: $text-color;
+         line-height: 1.2em;
+      }
+      &_products{
+         .product{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid $border-color;
+            border-radius: 6px;
+            padding: 10px;
+            &_image{
+               width: 127px;
+               height: 127px;
+               margin-right: 30px;
+               img{
+                  width: 100%;
+               }
+            }
+            &_info{
+               display: flex;
+               justify-content: end;
+               align-items: center;
+               flex-grow: 1;
+            }
+            &_part{
+               width: 150px;
+               font-size: 18px;
+               color: $text-color;
+               line-height: 1.2em;
+               &.name{
+                  flex-grow: 1;
+               }
+            }
+         }
+      }
+      &_status{
+         padding: 20px;
+         text-align: start;
+         font-size: 18px;
+         color: $text-color;
+         line-height: 1.2em;
+         span{
+            color: $main-color;
+            &.green{
+               color: green;
+            }
+         }
+      }
+   }
+}
+@media (max-width: 990px){
+   .container{
+      .order{
+         &_products{
+            .product{
+               &_part{
+                  width: 80px;
+               }
+            }
+         }
+      }
+   }
+}
+@media (max-width: 700px){
+   .container{
+      padding: 0 15px 50px;
+      .order{
+         &_title{
+            flex-direction: column;
+            justify-content: start;
+            align-items: flex-start;
+         }
+         &_part{
+            margin-bottom: 10px;
+         }
+         &_products{
+            .product{
+               &_image{
+                  width: 90px;
+                  height: 90px;
+                  margin-right: 10px;
+               }
+               &_part{
+                  width: 65px;
+               }
+            }
+         }
+      }
+   }
+}
+@media (max-width: 700px){
+   .container{
+      .order{
+         &_part{
+            font-size: 14px;
+         }
+         &_products{
+            .product{
+               &_part{
+                  font-size: 14px;
+               }
+            }
+         }
+         &_status{
+            font-size: 14px;
+         }
+      }
+   }
+}

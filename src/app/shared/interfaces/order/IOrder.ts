@@ -1,8 +1,8 @@
-import { IAddress } from '../adress/IAddress';
-import { IProductRequest } from '../product/iproduct';
+
+import { IProductResponse } from '../product/iproduct';
 
 export interface IOrderRequest {
-  basket: Array<IProductRequest>;
+  basket: Array<IProductResponse>;
   firstName: string;
   secondName: string;
   phone: number;
@@ -25,7 +25,9 @@ export interface IOrderRequest {
   callMe: boolean;
   comment?: string;
   total: number;
-  status: boolean;
+  status: string;
+  atTime: boolean;
+  orderDate: string;
 }
 
 export interface IOrderResponse extends IOrderRequest {
