@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CollectionReference, DocumentData, Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { CollectionReference, DocumentData, Firestore, addDoc, collection, collectionData, doc, updateDoc } from '@angular/fire/firestore';
 import { ReplaySubject, Subject } from 'rxjs';
 import { IOrderRequest } from '../../interfaces/order/IOrder';
 
@@ -7,7 +7,6 @@ import { IOrderRequest } from '../../interfaces/order/IOrder';
   providedIn: 'root',
 })
 export class OrderService {
-  
   private orderCollection!: CollectionReference<DocumentData>;
 
   public changeBasket$ = new Subject<boolean>();
@@ -16,14 +15,15 @@ export class OrderService {
   constructor(private afs: Firestore) {
     this.orderCollection = collection(this.afs, 'orders');
   }
-  getDeliveryType(): string{
-    let delivery!: string;
-      this.deliveryType$.subscribe(data => {
-        delivery = data;
-    })
-    return delivery;
-  }
+
   create(order: IOrderRequest) {
     return addDoc(this.orderCollection, order);
+  }
+  getAll() {
+    return collectionData(this.orderCollection, { idField: 'id' });
+  }
+  update(order: IOrderRequest, id: string) {
+    const orderDocumentReference = doc(this.afs, `orders/${id}`);
+    return updateDoc(orderDocumentReference, { ...order });
   }
 }

@@ -60,15 +60,6 @@ $custom-theme: mat.define-light-theme($custom-theme-primary, $custom-theme-accen
 @include mat.all-component-themes($custom-theme);
 
 
-@keyframes slide{
-  0%{
-    transform: translateX(0);
-  }
-  100%{
-    transform: translateX(-380px);
-  }
-}
-
 .dialog-back {
   background-color: #0000003d;
 }

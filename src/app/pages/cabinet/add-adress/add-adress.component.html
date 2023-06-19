@@ -1,11 +1,11 @@
 <div class="container">
-   <div class="close" mat-dialog-close="true">
+   <div class="close" mat-dialog-close>
       <i class="uil uil-times"></i>
    </div>
    <h1 class="title">Адреса</h1>
    <form class="form" [formGroup]="addressForm">
       <select class="select" formControlName="city" >
-         <option value="Виберіть місто" disabled selected>Виберіть місто</option>
+         <option value="null" disabled selected>Виберіть місто</option>
          <option value="Львів">Львів</option>
          <option value="Брюховичі">Брюховичі</option>
          <option value="Великі Грибовичі">Великі Грибовичі</option>
@@ -30,7 +30,7 @@
          <option value="Солонка">Солонка</option>
          <option value="Холодновідка">Холодновідка</option>
       </select>
-      <div class="form_box">
+      <div class="form_box top">
          <input class="form_field address" type="text" formControlName="street" placeholder="*Введіть вулицю доставки">
          <input class="form_field house" type="text"formControlName="house" placeholder="*№ будинку">
       </div>

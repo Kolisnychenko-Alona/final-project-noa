@@ -5,6 +5,7 @@ export interface IOrderRequest {
   basket: Array<IProductResponse>;
   firstName: string;
   secondName: string;
+  userId: string;
   phone: number;
   email?: string;
   deliveryType: string;

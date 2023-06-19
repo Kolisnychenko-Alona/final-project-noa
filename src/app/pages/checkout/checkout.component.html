@@ -129,7 +129,7 @@
             <span class="title_text">Інформація про оплату</span>
          </div>
          <div class="input-box">
-            <input class="input-box_item"  formControlName="payment" type="radio" id="cash" name="payment" value="cash" (change)="changePayment()" checked>
+            <input class="input-box_item"  formControlName="payment" type="radio" id="cash" name="payment" value="Готівка" (change)="changePayment()" checked>
             <label class="input-box_text" for="cash">Оплата готівкою</label>
          </div>
          <div class="input-box" class="change" *ngIf="cash">

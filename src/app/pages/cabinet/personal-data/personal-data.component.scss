@@ -160,3 +160,39 @@
       }
    }
 }
+@media (max-width: 767px){
+   .container{
+      width: 510px;
+      .form{
+         &_double{
+            flex-direction: column;
+            justify-content: start;
+            .form_field{
+               width: calc(100% - 40px);
+            }
+         }
+      }
+   }
+}
+@media (max-width: 575px){
+   .container{
+      width: 100%;
+      padding: 0 15px;
+      .buttons{
+         flex-direction: column;
+         justify-content: start; 
+         &_btn{
+            width: 100%;
+            margin-bottom: 20px;
+         }
+      }
+      .addresses{
+         flex-direction: column;
+         justify-content: start;
+         align-items: center;
+         .address{
+            width: 300px;
+         }
+      }
+   }
+}

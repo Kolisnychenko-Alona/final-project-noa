@@ -71,13 +71,15 @@ export class PersonalDataComponent implements OnInit {
       })
       .afterClosed()
       .subscribe((result) => {
-        this.userAddress.push(result);
-        this.personalForm.patchValue({
-          address: this.userAddress,
-        });
-        let user = JSON.parse(localStorage.getItem('currentUser') as string);
-        user.address.push(result);
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        if (result) {
+          this.userAddress.push(result);
+          this.personalForm.patchValue({
+            address: this.userAddress,
+          });
+          let user = JSON.parse(localStorage.getItem('currentUser') as string);
+          user.address.push(result);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        } 
       });
   }
 

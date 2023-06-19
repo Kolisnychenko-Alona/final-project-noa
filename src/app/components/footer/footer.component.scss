@@ -117,7 +117,7 @@
       .social {
          &_inner {
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
          }
          &_text {
             margin-right: 15px;

@@ -1,1 +1,48 @@
-<p>admin-orders works!</p>
+<div class="container">
+   <div class="order" *ngFor="let order of orders">
+      <h1 class="label" *ngIf="order.status === 'Нове'">Нове</h1>
+      <ol>
+         <li class="product" *ngFor="let product of order.basket">
+            <div class="product_image">
+               <img [src]="product.imagePath" alt="product photo">
+            </div>
+            <div class="product_info">
+               <div class="product_part name" [routerLink]="['/product/'+product.category.path, product.id]">
+                  {{product.name}}
+               </div>
+               <div class="product_part">{{product.count}} шт</div>
+               <div class="product_part"><b>{{product.price}}</b> грн</div>
+            </div>
+         </li>
+      </ol>
+      <ul class="order_information">
+         <li class="order_item"><b>Спосіб отримання:</b> {{order.deliveryType}}</li>
+         <li class="order_item" *ngIf="order.deliveryType === 'Самовивіз'"><b>Ресторан:</b> {{order.place}}</li>
+         <li class="order_item" *ngIf="order.deliveryType != 'Самовивіз'"><b>Адреса:</b>
+            <span>м. {{order.city}}, </span>
+            <span>вул.{{order.street}}, </span>
+            <span>б. {{order.houseNumber}}, </span>
+            <span *ngIf="order.entrance">під'їзд {{order.entrance}}, </span>
+            <span *ngIf="order.flat">квартира {{order.flat}}, </span>
+            <span *ngIf="order.flor">поверх {{order.flor}}, </span>
+            <span *ngIf="order.cod">домофон {{order.cod}}, </span>
+         </li>
+         <li class="order_item"><b>Дата:</b> {{order.date}}</li>
+         <li class="order_item" *ngIf="order.time"><b>Час:</b> {{order.time}}</li>
+         <li class="order_item"><b>Ім'я</b> {{order.firstName}} {{order.secondName}}</li>
+         <li class="order_item"><b>Телефон:</b> {{order.phone}}</li>
+         <li class="order_item" *ngIf="order.email"><b>Email:</b> {{order.email}}</li>
+         <li class="order_item"><b>Прибори:</b> {{order.cutleryCount}} шт</li>
+         <li class="order_item"><b>Вид оплати:</b> {{order.payment}}</li>
+         <li class="order_item" *ngIf="order.banknote"><b>Решта з:</b> {{order.banknote}}</li>
+         <li class="order_item" *ngIf="order.callMe"><b>Можна не телефонувати</b></li>
+         <li class="order_item" *ngIf="order.comment"><b>Коментар:</b> {{order.comment}}</li>
+         <li class="order_item"><b>Статус:</b> {{order.status}}</li>
+      </ul>
+      <div class="order_actions">
+         <div class="total">Загальна сума:<br>{{order.total}} грн</div>
+         <button class="btn" type="button" (click)="processOrder('Прийняте', order)">Прийняти</button>
+         <button class="btn cancel" type="button" (click)="processOrder('Відмінене', order)">Відмінити</button>
+      </div>
+   </div>
+</div>
