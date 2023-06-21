@@ -8,10 +8,9 @@
          <div class="adding_input">
             <div class="adding_input-wrapper">
                <div class="adding_input-field choose">
-                  <label class="select-label" for="category">Оберіть категорію</label>
                   <select class="select" name="category" formControlName="category">
-                     <option value="Оберіть категорію" selected disabled>Оберіть категорію</option>
-                     <option [ngValue]="category" *ngFor="let category of adminThaiCategories">{{category.name}}</option>
+                     <option value="null" selected disabled>Оберіть категорію</option>
+                     <option [ngValue]="category.name" *ngFor="let category of adminThaiCategories">{{category.name}}</option>
                   </select>
                   <div class="err" *ngIf="isControlInvalid('category')">Виберіть категорію</div>
                </div>

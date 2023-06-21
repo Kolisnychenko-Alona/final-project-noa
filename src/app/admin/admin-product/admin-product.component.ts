@@ -30,8 +30,8 @@ export class AdminProductComponent implements OnInit {
     private toastr: ToastrService
   ) {}
   ngOnInit(): void {
-    this.getProducts();
     this.getCategories();
+    this.getProducts();
     this.initProductForm();
   }
 
@@ -90,13 +90,14 @@ export class AdminProductComponent implements OnInit {
     }
     this.editStatus = false;
     this.productForm.reset();
+    this.productForm.get('count')?.setValue(1);
+    this.productForm.get('weight')?.setValue(0);
     this.isAdding = !this.isAdding;
     this.isUploaded = false;
-    console.log(this.productForm.invalid);
   }
   editProduct(product: IProductResponse): void {
     this.productForm.patchValue({
-      category: product.category,
+      category: product.category.name,
       name: product.name,
       path: product.path,
       description: product.description,

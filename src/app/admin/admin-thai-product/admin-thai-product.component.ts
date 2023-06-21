@@ -86,13 +86,15 @@ export class AdminThaiProductComponent implements OnInit {
     }
     this.editStatus = false;
     this.thaiProductForm.reset();
+    this.thaiProductForm.get('count')?.setValue(1);
+    this.thaiProductForm.get('weight')?.setValue(0);
     this.isAdding = !this.isAdding;
     this.isUploaded = false;
     console.log(this.thaiProductForm.invalid);
   }
   editThaiProduct(product: IProductResponse): void {
     this.thaiProductForm.patchValue({
-      category: product.category,
+      category: product.category.name,
       name: product.name,
       path: product.path,
       description: product.description,

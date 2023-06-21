@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { IRegister } from 'src/app/shared/interfaces/auth/IRegister';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
 import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
 import { AccountService } from 'src/app/shared/services/account/account.service';
 
-
 import { OrderService } from 'src/app/shared/services/orders/order.service';
 import { ProductService } from 'src/app/shared/services/product/product.service';
 import { ThaiProductService } from 'src/app/shared/services/thai-product/thai-product.service';
-import { ThaiMarketService } from 'src/app/shared/services/thai/thai-market.service';
 
 @Component({
   selector: 'app-favorite-products',
@@ -18,17 +15,13 @@ import { ThaiMarketService } from 'src/app/shared/services/thai/thai-market.serv
 })
 export class FavoriteProductsComponent implements OnInit {
   public userCategories: Array<ICategoryResponse> = [];
-  public userProducts: Array<IProductResponse> = [];
-  public userThaiProducts: Array<IProductResponse> = [];
-  private eventSubscription!: Subscription;
+  public userProducts: Array<IProductResponse> | undefined = [];
   public currentCategory!: string;
   public filter = 'all';
   public sort = 'price up';
 
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
     private orderService: OrderService,
     private accountService: AccountService,
     private productThaiService: ThaiProductService
@@ -39,19 +32,15 @@ export class FavoriteProductsComponent implements OnInit {
   }
 
   loadProducts(): void {
-    let products: Array<IProductResponse> = [];
-    let productsThai: Array<IProductResponse> = [];
-    this.productService.getAll().subscribe((data) => {
-      products = data as IProductResponse[];
-      products = products.filter((product) => product.favorite === true);
-      this.userProducts = products.concat(productsThai);
+    const userId = JSON.parse(
+      localStorage.getItem('currentUser') as string
+    ).uid;
+    this.accountService.getOne(userId).subscribe((data) => {
+      const currentUser = data as IRegister;
+      if (currentUser.favorites) {
+        this.userProducts = currentUser.favorites;
+      }
     });
-    this.productThaiService.getAll().subscribe((data) => {
-      productsThai = data as IProductResponse[];
-      productsThai = productsThai.filter((product) => product.favorite === true);
-      this.userProducts = products.concat(productsThai);
-    });
-    
   }
 
   productCount(product: IProductResponse, value: boolean): void {

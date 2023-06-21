@@ -40,12 +40,17 @@ export class HeaderComponent implements OnInit {
     private thaiMarketService: ThaiMarketService,
     private accountService: AccountService,
     private orderService: OrderService
-  ) {}
+  ) {
+    
+  }
 
   ngOnInit(): void {
     this.getCategories();
     this.getThaiCategories();
-    this.openDeliveryDialog();
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') as string);
+    if (!currentUser || currentUser.role === ROLE.USER) {
+      this.openDeliveryDialog();
+    } 
     this.checkLogin();
     this.checkUpdatesLogin();
     this.loadBasket();

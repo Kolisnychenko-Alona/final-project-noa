@@ -22,10 +22,10 @@
                <li class="address_item"><b>Місто:  </b>{{address.city}}</li>
                <li class="address_item"><b>Вулиця:  </b> {{address.street}}</li>
                <li class="address_item"><b>Будинок № </b>{{address.house}}</li>
-               <li class="address_item"><b>Квартира №  </b> {{address.apartment}}</li>
-               <li class="address_item"><b>Під'їзд №  </b> {{address.entrance}}</li>
-               <li class="address_item"><b>Поверх  </b> {{address.flor}}</li>
-               <li class="address_item"><b>Домофон:  </b> {{address.cod}}</li>
+               <li class="address_item" *ngIf="address.apartment"><b>Квартира №  </b> {{address.apartment}}</li>
+               <li class="address_item" *ngIf="address.entrance"><b>Під'їзд №  </b> {{address.entrance}}</li>
+               <li class="address_item" *ngIf="address.flor"><b>Поверх  </b> {{address.flor}}</li>
+               <li class="address_item" *ngIf="address.cod"><b>Домофон:  </b> {{address.cod}}</li>
             </ul>
             <button class="address_btn" type="button" (click)="deleteAddress(i)">Видалити адресу</button>
          </div>

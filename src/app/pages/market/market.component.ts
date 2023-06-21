@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
 import { ThaiProductService } from 'src/app/shared/services/thai-product/thai-product.service';
 import { AccountService } from 'src/app/shared/services/account/account.service';
+import { OrderService } from 'src/app/shared/services/orders/order.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class MarketComponent implements OnInit, OnDestroy {
     private thaiProductService: ThaiProductService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService // private orderService: OrderService
+    private accountService: AccountService,
+    private orderService: OrderService
   ) {
     this.eventSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -67,22 +69,28 @@ export class MarketComponent implements OnInit, OnDestroy {
     }
   }
   addToBasket(product: IProductResponse): void {
-    // let basket: Array<IProductResponse> = [];
-    // if (localStorage.length > 0 && localStorage.getItem('basket')) {
-    //   basket = JSON.parse(localStorage.getItem('basket') as string);
-    //   if (basket.some((prod) => prod.id === product.id)) {
-    //     const index = basket.findIndex((prod) => prod.id === product.id);
-    //     basket[index].count += product.count;
-    //   } else {
-    //     basket.push(product);
-    //   }
-    // } else {
-    //   basket.push(product);
-    // }
-    // localStorage.setItem('basket', JSON.stringify(basket));
-    // product.count = 1;
-    // this.orderService.changeBasket.next(true);
+    let basket: Array<IProductResponse> = [];
+    if (localStorage.length > 0 && localStorage.getItem('basket')) {
+      basket = JSON.parse(localStorage.getItem('basket') as string);
+      if (basket.some((prod) => prod.id === product.id)) {
+        const index = basket.findIndex((prod) => prod.id === product.id);
+        basket[index].count += product.count;
+      } else {
+        basket.push(product);
+      }
+    } else {
+      basket.push(product);
+    }
+    localStorage.setItem('basket', JSON.stringify(basket));
+    product.count = 1;
+    this.orderService.changeBasket$.next(true);
   }
+  
+  quickOrder(product: IProductResponse): void {
+    this.addToBasket(product);
+    this.router.navigate(['/checkout']);
+  }
+
   changeCategory(value: string) {
     this.router.navigate(['/market', value]);
   }

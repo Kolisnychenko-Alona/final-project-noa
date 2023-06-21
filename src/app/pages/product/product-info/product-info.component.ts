@@ -94,6 +94,10 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     product.count = 1;
     this.orderService.changeBasket$.next(true);
   }
+  quickOrder(product: IProductResponse): void {
+    this.addToBasket(product);
+    this.router.navigate(['/checkout']);
+  }
 
   findKoef(): void {
     if (this.windowWidth <= 1400 && this.windowWidth > 990) {
@@ -150,7 +154,9 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
       } else if (!this.product.favorite) {
-        const index = favorites.findIndex((prod) => prod.id === this.product.id);
+        const index = favorites.findIndex(
+          (prod) => prod.id === this.product.id
+        );
         if (index === 0) {
           favorites.shift();
         } else if (index === favorites.length - 1) {

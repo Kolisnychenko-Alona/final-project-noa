@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ROLE } from 'src/app/shared/constants/role.constant';
 import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { OrderService } from 'src/app/shared/services/orders/order.service';
@@ -11,7 +12,7 @@ import { OrderService } from 'src/app/shared/services/orders/order.service';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
 })
-export class CheckoutComponent implements OnInit{
+export class CheckoutComponent implements OnInit {
   public pickup!: boolean;
   public delivery!: boolean;
   public deliveryType!: string;
@@ -34,7 +35,7 @@ export class CheckoutComponent implements OnInit{
     private router: Router,
     private toastr: ToastrService,
     private accountService: AccountService
-    ) {
+  ) {
     const currentDate = new Date();
     this.date = currentDate.toISOString().slice(0, 10);
   }
@@ -44,9 +45,9 @@ export class CheckoutComponent implements OnInit{
     this.updateBasket();
     this.initForm();
     this.changeDeliveryType();
-    this.orderService.deliveryType$.subscribe(data=>{
+    this.orderService.deliveryType$.subscribe((data) => {
       this.deliveryType = data;
-    })
+    });
   }
   changeDeliveryType(): void {
     this.orderService.deliveryType$.subscribe((data) => {
@@ -54,7 +55,7 @@ export class CheckoutComponent implements OnInit{
       if (this.deliveryType === 'Самовивіз') {
         this.pickup = true;
         this.delivery = false;
-      } else if ((this.deliveryType === "Доставка кур'єром")) {
+      } else if (this.deliveryType === "Доставка кур'єром") {
         this.pickup = false;
         this.delivery = true;
       }
@@ -64,39 +65,69 @@ export class CheckoutComponent implements OnInit{
   initForm(): void {
     if (localStorage.length > 0 && localStorage.getItem('currentUser')) {
       const user = JSON.parse(localStorage.getItem('currentUser') as string);
-      this.orderForm = this.fb.group({
-        basket: [this.basket, Validators.required],
-        firstName: [user.firstName, Validators.required],
-        secondName: [user.lastName, Validators.required],
-        userId: [user.id],
-        phone: [user.phone, Validators.required],
-        email: [user.email],
-        deliveryType: [this.deliveryType, Validators.required],
-        place: [null],
-        date: [this.date],
-        time: [null],
-        city: [
-          user.address.length > 0 ? user.address[0].city : 'Виберіть місто',
-        ],
-        street: [user.address.length > 0 ? user.address[0].street : null],
-        houseNumber: [
-          user.address.length > 0 ? user.address[0].house : null,
-        ],
-        entrance: [user.address.length > 0 ? user.address[0].entrance : null],
-        flat: [user.address.length > 0 ? user.address[0].apartment : null],
-        flor: [user.address.length > 0 ? user.address[0].flor : null],
-        cod: [user.address.length > 0 ? user.address[0].cod : null],
-        cutleryCount: [this.cutleryNumber],
-        payment: ['cash', Validators.required],
-        change: [null],
-        banknote: [null],
-        callMe: [null],
-        comment: [null],
-        total: [this.total],
-        status: ['Нове'],
-        atTime: [false],
-        orderDate: [this.date],
-      });
+      if (user.role === ROLE.USER) {
+        this.orderForm = this.fb.group({
+          basket: [this.basket, Validators.required],
+          firstName: [user.firstName, Validators.required],
+          secondName: [user.lastName, Validators.required],
+          userId: [user.id],
+          phone: [user.phone, Validators.required],
+          email: [user.email],
+          deliveryType: [this.deliveryType, Validators.required],
+          place: [null],
+          date: [this.date],
+          time: [null],
+          city: [
+            user.address.length > 0 ? user.address[0].city : 'Виберіть місто',
+          ],
+          street: [user.address.length > 0 ? user.address[0].street : null],
+          houseNumber: [user.address.length > 0 ? user.address[0].house : null],
+          entrance: [user.address.length > 0 ? user.address[0].entrance : null],
+          flat: [user.address.length > 0 ? user.address[0].apartment : null],
+          flor: [user.address.length > 0 ? user.address[0].flor : null],
+          cod: [user.address.length > 0 ? user.address[0].cod : null],
+          cutleryCount: [this.cutleryNumber],
+          payment: ['cash', Validators.required],
+          change: [null],
+          banknote: [null],
+          callMe: [null],
+          comment: [null],
+          total: [this.total],
+          status: ['Нове'],
+          atTime: [false],
+          orderDate: [this.date],
+        });
+      } else {
+        this.orderForm = this.fb.group({
+          basket: [this.basket, Validators.required],
+          firstName: [null, Validators.required],
+          secondName: [null, Validators.required],
+          userId: [null],
+          phone: [null, Validators.required],
+          email: [null],
+          deliveryType: [this.deliveryType, Validators.required],
+          place: [null],
+          date: [this.date],
+          time: [null],
+          city: [null],
+          street: [null],
+          houseNumber: [null],
+          entrance: [null],
+          flat: [null],
+          flor: [null],
+          cod: [null],
+          cutleryCount: [this.cutleryNumber],
+          payment: ['cash', Validators.required],
+          change: [null],
+          banknote: [null],
+          callMe: [null],
+          comment: [null],
+          total: [this.total],
+          status: ['Нове'],
+          atTime: [false],
+          orderDate: [this.date],
+        });
+      }
     } else {
       this.orderForm = this.fb.group({
         basket: [this.basket, Validators.required],
@@ -125,7 +156,7 @@ export class CheckoutComponent implements OnInit{
         total: [this.total],
         status: ['Нове'],
         atTime: [false],
-        orderDate: [this.date]
+        orderDate: [this.date],
       });
     }
     this.checkDelivery();
@@ -138,7 +169,7 @@ export class CheckoutComponent implements OnInit{
         this.orderForm.get('city')?.setValidators([Validators.required]);
         this.orderForm.get('street')?.setValidators([Validators.required]);
         this.orderForm.get('houseNumber')?.setValidators([Validators.required]);
-        this.orderForm.get('place')?.clearValidators(); 
+        this.orderForm.get('place')?.clearValidators();
       } else if (deliveryType === 'Самовивіз') {
         this.orderForm.get('city')?.clearValidators();
         this.orderForm.get('street')?.clearValidators();
@@ -180,14 +211,23 @@ export class CheckoutComponent implements OnInit{
       this.loadBasket();
     });
   }
+
   productCount(product: IProductResponse, value: boolean): void {
+    let basket: Array<IProductResponse> = [];
+    basket = JSON.parse(localStorage.getItem('basket') as string);
+    const index = basket.findIndex((prod) => prod.id === product.id);
     if (value) {
       ++product.count;
+      ++basket[index].count;  
     } else if (!value && product.count > 1) {
       --product.count;
+      --basket[index].count;
     }
+    localStorage.setItem('basket', JSON.stringify(basket));
+    this.orderService.changeBasket$.next(true);
     this.getTotalPrice();
   }
+
   deleteProduct(product: IProductResponse): void {
     let basket: Array<IProductResponse> = [];
     basket = JSON.parse(localStorage.getItem('basket') as string);
@@ -226,7 +266,9 @@ export class CheckoutComponent implements OnInit{
     this.orderService.create(this.orderForm.value).then(() => {
       localStorage.removeItem('basket');
       this.orderService.changeBasket$.next(true);
-      this.toastr.success('Замовлення успіно оформлено! Наш менеджер зконтактує з Вами.');
+      this.toastr.success(
+        'Замовлення успіно оформлено! Наш менеджер зконтактує з Вами.'
+      );
       if (localStorage.length > 0 && localStorage.getItem('currentUser')) {
         let user = JSON.parse(localStorage.getItem('currentUser') as string);
         const order = this.orderForm.value;
@@ -243,6 +285,5 @@ export class CheckoutComponent implements OnInit{
       this.orderForm.get('total')?.setValue(this.total);
       this.router.navigate(['/home']);
     });
-
   }
 }

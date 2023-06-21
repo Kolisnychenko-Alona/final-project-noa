@@ -294,7 +294,7 @@
          padding: 80px 65px;
          display: flex;
          flex-direction: column;
-         align-items: end;
+         align-items: flex-end;
          background-color: $white;
          transition: 0.5s;
       }
@@ -331,6 +331,10 @@
          margin-bottom: 10px;
          border-radius: 6px;
          transition: 0.5s;
+         &.active{
+            color: $white;
+            background-color: $main-color;
+         }
          &:hover {
             background-color: $main-color;
             color: $white;
@@ -465,10 +469,10 @@
    visibility: visible;
    transition: 0.5s;
 }
-.active{
-   color: $white;
-   background-color: $main-color;
-}
+// .active{
+//    color: $white;
+//    background-color: $main-color;
+// }
 @media (max-width: 1370px) {
    .container {
       .header {

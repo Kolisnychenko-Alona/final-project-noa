@@ -70,6 +70,7 @@ export class BasketDialogComponent implements OnInit {
   }
   clearBasket(): void{
     localStorage.removeItem('basket');
+    this.total = 0;
     this.orderService.changeBasket$.next(true);
   }
 }

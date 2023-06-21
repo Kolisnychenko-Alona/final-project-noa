@@ -27,8 +27,8 @@
          <div class="info_controlls-price"><b>{{thaiProduct.price}}</b> грн</div>
       </div>
       <div class="info_buttons">
-         <button class="btn" type="button">Додати в кошик</button>
-         <button class="btn quick" type="button">Швидке замовлення</button>
+         <button class="btn" type="button" (click)="addToBasket(thaiProduct)">Додати в кошик</button>
+         <button class="btn quick" type="button" (click)="quickOrder(thaiProduct)">Швидке замовлення</button>
       </div>
    </div>
 </div>

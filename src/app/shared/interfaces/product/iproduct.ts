@@ -9,7 +9,7 @@ export interface IProductRequest {
   allergens?: string;
   price: number;
   imagePath: string;
-  count: 1;
+  count: number;
   culSpecial: boolean;
   noRise: boolean;
   favorite: boolean;

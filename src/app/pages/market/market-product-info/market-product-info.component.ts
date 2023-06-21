@@ -9,6 +9,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IProductResponse } from 'src/app/shared/interfaces/product/iproduct';
 import { AccountService } from 'src/app/shared/services/account/account.service';
+import { OrderService } from 'src/app/shared/services/orders/order.service';
 import { ThaiProductService } from 'src/app/shared/services/thai-product/thai-product.service';
 
 @Component({
@@ -32,7 +33,8 @@ export class MarketProductInfoComponent implements OnInit, OnDestroy {
     private thaiProductService: ThaiProductService,
     private router: Router,
     private elementRef: ElementRef,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private orderService: OrderService
   ) {
     this.windowWidth = window.innerWidth;
     this.findKoef();
@@ -79,6 +81,27 @@ export class MarketProductInfoComponent implements OnInit, OnDestroy {
     } else if (!value && product.count > 1) {
       --product.count;
     }
+  }
+  addToBasket(product: IProductResponse): void {
+    let basket: Array<IProductResponse> = [];
+    if (localStorage.length > 0 && localStorage.getItem('basket')) {
+      basket = JSON.parse(localStorage.getItem('basket') as string);
+      if (basket.some((prod) => prod.id === product.id)) {
+        const index = basket.findIndex((prod) => prod.id === product.id);
+        basket[index].count += product.count;
+      } else {
+        basket.push(product);
+      }
+    } else {
+      basket.push(product);
+    }
+    localStorage.setItem('basket', JSON.stringify(basket));
+    product.count = 1;
+    this.orderService.changeBasket$.next(true);
+  }
+  quickOrder(product: IProductResponse): void {
+    this.addToBasket(product);
+    this.router.navigate(['/checkout']);
   }
 
   findKoef(): void {

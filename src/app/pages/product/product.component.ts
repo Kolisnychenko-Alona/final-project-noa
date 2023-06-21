@@ -108,6 +108,10 @@ export class ProductComponent implements OnInit, OnDestroy {
     product.count = 1;
     this.orderService.changeBasket$.next(true);
   }
+  quickOrder(product: IProductResponse): void{
+    this.addToBasket(product);
+    this.router.navigate(['/checkout']);
+  }
 
   changeCategory(value: string) {
     this.router.navigate(['/product', value]);

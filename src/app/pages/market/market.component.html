@@ -21,7 +21,7 @@
                <div class="favorite-bnt" (click)="changeFavorite(product, product.id)" [class.active]="product.favorite"></div>
             </div>
             <div class="product_image-button">
-               <button class="btn" type="button">Швидке замовлення</button>
+               <button class="btn" type="button" (click)="quickOrder(product)">Швидке замовлення</button>
             </div>
          </div>
          <div class="product_title">
@@ -39,7 +39,7 @@
                <input class="count_value" type="text" [value]="product.count" readonly>
                <button class="count_btn" (click)="productCount(product, true)">+</button>
             </div>
-            <button class="add-btn" type="button">Замовити</button>
+            <button class="add-btn" type="button" (click)="addToBasket(product)">Замовити</button>
          </div>
       </div>
    </div>
