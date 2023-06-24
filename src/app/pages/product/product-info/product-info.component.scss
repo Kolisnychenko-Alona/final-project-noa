@@ -105,7 +105,7 @@
       &_controlls {
          padding: 30px 0;
          display: flex;
-         justify-content: start;
+         justify-content: flex-start;
          align-items: center;
          .count {
             display: flex;
@@ -231,7 +231,7 @@
       .other-products_wrapper {
          width: fit-content;
          display: flex;
-         justify-content: start;
+         justify-content: flex-start;
          align-items: center;
          transition: 1s;
          .product {

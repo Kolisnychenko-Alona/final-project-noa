@@ -1,4 +1,8 @@
 {
+  "projects": {
+    "default": "noa-project-1513d",
+    "noa": "noa-project-1513d"
+  },
   "targets": {
     "noa-project-fb654": {
       "hosting": {
@@ -8,7 +12,5 @@
       }
     }
   },
-  "projects": {
-    "default": "noa-project-fb654"
-  }
+  "etags": {}
 }

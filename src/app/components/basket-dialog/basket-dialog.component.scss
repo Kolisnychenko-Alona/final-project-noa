@@ -18,7 +18,7 @@
       }
       &_buttons {
          display: flex;
-         justify-content: end;
+         justify-content: flex-end;
          align-items: center;
       }
       &_btn {
@@ -86,7 +86,7 @@
          }
          &_count {
             display: flex;
-            justify-content: start;
+            justify-content: flex-start;
             align-items: center;
             margin-bottom: 20px;
             &-btn {
