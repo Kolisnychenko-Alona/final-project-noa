@@ -52,7 +52,7 @@ export class AdminCategoryComponent implements OnInit {
 
   getCategories(): void {
     this.categoryService.getAll().subscribe((data) => {
-      this.adminCategories = data as ICategoryResponse[];
+        this.adminCategories = data as ICategoryResponse[];
     });
   }
 

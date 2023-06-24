@@ -14,8 +14,8 @@ export class AddAdressComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private toastr: ToastrService,
-    private dialogRef: MatDialogRef<AddAdressComponent>
+    public toastr: ToastrService,
+    public dialogRef: MatDialogRef<AddAdressComponent>
   ) {}
 
   ngOnInit(): void {
